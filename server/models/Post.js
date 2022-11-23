@@ -19,20 +19,20 @@ const postSchema = new Schema(
       type: String,
       required: true,
     },
-    transmission: {
-      type: String,
-      required: true,
-    },
     location: {
-      type: String,
-      required: true,
-    },
-    mileage: {
-      type: Number,
-      required: true,
+        type: String,
+        required: true,
     },
     price: {
-      type: Number,
+        type: Number,
+        required: true,
+    },
+    mileage: {
+        type: Number,
+        required: true,
+    },
+    transmission: {
+      type: String,
       required: true,
     },
     image: {
