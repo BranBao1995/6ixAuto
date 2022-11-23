@@ -41,9 +41,40 @@ const typeDefs = gql`
 
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
-    post(make: String!, model: String!, year: String!, carType: String!, location: String!, price: Int!, mileage: Int!, transmission: String!, image: String, description: String!, user: User!)
+    post(
+      make: String!
+      model: String!
+      year: String!
+      carType: String!
+      location: String!
+      price: Int!
+      mileage: Int!
+      transmission: String!
+      image: String
+      description: String!
+      createdAt: String!
+    ): Post
     login(email: String!, password: String!): Auth
+    updatePost(
+      postId: ID!
+      make: String!
+      model: String!
+      year: String!
+      carType: String!
+      location: String!
+      price: Int!
+      mileage: Int!
+      transmission: String!
+      image: String
+      description: String!
+      updatedAt: String
+    ): Post
+    deletePost(postId: ID!): Post
+    savePost(postId: ID!): User
+    removePost(postId: ID!): User
   }
 `;
+
+// deletePost deletes the entire post. removePost removes post from DreamList.
 
 module.exports = typeDefs;
