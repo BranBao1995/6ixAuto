@@ -8,6 +8,10 @@ const userSchema = new Schema(
       required: true,
       unique: true,
     },
+    phone: {
+      type: String,
+      required: true,
+    },
     email: {
       type: String,
       required: true,
@@ -18,6 +22,18 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    listings: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Post",
+      },
+    ],
+    interested: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Post",
+      },
+    ],
   },
   // set this to use virtual below
   {
@@ -26,6 +42,7 @@ const userSchema = new Schema(
     },
   }
 );
+
 
 // hash user password
 userSchema.pre("save", async function (next) {
