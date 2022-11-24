@@ -21,8 +21,16 @@ export const GET_ME = gql`
         description
         createdAt
         updatedAt
-        user
-        liked
+        user {
+          _id
+          username
+          phone
+        }
+        liked {
+          _id
+          username
+          phone
+        }
         likeCount
       }
       interested {
@@ -39,8 +47,16 @@ export const GET_ME = gql`
         description
         createdAt
         updatedAt
-        user
-        liked
+        user {
+          _id
+          username
+          phone
+        }
+        liked {
+          _id
+          username
+          phone
+        }
         likeCount
       }
     }

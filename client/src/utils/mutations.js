@@ -162,6 +162,18 @@ export const SAVE_TO_FAV = gql`
   mutation savePost($postId: ID!) {
     savePost(postId: $postId) {
       _id
+      username
+      phone
+    }
+  }
+`;
+
+export const REMOVE_FROM_FAV = gql`
+  mutation removePost($postId: ID!) {
+    removePost(postId: $postId) {
+      _id
+      username
+      phone
     }
   }
 `;
