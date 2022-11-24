@@ -9,6 +9,7 @@ const SignupForm = () => {
   const [userFormData, setUserFormData] = useState({
     username: "",
     email: "",
+    phone: "",
     password: "",
   });
 
@@ -96,6 +97,21 @@ const SignupForm = () => {
         </Form.Group>
 
         <Form.Group>
+          <Form.Label htmlFor="phone">Phone</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Your phone number"
+            name="phone"
+            onChange={handleInputChange}
+            value={userFormData.phone}
+            required
+          />
+          <Form.Control.Feedback type="invalid">
+            Phone is required!
+          </Form.Control.Feedback>
+        </Form.Group>
+
+        <Form.Group>
           <Form.Label htmlFor="password">Password</Form.Label>
           <Form.Control
             type="password"
@@ -114,6 +130,7 @@ const SignupForm = () => {
             !(
               userFormData.username &&
               userFormData.email &&
+              userFormData.phone &&
               userFormData.password
             )
           }
