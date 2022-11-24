@@ -8,7 +8,12 @@ import ListingCard from "../components/ListingCard";
 // import {  } from "../utils/mutations";
 
 const Home = () => {
-  return <main></main>;
+  return (
+    <main >
+        <h1>Jumbotron Example</h1>
+        <p>Lorem im...</p>
+    </main>
+  );
 };
 
 export default Home;
