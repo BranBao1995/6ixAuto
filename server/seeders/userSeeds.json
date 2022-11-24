@@ -1,0 +1,26 @@
+[
+  {
+    "username": "user1",
+    "phone": "111-222-3333",
+    "email": "user1@abc.com",
+    "password": "password01"
+  },
+  {
+    "username": "user2",
+    "phone": "222-333-4444",
+    "email": "user2@abc.com",
+    "password": "password02"
+  },
+  {
+    "username": "user3",
+    "phone": "444-555-6666",
+    "email": "user3@abc.com",
+    "password": "password03"
+  },
+  {
+    "username": "user4",
+    "phone": "666-777-8888",
+    "email": "user4@abc.com",
+    "password": "password04"
+  }
+]

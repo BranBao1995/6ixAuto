@@ -1,0 +1,67 @@
+[
+  {
+    "make": "Audi",
+    "model": "A4",
+    "year": "2020",
+    "carType": "Sedan",
+    "location": "Pickering",
+    "price": 45000,
+    "mileage": 30000,
+    "transmission": "Auto",
+    "image": "https://mediaservice.audi.com/media/fast/H4sIAAAAAAAAAFvzloG1tIiBOTrayfuvpGh6-m1zJgaGigIGBgZGoDhTtNOaz-I_2DhCHkCFmfwZWMpTkwoYgSrcmLgycxPTU_VBArz____nZ-RONNFNrSjRzUvNzWcHKhHmyav8-UGw082l7PpDQyWuD6c3t5VyMvBYbbhZWG3E3iTTxxnu6nVQ642TmhsDj8fJVWYMmwXVzyo28InYsv1W3uM4g4HnfNiPQ1vb7M05bn6d0l5g-v1b2YxUBp69FYq_WeIsBG4-OXG58-9J2fTrFoIMPJ5yvxS924IesS7d63jfUvAl0xGdXQw8P_17cl92zDC-lCgvUNFvt_e28XYxBh7fENe8hF-dpe_vT37ozWrIuOAeRx4Dj1Nww4tpM1kkJ-rs0Pp3gFn8na5hGwNPveJOX8cnYrJs3asfzfzyY-a8VaqXGXhij0n3XlfmNai5FbqL9_6txkbZXTYMPIFbN62b8Gw-e7J75P1jr--IvLLdUcDA88P637q3p-ZMmNkl1uq6rlN-62unXgae6XLl5_YnJzTvZpIWv2R4e9XNy9vFcfltVrxU-J-d57a8euC00UCQfXfJPY3ZDDyXS5J_ijoy_ncqW8tx_ES1tWfUZlMGnv-TlDye5kyaEKyx45MAjyVn9seZLxh4MjinsU5dqH7-I8Oyuw8L19zw1er5x8AKjEomMSDBwggkeLYCCY6FDGASFMkZQILRHcRnfc7MwMDtwMDAFsIAAnzCpUU5BYlFibl6RanFBfl5xZllqYIaBkQCYVYfx0jXIABkZ4JJggIAAA?mimetype=image/png",
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium optio, eaque rerum!",
+    "createdAt": 1669249992469
+  },
+  {
+    "make": "BMW",
+    "model": "M8",
+    "year": "2021",
+    "carType": "Coupe",
+    "location": "Markham",
+    "price": 130000,
+    "mileage": 10000,
+    "transmission": "Auto",
+    "image": "https://hips.hearstapps.com/hmg-prod/images/2020-bmw-m8-competition-coupe-104-1570575778.jpg?crop=0.800xw:0.599xh;0.0717xw,0.267xh&resize=1200:*",
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium optio, eaque rerum!",
+    "createdAt": 1669249992469
+  },
+  {
+    "make": "Volkswagen",
+    "model": "GTI",
+    "year": "2016",
+    "carType": "Hatchback",
+    "location": "London",
+    "price": 21000,
+    "mileage": 80000,
+    "transmission": "Manual",
+    "image": "https://www.topgear.com/sites/default/files/cars-car/image/2019/12/images_original_15164-volkswagengolfgtiperformance.jpg",
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium optio, eaque rerum!",
+    "createdAt": 1669249992469
+  },
+  {
+    "make": "Genesis",
+    "model": "GV80",
+    "year": "2019",
+    "carType": "SUV",
+    "location": "Scarborough",
+    "price": 60000,
+    "mileage": 50000,
+    "transmission": "Auto",
+    "image": "https://media.ed.edmunds-media.com/genesis/gv80/2021/oem/2021_genesis_gv80_4dr-suv_35t-advanced-plus_fq_oem_1_1280.jpg",
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium optio, eaque rerum!",
+    "createdAt": 1669249992469
+  },
+  {
+    "make": "Toyota",
+    "model": "Camry",
+    "year": "2010",
+    "carType": "Sedan",
+    "location": "Kingston",
+    "price": 9000,
+    "mileage": 160000,
+    "transmission": "Auto",
+    "image": "https://i.ytimg.com/vi/Tx1h3-9znxs/maxresdefault.jpg",
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium optio, eaque rerum!",
+    "createdAt": 1669249992469
+  }
+]
