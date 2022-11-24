@@ -23,42 +23,52 @@ import './MakeCard.css'
 
 const makes = [
   {
+    id: 1,
     name: "Audi",
     logo: <SiAudi />,
   },
   {
+    id:2,
     name: "Bentley",
     logo: <SiBentley />,
   },
   {
+    id:3,
     name: "BMW",
     logo: <SiBmw />,
   },
   {
+    id:4,
     name: "Ferrari",
     logo: <SiFerrari />,
   },
   {
+    id:5,
     name: "Honda",
     logo: <SiHonda />,
   },
   {
+    id:6,
     name: "Hyundai",
     logo: <SiHyundai />,
   },
   {
+    id:7,
     name: "Lamborghini",
     logo: <SiLamborghini />,
   },
   {
+    id:8,
     name: "Mercedes",
     logo: <SiMercedes />,
   },
   {
+    id:9,
     name: "Toyota",
     logo: <SiToyota />,
   },
   {
+    id:10,
     name: "Volkswagen",
     logo: <SiVolkswagen />,
   },
@@ -67,34 +77,37 @@ const makes = [
 const MakeCard = () => {
   const [make, setMake] = useState("");
 
-  const handleMake = (event) => {
-    event.preventDefault();
-
-    const { key } = event.target;
-
-    setMake(key);
+  const handleMake = (name) => {
+    console.log(name)
+    setMake(name);
   }; 
 
   return (
+    <>
     <div className="mt-3 mb-5 p-3 bg-light row">
       {/* use map function to show all  */}
       {makes.map((logo) => (
-        <div className="col-4 d-flex justify-content-center p-3 ">
+        <div
+         key={logo.id}
+         className="col-4 d-flex justify-content-center p-3 ">
           <span
-            key={logo.name}
+            id={logo.name}
             className="icon logo p-1"
-            onClick={() => handleMake}
+            onClick={() => handleMake(logo.name)}
           >
             {logo.logo}
           </span>
         </div>
       ))}
+    </div>
+    <div>
       {make ? (
         <ModelCard make={make}/>
       ) : (
-         <p>Choose a make!</p>
+         <p className="text-center">Choose a make!</p>
       )}
     </div>
+    </>
   );
 };
 
