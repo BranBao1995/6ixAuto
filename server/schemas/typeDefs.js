@@ -37,11 +37,17 @@ const typeDefs = gql`
 
   type Query {
     me: User
+    getPost(postId: ID!): Post
     searchResults(make: String!, model: String!): [Post]
   }
 
   type Mutation {
-    addUser(username: String!, email: String!, password: String!): Auth
+    addUser(
+      username: String!
+      email: String!
+      password: String!
+      phone: String!
+    ): Auth
     post(
       make: String!
       model: String!
@@ -68,7 +74,7 @@ const typeDefs = gql`
       transmission: String!
       image: String
       description: String!
-      updatedAt: String
+      updatedAt: String!
     ): Post
     deletePost(postId: ID!): Post
     savePost(postId: ID!): User

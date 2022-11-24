@@ -13,6 +13,7 @@ db.once("open", async () => {
     for (let i = 0; i < postSeeds.length; i++) {
       const random = Math.floor(Math.random() * (3 + 1));
       const allUsers = await User.find({});
+      // const randomUsername = allUsers[random].username;
       const randomUserId = allUsers[random]._id;
       const post = await Post.create({
         ...postSeeds[i],
