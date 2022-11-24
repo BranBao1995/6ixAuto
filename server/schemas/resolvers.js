@@ -14,8 +14,17 @@ const resolvers = {
       throw new AuthenticationError("You need to be logged in!");
     },
 
+    getPost: async (parent, { postId }, context) => {
+      if (context.user) {
+        return Post.findOne({ _id: postId }).populate("user").populate("liked");
+      }
+      throw new AuthenticationError("You need to be logged in!");
+    },
+
     searchResults: async (parent, { make, model }) => {
-      return Post.find({ make: make, model: model }).populate("user");
+      return Post.find({ make: make, model: model })
+        .populate("user")
+        .populate("liked");
     },
   },
 
@@ -78,7 +87,8 @@ const resolvers = {
 
         await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $addToSet: { listings: newPost._id } }
+          { $addToSet: { listings: newPost._id } },
+          { new: true, runValidators: true }
         );
 
         return newPost;
@@ -105,7 +115,7 @@ const resolvers = {
       context
     ) => {
       if (context.user) {
-        await Post.findOneAndUpdate(
+        return await Post.findOneAndUpdate(
           { _id: postId },
           {
             make,
@@ -119,7 +129,8 @@ const resolvers = {
             description,
             image,
             updatedAt,
-          }
+          },
+          { new: true, runValidators: true }
         );
       }
       throw new AuthenticationError("You need to be logged in!");
@@ -133,7 +144,8 @@ const resolvers = {
 
         const user = await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $pull: { listings: deletedPost._id } }
+          { $pull: { listings: deletedPost._id } },
+          { new: true, runValidators: true }
         );
 
         return deletedPost;
@@ -143,9 +155,16 @@ const resolvers = {
 
     savePost: async (parent, { postId }, context) => {
       if (context.user) {
+        const post = await Post.findOneAndUpdate(
+          { _id: postId },
+          { $addToSet: { liked: context.user._id } },
+          { new: true, runValidators: true }
+        );
+
         return await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $addToSet: { interested: postId } }
+          { $addToSet: { interested: postId } },
+          { new: true, runValidators: true }
         );
       }
       throw new AuthenticationError("You need to be logged in!");
@@ -153,9 +172,15 @@ const resolvers = {
 
     removePost: async (parent, { postId }, context) => {
       if (context.user) {
+        const post = await Post.findOneAndUpdate(
+          { _id: postId },
+          { $oull: { liked: context.user._id } },
+          { new: true, runValidators: true }
+        );
         return await User.findOneAndUpdate(
           { _id: context.user._id },
-          { $pull: { interested: postId } }
+          { $pull: { interested: postId } },
+          { new: true, runValidators: true }
         );
       }
       throw new AuthenticationError("You need to be logged in!");
