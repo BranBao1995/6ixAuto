@@ -7,6 +7,13 @@ import {
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Nav from "./components/Nav";
+import Home from "./pages/Home";
+import DreamList from "./pages/DreamList";
+import MyListings from "./pages/MyListings";
+import SinglePost from "./pages/SinglePost";
+import CreatePost from "./pages/CreatePost";
+import EditPost from "./pages/EditPost";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -31,11 +38,24 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <>
-          <Switch>
-            <Route render={() => <h1 className="display-2">Wrong page!</h1>} />
-          </Switch>
-        </>
+        <div className="entire-page">
+          <Nav />
+          <>
+            <div className="container">
+              <Switch>
+                <Route path="/" element={<Home />} />
+                <Route path="/dreamlist" element={<DreamList />} />
+                <Route path="/mylistings" element={<MyListings />} />
+                <Route path="/post/:id" element={<SinglePost />} />
+                <Route path="/post" element={<CreatePost />} />
+                <Route path="/edit/:id" element={<EditPost />} />
+                <Route
+                  render={() => <h1 className="display-2">Wrong page!</h1>}
+                />
+              </Switch>
+            </div>
+          </>
+        </div>
       </Router>
     </ApolloProvider>
   );
