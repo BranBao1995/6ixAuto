@@ -1,10 +1,10 @@
-import React from "react";
-
+import React, {useState, useEffect} from "react";
+import { Button } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { useMutation } from "@apollo/client";
-
-import { GET_POST } from "../utils/queries";
+import Auth from "../utils/auth";
+import { GET_POST, GET_ME } from "../utils/queries";
 
 import { SAVE_TO_FAV, REMOVE_FROM_FAV } from "../utils/mutations";
 // import {  } from "../utils/mutations";
@@ -20,11 +20,11 @@ const SinglePost = () => {
   console.log(post);
 
   const getSavedPostIds = () => {
-    const savedPostIds = localStorage.getItem("saved_posts")
+    const newsavedPostIds = localStorage.getItem("saved_posts")
       ? JSON.parse(localStorage.getItem("saved_posts"))
       : [];
 
-    return savedPostIds;
+    return newsavedPostIds;
   };
   const savePostIds = (postIdArr) => {
     if (postIdArr.length) {
@@ -34,21 +34,82 @@ const SinglePost = () => {
     }
   };
   const removePostId = (postId) => {
-    const savedPostIds = localStorage.getItem("saved_posts")
+    const newsavedPostIds = localStorage.getItem("saved_posts")
       ? JSON.parse(localStorage.getItem("saved_posts"))
       : null;
 
-    if (!savedPostIds) {
+    if (!newsavedPostIds) {
       return false;
     }
 
-    const updatedSavedPostIds = savedPostIds?.filter(
-      (savedPostId) => savedPostId !== postId
+    const updatedSavedPostIds = newsavedPostIds?.filter(
+      (savedId) => savedId !== postId
     );
+    console.log(updatedSavedPostIds);
     localStorage.setItem("saved_posts", JSON.stringify(updatedSavedPostIds));
-
+    setSavedPostIds(updatedSavedPostIds);
     return true;
   };
+
+   const { dataa } = useQuery(GET_ME);
+   const [savedPostIds, setSavedPostIds] = useState(getSavedPostIds());
+   
+   const [savePost] = useMutation(SAVE_TO_FAV);
+   const [removePost] = useMutation(REMOVE_FROM_FAV);
+   let userData = dataa?.me || {};
+
+      const handleSavePost = async (postId) => {
+        try {
+          const { userData } = await savePost({
+            variables: { postId: postId },
+          });
+          // if post successfully saves to user's account, save post id to state
+          setSavedPostIds([...savedPostIds, postId]);
+        } catch (err) {
+          console.error(err);
+        }
+      };
+
+      const handleDeletePost = async (postId) => {
+        try {
+          const { data } = await removePost({ variables: { postId } });
+          userData = data.removePost;
+          console.log(data);
+          // upon success, remove post's id from localStorage
+          removePostId(postId);
+        } catch (err) {
+          console.error(err);
+        }
+      };
+
+        let button;
+        if (!savedPostIds.includes(postId)) {
+          button = Auth.loggedIn() && (
+            <Button
+              disabled={savedPostIds?.some(
+                (savedPostId) => savedPostId === postId
+              )}
+              className="btn-block btn-info"
+              onClick={() => handleSavePost(postId)}
+            >
+              Add to DreamList
+            </Button>
+          );
+        } else {
+          button = Auth.loggedIn() && (
+            <Button
+              className="btn-block btn-danger"
+              onClick={() => handleDeletePost(data.getPost._id)}
+            >
+              Remove from DreamList
+            </Button>
+          );
+        }
+
+        useEffect(() => {
+          console.log(savedPostIds);
+          savePostIds(savedPostIds);
+        });
 
   return (
     <>
@@ -75,7 +136,7 @@ const SinglePost = () => {
             <p>Price: {data.getPost.price}</p>
             <p>Likes: {data.getPost.liked.length}</p>
             {/* {button} */}
-            <button>placeholder</button>
+            {button}
           </div>
         </div>
       ) : (
