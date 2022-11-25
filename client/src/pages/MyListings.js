@@ -30,15 +30,16 @@ const MyListings = () => {
       <h1>{loading ? "Loading..." : "Your saved listings"}</h1>
       <section>
         {userData.listings?.map((listing) => {
+          console.log(listing._id);
           return (
-            <div className="listCard-container">
+            <div key={listing._id} className="listCard-container">
               <ListingCard post={listing} />
-              {/* <button
+              <button
                 className="delete-post-btn"
                 onClick={() => deletePostHandler(listing._id)}
               >
                 Delete
-              </button> */}
+              </button>
             </div>
           );
         })}

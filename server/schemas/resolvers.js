@@ -8,16 +8,11 @@ const resolvers = {
     // query when the logged in user wants to see their own dreamlist or postings.
     me: async (parent, args, context) => {
       if (context.user) {
-        return await User.findOne({ _id: context.user._id })
-          .populate("listings")
-          .populate("interested");
-
-        // const user = await User.findOne({ _id: context.user._id }).populate(
-        //   "listings"
-        // );
-        // const userListings = await user.listings.map((listing) =>
-        //   listing.populate("user")
-        // );
+        return await User.findOne({ _id: context.user._id }).populate({
+          path: "listings",
+          populate: { path: "liked" },
+          populate: { path: "user" },
+        });
       }
       throw new AuthenticationError("You need to be logged in!");
     },

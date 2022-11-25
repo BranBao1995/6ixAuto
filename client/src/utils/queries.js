@@ -21,21 +21,16 @@ export const GET_ME = gql`
         description
         createdAt
         updatedAt
-      }
-      interested {
-        _id
-        make
-        model
-        year
-        carType
-        location
-        price
-        mileage
-        transmission
-        image
-        description
-        createdAt
-        updatedAt
+        user {
+          _id
+          username
+          phone
+        }
+        liked {
+          _id
+          username
+          phone
+        }
       }
     }
   }
