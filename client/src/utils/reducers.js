@@ -10,7 +10,8 @@ import {
 export default function reducer(state, action) {
   switch (action.type) {
     case ADD_POST: {
-      return {};
+      const newPost = { ...action.payload };
+      return { ...state, post: newPost };
     }
     case DELETE_POST: {
       return {};
