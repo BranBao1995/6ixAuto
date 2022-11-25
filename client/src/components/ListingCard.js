@@ -6,7 +6,7 @@ import Auth from "../utils/auth";
 import { GET_ME } from "../utils/queries";
 import { SAVE_TO_FAV, REMOVE_FROM_FAV } from "../utils/mutations";
 
-const ListingPost = (props) => {
+const ListingCard = (props) => {
   const getSavedPostIds = () => {
     const savedPostIds = localStorage.getItem("saved_posts")
       ? JSON.parse(localStorage.getItem("saved_posts"))
@@ -68,14 +68,14 @@ const ListingPost = (props) => {
   };
 
   let button;
-  if (!savedPostIds.includes(props._id)) {
+  if (!savedPostIds.includes(props.post._id)) {
     button = Auth.loggedIn() && (
       <Button
         disabled={savedPostIds?.some(
-          (savedPostId) => savedPostId === props._id
+          (savedPostId) => savedPostId === props.post._id
         )}
         className="btn-block btn-info"
-        onClick={() => handleSavePost(props._id)}
+        onClick={() => handleSavePost(props.post._id)}
       >
         Add to DreamList
       </Button>
@@ -84,7 +84,7 @@ const ListingPost = (props) => {
     button = Auth.loggedIn() && (
       <Button
         className="btn-block btn-danger"
-        onClick={() => handleDeletePost(props._id)}
+        onClick={() => handleDeletePost(props.post._id)}
       >
         Remove from DreamList
       </Button>
@@ -102,22 +102,22 @@ const ListingPost = (props) => {
           {/* src=props.image */}
           <img
             src="https://hips.hearstapps.com/hmg-prod/images/2023-porsche-911-gt3-rs-201-1660575621.jpg?crop=0.755xw:0.567xh;0.0833xw,0.257xh&resize=1200:*"
-            alt={props.model}
+            alt={props.post.model}
             width="100%"
           />
         </div>
         <div className="col-xs-12 col-sm-7 col-md-7 col-lg-8">
-          <h3>Make: {props.make}</h3>
-          <h3>Model: {props.model}</h3>
-          <h3>Year: {props.year}</h3>
-          <h3>Type: {props.carType}</h3>
-          <h3>Location: {props.location}</h3>
-          <h3>Mileage: {props.mileage}</h3>
-          <h3>Transmission: {props.transmission}</h3>
-          <h3>Description: {props.description}</h3>
-          <h3>Created: {props.createdAt}</h3>
-          <h3>Price: {props.price}</h3>
-          <h3>Likes: {props.liked.length}</h3>
+          <h3>Make: {props.post.make}</h3>
+          <h3>Model: {props.post.model}</h3>
+          <h3>Year: {props.post.year}</h3>
+          <h3>Type: {props.post.carType}</h3>
+          <h3>Location: {props.post.location}</h3>
+          <h3>Mileage: {props.post.mileage}</h3>
+          <h3>Transmission: {props.post.transmission}</h3>
+          <h3>Description: {props.post.description}</h3>
+          <h3>Created: {props.post.createdAt}</h3>
+          <h3>Price: {props.post.price}</h3>
+          <h3>Likes: {props.post.liked.length}</h3>
           {button}
         </div>
       </Container>
@@ -125,6 +125,6 @@ const ListingPost = (props) => {
   );
 };
 
-export default ListingPost;
+export default ListingCard;
 
 // Use props to get data

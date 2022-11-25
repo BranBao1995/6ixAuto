@@ -14,7 +14,7 @@ const SearchResults = (props) => {
   return (
     <div className="results">
       {postData?.map((post) => {
-        <ListingCard post={post} />;
+        return <ListingCard post={post} />;
       })}
     </div>
   );

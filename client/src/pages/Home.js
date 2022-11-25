@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { useQuery } from "@apollo/client";
 import { useMutation } from "@apollo/client";
 
@@ -16,22 +16,23 @@ const Home = () => {
     model: "",
   });
 
+  console.log(selections);
   const [searchMode, setSearchMode] = useState(true);
 
   const setMakeHandler = (make) => {
     setSelection({ ...selections, make });
-    return;
+    console.log(`after clicking make the state is: ${selections}`);
   };
 
   const setModelHandler = (model) => {
     setSelection({ ...selections, model });
     setSearchMode(false);
-    return;
+    console.log(`after clicking model the state is: ${selections}`);
   };
 
   const setBackSearch = () => {
     setSearchMode(true);
-  }
+  };
 
   return (
     <>
@@ -43,20 +44,30 @@ const Home = () => {
         <div className="mt-5 d-flex justify-content-center p-2 bg-secondary">
           <h3> Select Your Make!</h3>
           {/* create a state to decide which one to render */}
-          { searchMode ? <div>
-            <MakeCard onSelect={setMakeHandler} />
-            {selections.make ? <ModelCard onSelect={setModelHandler} make={selections.make} /> : <p> Select Your Model! </p> }
-            <button>submit</button>
-          </div>: <p> </p>
-          }
+          {searchMode ? (
+            <div>
+              <MakeCard onSelect={setMakeHandler} />
+              {selections.make ? (
+                <ModelCard onSelect={setModelHandler} make={selections.make} />
+              ) : (
+                <p> Select Your Model! </p>
+              )}
+              <button>submit</button>
+            </div>
+          ) : (
+            <p> </p>
+          )}
         </div>
       </div>
       <div className="searchResultsBox">
-        { !searchMode ? <div>
-        <SearchResults selections={selections} />
-        <button onClick={() => setBackSearch()}>Back to search</button>
-        </div> : <p></p>
-        }     
+        {!searchMode ? (
+          <div>
+            <SearchResults selections={selections} />
+            <button onClick={() => setBackSearch()}>Back to search</button>
+          </div>
+        ) : (
+          <p></p>
+        )}
       </div>
     </>
   );
