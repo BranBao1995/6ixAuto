@@ -5,9 +5,11 @@ import { Navbar, Nav, Container, Modal, Tab, Button } from "react-bootstrap";
 import Auth from "../utils/auth";
 import { GET_ME } from "../utils/queries";
 import { SAVE_TO_FAV, REMOVE_FROM_FAV } from "../utils/mutations";
+import { useNavigate } from "react-router-dom";
 
 const ListingCard = (props) => {
-  console.log(props);
+  const navigate = useNavigate();
+
   const getSavedPostIds = () => {
     const newsavedPostIds = localStorage.getItem("saved_posts")
       ? JSON.parse(localStorage.getItem("saved_posts"))
@@ -34,7 +36,6 @@ const ListingCard = (props) => {
     const updatedSavedPostIds = newsavedPostIds?.filter(
       (savedId) => savedId !== postId
     );
-    console.log(updatedSavedPostIds);
     localStorage.setItem("saved_posts", JSON.stringify(updatedSavedPostIds));
     setSavedPostIds(updatedSavedPostIds);
     return true;
@@ -63,7 +64,6 @@ const ListingCard = (props) => {
     try {
       const { data } = await removePost({ variables: { postId } });
       userData = data.removePost;
-      console.log(data);
       // upon success, remove post's id from localStorage
       removePostId(postId);
     } catch (err) {
@@ -96,13 +96,12 @@ const ListingCard = (props) => {
   }
 
   useEffect(() => {
-    console.log(savedPostIds);
     savePostIds(savedPostIds);
   });
 
   return (
     <>
-      <Container>
+      <Container className="row">
         <div className="col-xs-12 col-sm-5 col-md-5 col-lg-4">
           {/* src=props.post.image */}
           <img
@@ -112,18 +111,22 @@ const ListingCard = (props) => {
           />
         </div>
         <div className="col-xs-12 col-sm-7 col-md-7 col-lg-8">
-          <h3>Make: {props.post.make}</h3>
-          <h3>Model: {props.post.model}</h3>
-          <h3>Year: {props.post.year}</h3>
-          <h3>Type: {props.post.carType}</h3>
-          <h3>Location: {props.post.location}</h3>
-          <h3>Mileage: {props.post.mileage}</h3>
-          <h3>Transmission: {props.post.transmission}</h3>
-          <h3>Description: {props.post.description}</h3>
-          <h3>Created: {props.post.createdAt}</h3>
-          <h3>Price: {props.post.price}</h3>
-          <h3>Likes: {props.post.liked.length}</h3>
-          {button}
+          <h5>Make: {props.post.make}</h5>
+          <h5>Model: {props.post.model}</h5>
+          <h5>Year: {props.post.year}</h5>
+          <h5>Location: {props.post.location}</h5>
+          <h5>Price: {props.post.price}</h5>
+          <div className="d-flex justify-content-between">
+            {button}{" "}
+            <Button
+              className="btn-block btn-secondary"
+              onClick={function () {
+                navigate(`/post/${props.post._id}`);
+              }}
+            >
+              View details
+            </Button>
+          </div>
         </div>
       </Container>
     </>
