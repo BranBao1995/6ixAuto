@@ -1,6 +1,7 @@
 const { AuthenticationError } = require("apollo-server-express");
 const { User, Post } = require("../models");
 const { signToken } = require("../utils/auth");
+const mongoose = require("mongoose");
 
 const resolvers = {
   Query: {
@@ -22,12 +23,13 @@ const resolvers = {
     },
 
     getPost: async (parent, { postId }, context) => {
-      if (context.user) {
-        return await Post.findOne({ _id: postId })
-          .populate("user")
-          .populate("liked");
-      }
-      throw new AuthenticationError("You need to be logged in!");
+      // const id = mongoose.Types.ObjectId(postId);
+      // if (context.user) {
+      return await Post.findOne({ _id: postId })
+        .populate("user")
+        .populate("liked");
+      // }
+      // throw new AuthenticationError("You need to be logged in!");
     },
 
     searchResults: async (parent, { make, model }) => {
