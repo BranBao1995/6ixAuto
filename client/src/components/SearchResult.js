@@ -10,12 +10,14 @@ const SearchResults = (props) => {
     variables: { make: props.selections.make, model: props.selections.model },
   });
   const postData = data?.searchResults || [];
+  console.log(postData);
 
   return (
     <div className="results">
       {props.selections.make} {props.selections.model}
       {postData?.map((post) => {
-        <ListingCard post={post} />;
+        console.log(post);
+        return <ListingCard post={post} key={post._id} />;
       })}
     </div>
   );
