@@ -21,17 +21,6 @@ export const GET_ME = gql`
         description
         createdAt
         updatedAt
-        user {
-          _id
-          username
-          phone
-        }
-        liked {
-          _id
-          username
-          phone
-        }
-        likeCount
       }
       interested {
         _id
@@ -47,25 +36,14 @@ export const GET_ME = gql`
         description
         createdAt
         updatedAt
-        user {
-          _id
-          username
-          phone
-        }
-        liked {
-          _id
-          username
-          phone
-        }
-        likeCount
       }
     }
   }
 `;
 
 export const GET_POST = gql`
-  query getPost {
-    getPost {
+  query getPost($postId: ID!) {
+    getPost(postId: $postId) {
       _id
       make
       model

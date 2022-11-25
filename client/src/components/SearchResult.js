@@ -16,12 +16,8 @@ const SearchResults = (props) => {
     <div className="results">
       {props.selections.make} {props.selections.model}
       {postData?.map((post) => {
-<<<<<<< HEAD
-        return <ListingCard post={post} />;
-=======
         console.log(post);
         return <ListingCard post={post} key={post._id} />;
->>>>>>> d2b48179ee03243a7b9bd0a58fcc9916a373a162
       })}
     </div>
   );

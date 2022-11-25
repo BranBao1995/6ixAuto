@@ -7,22 +7,31 @@ const resolvers = {
     // query when the logged in user wants to see their own dreamlist or postings.
     me: async (parent, args, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id })
+        return await User.findOne({ _id: context.user._id })
           .populate("listings")
           .populate("interested");
+
+        // const user = await User.findOne({ _id: context.user._id }).populate(
+        //   "listings"
+        // );
+        // const userListings = await user.listings.map((listing) =>
+        //   listing.populate("user")
+        // );
       }
       throw new AuthenticationError("You need to be logged in!");
     },
 
     getPost: async (parent, { postId }, context) => {
       if (context.user) {
-        return Post.findOne({ _id: postId }).populate("user").populate("liked");
+        return await Post.findOne({ _id: postId })
+          .populate("user")
+          .populate("liked");
       }
       throw new AuthenticationError("You need to be logged in!");
     },
 
     searchResults: async (parent, { make, model }) => {
-      return Post.find({ make: make, model: model })
+      return await Post.find({ make: make, model: model })
         .populate("user")
         .populate("liked");
     },
