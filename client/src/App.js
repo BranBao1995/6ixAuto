@@ -45,7 +45,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/dreamlist" element={<DreamList />} />
               <Route path="/mylistings" element={<MyListings />} />
-              <Route path="/post/:id" element={<SinglePost />} />
+              <Route path="/post/:postId" element={<SinglePost />} />
               <Route path="/post" element={<CreatePost />} />
               <Route path="/edit/:id" element={<EditPost />} />
               <Route

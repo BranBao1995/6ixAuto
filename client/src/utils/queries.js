@@ -64,8 +64,8 @@ export const GET_ME = gql`
 `;
 
 export const GET_POST = gql`
-  query getPost {
-    getPost {
+  query getPost($postId: ID!) {
+    getPost(postId: $postId) {
       _id
       make
       model
