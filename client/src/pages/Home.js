@@ -25,7 +25,7 @@ const Home = () => {
 
   const setModelHandler = (model) => {
     setSelection({ ...selections, model });
-    setSearchMode(false);
+    // setSearchMode(false);
     return;
   };
 
@@ -46,7 +46,9 @@ const Home = () => {
           { searchMode ? <div>
             <MakeCard onSelect={setMakeHandler} />
             {selections.make ? <ModelCard onSelect={setModelHandler} make={selections.make} /> : <p> Select Your Model! </p> }
-            <button>submit</button>
+            <button
+            onClick={() => setSearchMode(false)}
+            >Submit Search</button>
           </div>: <p> </p>
           }
         </div>

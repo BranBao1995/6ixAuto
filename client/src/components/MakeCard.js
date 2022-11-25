@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { useQuery } from "@apollo/client";
 import { useMutation } from "@apollo/client";
 import {
@@ -74,24 +74,30 @@ const makes = [
 ];
 
 const MakeCard = (props) => {
+  const [isActive, setIsActive] = useState("");
+
   return (
     <>
-    <div className="mt-3 mb-5 p-3 bg-light row">
-      {/* use map function to show all  */}
-      {makes.map((logo) => (
-        <div
-         key={logo.id}
-         className="col-4 d-flex justify-content-center p-3 ">
-          <span
-            id={logo.name}
-            className="icon logo p-1"
-            onClick={() => props.onSelect(logo.name)}
+      <div className="mt-3 mb-5 p-3 bg-light row">
+        {/* use map function to show all  */}
+        {makes.map((logo) => (
+          <div
+            key={logo.id}
+            className="col-4 d-flex justify-content-center p-3 "
           >
-            {logo.logo}
-          </span>
-        </div>
-      ))}
-    </div>
+            <span
+              id={logo.name}
+              className={isActive === logo.name ? "border icon logo p-1" : "icon logo p-1"}
+              onClick={() => {
+                setIsActive(logo.name)
+                props.onSelect(logo.name);
+              }}
+            >
+              {logo.logo}
+            </span>
+          </div>
+        ))}
+      </div>
     </>
   );
 };
