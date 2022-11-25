@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { useQuery } from "@apollo/client";
 import { useMutation } from "@apollo/client";
 
@@ -31,7 +31,7 @@ const Home = () => {
 
   const setBackSearch = () => {
     setSearchMode(true);
-  }
+  };
 
   return (
     <>
@@ -43,22 +43,32 @@ const Home = () => {
         <div className="mt-5 d-flex justify-content-center p-2 bg-secondary">
           <h3> Select Your Make!</h3>
           {/* create a state to decide which one to render */}
-          { searchMode ? <div>
-            <MakeCard onSelect={setMakeHandler} />
-            {selections.make ? <ModelCard onSelect={setModelHandler} make={selections.make} /> : <p> Select Your Model! </p> }
-            <button
-            onClick={() => setSearchMode(false)}
-            >Submit Search</button>
-          </div>: <p> </p>
-          }
+          {searchMode ? (
+            <div>
+              <MakeCard onSelect={setMakeHandler} />
+              {selections.make ? (
+                <ModelCard onSelect={setModelHandler} make={selections.make} />
+              ) : (
+                <p> Select Your Model! </p>
+              )}
+              <button onClick={() => setSearchMode(false)}>
+                Submit Search
+              </button>
+            </div>
+          ) : (
+            <p> </p>
+          )}
         </div>
       </div>
       <div className="searchResultsBox">
-        { !searchMode ? <div>
-        <SearchResults selections={selections} />
-        <button onClick={() => setBackSearch()}>Back to search</button>
-        </div> : <p></p>
-        }     
+        {!searchMode ? (
+          <div>
+            <SearchResults selections={selections} />
+            <button onClick={() => setBackSearch()}>Back to search</button>
+          </div>
+        ) : (
+          <p></p>
+        )}
       </div>
     </>
   );

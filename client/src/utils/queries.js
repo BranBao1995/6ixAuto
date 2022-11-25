@@ -97,8 +97,8 @@ export const GET_POST = gql`
 `;
 
 export const GET_SEARCH = gql`
-  query searchResults {
-    searchResults {
+  query searchResults($make: String!, $model: String!) {
+    searchResults(make: $make, model: $model) {
       _id
       make
       model
