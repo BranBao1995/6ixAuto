@@ -7,7 +7,7 @@ import ListingCard from "../components/ListingCard";
 
 const SearchResults = (props) => {
   const { loading, data } = useQuery(GET_SEARCH, {
-    variables: { make: props.make, model: props.model },
+    variables: { make: props.selections.make, model: props.selections.model },
   });
   const postData = data?.searchResults || [];
 
