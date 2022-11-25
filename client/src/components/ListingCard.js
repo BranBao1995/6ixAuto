@@ -99,7 +99,7 @@ const ListingCard = (props) => {
     <>
       <Container>
         <div className="col-xs-12 col-sm-5 col-md-5 col-lg-4">
-          {/* src=props.image */}
+          {/* src=props.post.image */}
           <img
             src="https://hips.hearstapps.com/hmg-prod/images/2023-porsche-911-gt3-rs-201-1660575621.jpg?crop=0.755xw:0.567xh;0.0833xw,0.257xh&resize=1200:*"
             alt={props.post.model}
