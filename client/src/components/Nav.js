@@ -30,6 +30,9 @@ const AppNavbar = () => {
               {/* if user is logged in show DreamList and logout */}
               {Auth.loggedIn() ? (
                 <>
+                  <Nav.Link as={Link} to="/post">
+                    Create Post
+                  </Nav.Link>
                   <Nav.Link as={Link} to="/dreamlist">
                     DreamList
                   </Nav.Link>
