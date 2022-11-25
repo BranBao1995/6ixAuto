@@ -13,6 +13,7 @@ const SearchResults = (props) => {
 
   return (
     <div className="results">
+      {props.selections.make} {props.selections.model}
       {postData?.map((post) => {
         return <ListingCard post={post} />;
       })}

@@ -26,8 +26,8 @@ const Home = () => {
 
   const setModelHandler = (model) => {
     setSelection({ ...selections, model });
-    setSearchMode(false);
-    console.log(`after clicking model the state is: ${selections}`);
+    // setSearchMode(false);
+    return;
   };
 
   const setBackSearch = () => {
@@ -52,7 +52,9 @@ const Home = () => {
               ) : (
                 <p> Select Your Model! </p>
               )}
-              <button>submit</button>
+              <button onClick={() => setSearchMode(false)}>
+                Submit Search
+              </button>
             </div>
           ) : (
             <p> </p>
