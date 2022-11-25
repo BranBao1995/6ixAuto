@@ -174,7 +174,7 @@ const resolvers = {
       if (context.user) {
         const post = await Post.findOneAndUpdate(
           { _id: postId },
-          { $oull: { liked: context.user._id } },
+          { $pull: { liked: context.user._id } },
           { new: true, runValidators: true }
         );
         return await User.findOneAndUpdate(

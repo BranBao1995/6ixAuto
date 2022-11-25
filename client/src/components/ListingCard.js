@@ -7,6 +7,7 @@ import { GET_ME } from "../utils/queries";
 import { SAVE_TO_FAV, REMOVE_FROM_FAV } from "../utils/mutations";
 
 const ListingCard = (props) => {
+  console.log(props);
   const getSavedPostIds = () => {
     const savedPostIds = localStorage.getItem("saved_posts")
       ? JSON.parse(localStorage.getItem("saved_posts"))
@@ -60,6 +61,7 @@ const ListingCard = (props) => {
   const handleDeletePost = async (postId) => {
     try {
       const { data } = await removePost({ variables: { postId } });
+      console.log(data);
       // upon success, remove post's id from localStorage
       removePostId(postId);
     } catch (err) {
