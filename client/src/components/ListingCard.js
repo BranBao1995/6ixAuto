@@ -9,11 +9,11 @@ import { SAVE_TO_FAV, REMOVE_FROM_FAV } from "../utils/mutations";
 const ListingCard = (props) => {
   console.log(props);
   const getSavedPostIds = () => {
-    const savedPostIds = localStorage.getItem("saved_posts")
+    const newsavedPostIds = localStorage.getItem("saved_posts")
       ? JSON.parse(localStorage.getItem("saved_posts"))
       : [];
 
-    return savedPostIds;
+    return newsavedPostIds;
   };
   const savePostIds = (postIdArr) => {
     if (postIdArr.length) {
@@ -23,24 +23,26 @@ const ListingCard = (props) => {
     }
   };
   const removePostId = (postId) => {
-    const savedPostIds = localStorage.getItem("saved_posts")
+    const newsavedPostIds = localStorage.getItem("saved_posts")
       ? JSON.parse(localStorage.getItem("saved_posts"))
       : null;
 
-    if (!savedPostIds) {
+    if (!newsavedPostIds) {
       return false;
     }
 
-    const updatedSavedPostIds = savedPostIds?.filter(
-      (savedPostId) => savedPostId !== postId
+    const updatedSavedPostIds = newsavedPostIds?.filter(
+      (savedId) => savedId !== postId
     );
+    console.log(updatedSavedPostIds);
     localStorage.setItem("saved_posts", JSON.stringify(updatedSavedPostIds));
-
+    setSavedPostIds(updatedSavedPostIds);
     return true;
   };
   const { loading, data } = useQuery(GET_ME);
   const [savePost] = useMutation(SAVE_TO_FAV);
   const [removePost] = useMutation(REMOVE_FROM_FAV);
+  let userData = data?.me || {};
   // const [searchedPosts, setSearchedPosts] = useState([]);
   // const [searchInput, setSearchInput] = useState("");
   const [savedPostIds, setSavedPostIds] = useState(getSavedPostIds());
@@ -51,7 +53,6 @@ const ListingCard = (props) => {
         variables: { postId: postId },
       });
       // if post successfully saves to user's account, save post id to state
-
       setSavedPostIds([...savedPostIds, postId]);
     } catch (err) {
       console.error(err);
@@ -61,6 +62,7 @@ const ListingCard = (props) => {
   const handleDeletePost = async (postId) => {
     try {
       const { data } = await removePost({ variables: { postId } });
+      userData = data.removePost;
       console.log(data);
       // upon success, remove post's id from localStorage
       removePostId(postId);
@@ -94,7 +96,8 @@ const ListingCard = (props) => {
   }
 
   useEffect(() => {
-    return () => savePostIds(savedPostIds);
+    console.log(savedPostIds);
+    savePostIds(savedPostIds);
   });
 
   return (
