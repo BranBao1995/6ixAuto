@@ -18,13 +18,9 @@ const resolvers = {
     },
 
     getPost: async (parent, { postId }, context) => {
-      // const id = mongoose.Types.ObjectId(postId);
-      // if (context.user) {
       return await Post.findOne({ _id: postId })
         .populate("user")
         .populate("liked");
-      // }
-      // throw new AuthenticationError("You need to be logged in!");
     },
 
     searchResults: async (parent, { make, model }) => {
