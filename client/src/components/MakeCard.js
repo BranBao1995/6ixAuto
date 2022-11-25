@@ -1,7 +1,6 @@
-import React, {useState} from "react";
+import React from "react";
 import { useQuery } from "@apollo/client";
 import { useMutation } from "@apollo/client";
-import ModelCard from "./ModelCard";
 import {
   SiBmw,
   SiMercedes,
@@ -74,14 +73,7 @@ const makes = [
   },
 ];
 
-const MakeCard = () => {
-  const [make, setMake] = useState("");
-
-  const handleMake = (name) => {
-    console.log(name)
-    setMake(name);
-  }; 
-
+const MakeCard = (props) => {
   return (
     <>
     <div className="mt-3 mb-5 p-3 bg-light row">
@@ -93,19 +85,12 @@ const MakeCard = () => {
           <span
             id={logo.name}
             className="icon logo p-1"
-            onClick={() => handleMake(logo.name)}
+            onClick={() => props.onSelect(logo.name)}
           >
             {logo.logo}
           </span>
         </div>
       ))}
-    </div>
-    <div>
-      {make ? (
-        <ModelCard make={make}/>
-      ) : (
-         <p className="text-center">Choose a make!</p>
-      )}
     </div>
     </>
   );

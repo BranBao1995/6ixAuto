@@ -27,15 +27,19 @@ const models = [
 
 
 
-const ModelCard = ({make}) => {
-  const makeModel = models.filter( model => model.make === make)
+const ModelCard = (props) => {
+  const makeModel = models.filter( model => model.make === props.make)
 
   return (
     <div className="mt-3 mb-3 p-3 bg-light d-flex justify-content-around">
       {
       makeModel.map((model) => (
       <h4
-      key={model.id}> {model.model} </h4>
+      key={model.id}
+      onClick={() => props.onSelect(model.model)}
+      > 
+        {model.model} 
+      </h4>
       ))}
     </div>
   );
