@@ -37,6 +37,7 @@ const typeDefs = gql`
 
   type Query {
     me: User
+    mee: User
     getPost(postId: ID!): Post
     searchResults(make: String!, model: String!): [Post]
   }

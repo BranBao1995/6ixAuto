@@ -4,19 +4,16 @@ import { useMutation } from "@apollo/client";
 import { GET_ME } from "../utils/queries";
 import ListingCard from "../components/ListingCard";
 import { DELETE_POST } from "../utils/mutations";
-import { useNavigate } from "react-router-dom";
-// import {  } from "../utils/queries";
-// import {  } from "../utils/mutations";
+import Auth from "../utils/auth";
 
 const MyListings = () => {
-  const { loading, data } = useQuery(GET_ME);
+  const { loading, data, error } = useQuery(GET_ME);
+  console.log(data);
   let userData = data?.me || {};
 
-  // console.log(userData);
+  console.log(userData);
 
   const [deletePost] = useMutation(DELETE_POST);
-
-  // const navigate = useNavigate();
 
   const deletePostHandler = async (postId) => {
     try {
@@ -31,7 +28,8 @@ const MyListings = () => {
 
   return (
     <main>
-      <h1>{loading ? "Loading..." : "Your saved listings"}</h1>
+      {error ? <p>{error.message}</p> : ""}
+      <h1>{loading ? "Loading..." : "Listings created by you"}</h1>
       <section>
         {userData.listings?.map((listing) => {
           return (
