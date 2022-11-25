@@ -1,20 +1,27 @@
 import React, { createContext, useContext } from "react";
 
-// Initialize new context for students
 const GlobalContext = createContext();
 
-// We create a custom hook to provide immediate usage of the student context value (students) in other components
 export const useGlobalContext = () => useContext(GlobalContext);
 
-// The provider is responsible for creating our state, updating the state, and persisting values to the children
 export const GlobalProvider = ({ children }) => {
-  const post = [];
+  const post = {
+    postId: "",
+    make: "",
+    model: "",
+    year: "",
+    carType: "",
+    price: 0,
+    mileage: 0,
+    transmission: "",
+    location: "",
+    description: "",
+    image: "",
+    createdAt: Date.now,
+    updatedAt: Date.now,
+  };
 
-  // The value prop expects an initial state object
   return (
-    <GlobalContext.Provider value={{ post }}>
-      {/* We render children in our component so that any descendent can access the value from the provider */}
-      {children}
-    </GlobalContext.Provider>
+    <GlobalContext.Provider value={{ post }}>{children}</GlobalContext.Provider>
   );
 };
