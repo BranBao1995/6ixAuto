@@ -1,7 +1,7 @@
 const { AuthenticationError } = require("apollo-server-express");
 const { User, Post } = require("../models");
 const { signToken } = require("../utils/auth");
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const resolvers = {
   Query: {
@@ -9,18 +9,39 @@ const resolvers = {
     me: async (parent, args, context) => {
       if (context.user) {
         return User.findOne({ _id: context.user._id })
-          .populate("listings")
-          .populate("interested");
+          .populate({
+            path: "listings",
+            populate: { path: "liked" },
+            populate: { path: "user" },
+          })
+          .populate({
+            path: "interested",
+            populate: { path: "liked" },
+            populate: { path: "user" },
+          });
       }
+      // return User.findOne({ _id: context.user._id })
+      //   .populate({
+      //     path: "listings",
+      //     populate: { path: "liked" },
+      //     populate: { path: "user" },
+      //   })
+      //   .populate({
+      //     path: "interested",
+      //     populate: { path: "liked" },
+      //     populate: { path: "user" },
+      //   });
       throw new AuthenticationError("You need to be logged in!");
     },
 
     getPost: async (parent, { postId }, context) => {
-        return await Post.findOne({ _id: postId }).populate("user").populate("liked");
+      return await Post.findOne({ _id: postId })
+        .populate("user")
+        .populate("liked");
     },
 
     searchResults: async (parent, { make, model }) => {
-      return Post.find({ make: make, model: model })
+      return await Post.find({ make: make, model: model })
         .populate("user")
         .populate("liked");
     },

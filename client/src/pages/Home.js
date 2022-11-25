@@ -16,11 +16,12 @@ const Home = () => {
     model: "",
   });
 
+  console.log(selections);
   const [searchMode, setSearchMode] = useState(true);
 
   const setMakeHandler = (make) => {
     setSelection({ ...selections, make });
-    return;
+    console.log(`after clicking make the state is: ${selections}`);
   };
 
   const setModelHandler = (model) => {
