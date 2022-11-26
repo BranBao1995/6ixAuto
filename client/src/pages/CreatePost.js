@@ -6,7 +6,6 @@ import Auth from "../utils/auth";
 // import {  } from "../utils/queries";
 import { MAKE_POST } from "../utils/mutations";
 import { useNavigate } from "react-router-dom";
-import { GET_ME, GET_POST } from "../utils/queries";
 
 const CreatePost = () => {
   const navigate = useNavigate();
@@ -24,28 +23,6 @@ const CreatePost = () => {
   const [characterCount, setCharacterCount] = useState(0);
 
   const [post, { error }] = useMutation(MAKE_POST);
-
-  // const [post] = useMutation(MAKE_POST, {
-  //   update(cache, { data: { addPost } }) {
-  //     try {
-  //       const { posts } = cache.readQuery({ query: GET_POST });
-
-  //       cache.writeQuery({
-  //         query: GET_POST,
-  //         data: { thoughts: [addPost, ...posts] },
-  //       });
-  //     } catch (e) {
-  //       console.error(e);
-  //     }
-
-  //     // update me object's cache
-  //     const { me } = cache.readQuery({ query: GET_ME });
-  //     cache.writeQuery({
-  //       query: GET_ME,
-  //       data: { me: { ...me, thoughts: [...me.thoughts, addPost] } },
-  //     });
-  //   },
-  // });
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -73,7 +50,7 @@ const CreatePost = () => {
           location: location,
           description: description,
           image: "image",
-          createdAt: "Today",
+          createdAt: "Default",
         },
       });
 

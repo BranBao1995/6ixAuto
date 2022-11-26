@@ -4,7 +4,7 @@ export const ADD_USER = gql`
   mutation addUser(
     $username: String!
     $email: String!
-    $phone: String
+    $phone: String!
     $password: String!
   ) {
     addUser(
