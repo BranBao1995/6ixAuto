@@ -105,24 +105,23 @@ const SinglePost = () => {
     );
   }
 
-  console.log(typeof Auth.getProfile().data._id);
+  // console.log(typeof Auth.getProfile().data._id);
   // console.log(data.getPost.user._id);
 
-  let editButton;
-  if (data.getPost.user._id === Auth.getProfile().data._id) {
-    editButton = (
-      <Button
-        onClick={() => {
-          navigate(`/edit/${data.getPost.user._id}`);
-        }}
-      >
-        Edit
-      </Button>
-    );
-  }
+  // let editButton;
+  // if (data.getPost.user._id === Auth.getProfile().data._id) {
+  //   editButton = (
+  //     <Button
+  //       onClick={() => {
+  //         navigate(`/edit/${data.getPost.user._id}`);
+  //       }}
+  //     >
+  //       Edit
+  //     </Button>
+  //   );
+  // }
 
   useEffect(() => {
-    console.log(savedPostIds);
     savePostIds(savedPostIds);
   });
 
@@ -130,7 +129,17 @@ const SinglePost = () => {
     <>
       {data ? (
         <div className="mt-3">
-          {editButton}
+          {data.getPost.user._id == Auth.getProfile().data._id ? (
+            <Button
+              onClick={() => {
+                navigate(`/edit/${data.getPost.user._id}`);
+              }}
+            >
+              Edit
+            </Button>
+          ) : (
+            ""
+          )}
           <div className="col-xs-12 col-sm-5 col-md-5 col-lg-4">
             {/* src=props.image */}
             <img
@@ -151,6 +160,9 @@ const SinglePost = () => {
             <p>Created: {data.getPost.createdAt}</p>
             <p>Price: {data.getPost.price}</p>
             <p>Likes: {data.getPost.liked.length}</p>
+            <p>Posted by: {data.getPost.user.username}</p>
+            <p>Contact email: {data.getPost.user.email}</p>
+            <p>Contact phone: {data.getPost.user.phone}</p>
             {/* {button} */}
             {button}
           </div>
