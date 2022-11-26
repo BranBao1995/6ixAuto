@@ -487,7 +487,7 @@ const EditPost = () => {
           <h4> Create a post! </h4>
           <div>
             <form className="d-flex flex-column" onSubmit={handleFormSubmit}>
-              <label>Add make</label>
+              <label>Make</label>
               <select
                 required
                 className=""
@@ -506,7 +506,7 @@ const EditPost = () => {
                   </option>
                 ))}
               </select>
-              <label>Add model</label>
+              <label>Model</label>
               {make ? (
                 <select
                   required
@@ -546,14 +546,14 @@ const EditPost = () => {
                 value={year}
                 onChange={(e) => setYear(e.target.value)}
               />
-              <label>Add Car Type</label>
+              <label>Car Type</label>
               <select
                 required
                 className=""
                 name="carType"
                 onChange={(e) => setCarType(e.target.value)}
               >
-                <option> Pick a Car Type</option>
+                <option>Pick a Car Type</option>
                 <option
                   value="Coupe"
                   selected={postData.carType == "Coupe" ? true : false}
@@ -590,7 +590,7 @@ const EditPost = () => {
                   Pickup{" "}
                 </option>
               </select>
-              <label>Add location</label>
+              <label>Location</label>
               <input
                 required
                 className=""
@@ -600,7 +600,7 @@ const EditPost = () => {
                 placeholder="Location"
                 value={location}
               />
-              <label>Add price</label>
+              <label>Price</label>
               <input
                 required
                 className=""
@@ -609,7 +609,7 @@ const EditPost = () => {
                 type="text"
                 value={price}
               />
-              <label>Add mileage</label>
+              <label>Mileage</label>
               <input
                 required
                 className=""
@@ -618,7 +618,7 @@ const EditPost = () => {
                 type="text"
                 value={mileage}
               />
-              <label>Add transmission</label>
+              <label>Transmission</label>
               <select
                 required
                 className=""
@@ -641,11 +641,11 @@ const EditPost = () => {
                   Manual{" "}
                 </option>
               </select>
-              <label>Add image</label>
+              <label>Image</label>
               <div>
                 <button onClick={() => widgetRef.current.open()}>Upload</button>
               </div>
-              <label>Add description</label>
+              <label>Description</label>
               <input
                 required
                 className=""

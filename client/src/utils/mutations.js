@@ -83,9 +83,8 @@ export const UPDATE_POST = gql`
     $location: String!
     $description: String!
     $image: String
-    $updatedAt: Int
   ) {
-    updatedPost(
+    updatePost(
       make: $make
       model: $model
       year: $year
@@ -96,7 +95,6 @@ export const UPDATE_POST = gql`
       location: $location
       description: $description
       image: $image
-      updatedAt: $updatedAt
     ) {
       _id
       username

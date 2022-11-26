@@ -6,8 +6,8 @@ import Auth from "../utils/auth";
 // import {  } from "../utils/queries";
 import { MAKE_POST } from "../utils/mutations";
 import { useNavigate } from "react-router-dom";
-import './CreatePost.css'
-
+import { MakesArray, ModelsArray } from "../utils/seeds";
+import "./CreatePost.css";
 
 const makes = [
   {
@@ -375,7 +375,7 @@ const models = [
     value: "Atlas",
     model: "Atlas",
   },
-]
+];
 
 const CreatePost = () => {
   const navigate = useNavigate();
@@ -435,8 +435,8 @@ const CreatePost = () => {
           model: model,
           year: year,
           carType: carType,
-          price: price,
-          mileage: mileage,
+          price: parseInt(price),
+          mileage: parseInt(mileage),
           transmission: transmission,
           location: location,
           description: description,
@@ -451,7 +451,7 @@ const CreatePost = () => {
     }
   };
 
-  const makeModel = models.filter((model) => model.make === make);
+  // const makeModel = models.filter((model) => model.make === make);
 
   return (
     <>
@@ -459,7 +459,7 @@ const CreatePost = () => {
       {Auth.loggedIn() ? (
         <div>
           <form className="d-flex flex-column" onSubmit={handleFormSubmit}>
-            <label>Add make</label>
+            <label>Make</label>
             <select
               required
               className=""
@@ -467,13 +467,13 @@ const CreatePost = () => {
               onChange={(e) => setMake(e.target.value)}
             >
               <option> Pick a Make </option>
-              {makes.map((make) => (
+              {MakesArray.map((make) => (
                 <option key={make.id} value={make.value}>
                   {make.label}
                 </option>
               ))}
             </select>
-            <label>Add model</label>
+            <label>Model</label>
             {make ? (
               <select
                 required
@@ -499,7 +499,7 @@ const CreatePost = () => {
               ></select>
             )}
 
-            <label>year</label>
+            <label>Year</label>
             <input
               required
               className=""
@@ -508,7 +508,7 @@ const CreatePost = () => {
               type="text"
               placeholder="Name"
             />
-            <label>Add carType</label>
+            <label>CarType</label>
             <select
               required
               className=""
@@ -522,7 +522,7 @@ const CreatePost = () => {
               <option value="Hatchback"> Hatchback </option>
               <option value="Pickup"> Pickup </option>
             </select>
-            <label>Add location</label>
+            <label>Location</label>
             <input
               required
               className=""
@@ -531,23 +531,23 @@ const CreatePost = () => {
               type="text"
               placeholder="Name"
             />
-            <label>Add price</label>
+            <label>Price</label>
             <input
               required
               className=""
               name="price"
-              onChange={(e) => setPrice(parseInt(e.target.value))}
+              onChange={(e) => setPrice(e.target.value)}
               type="text"
             />
-            <label>Add mileage</label>
+            <label>Mileage</label>
             <input
               required
               className=""
               name="mileage"
-              onChange={(e) => setMileage(parseInt(e.target.value))}
+              onChange={(e) => setMileage(e.target.value)}
               type="text"
             />
-            <label>Add transmission</label>
+            <label>Transmission</label>
             <select
               required
               className=""
@@ -558,11 +558,11 @@ const CreatePost = () => {
               <option value="Automatic"> Automatic </option>
               <option value="Manual"> Manual </option>
             </select>
-            <label>Add image</label>
+            <label>Image</label>
             <div>
               <button onClick={() => widgetRef.current.open()}>Upload</button>
             </div>
-            <label>Add description</label>
+            <label>Description</label>
             <p> {characterCount} / 400 </p>
             <textarea
               maxLength="400"
