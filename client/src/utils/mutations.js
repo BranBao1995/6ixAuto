@@ -4,7 +4,7 @@ export const ADD_USER = gql`
   mutation addUser(
     $username: String!
     $email: String!
-    $phone: String!
+    $phone: String
     $password: String!
   ) {
     addUser(
@@ -64,31 +64,9 @@ export const MAKE_POST = gql`
       createdAt: $createdAt
     ) {
       _id
-      make
-      model
-      year
-      carType
-      location
-      price
-      mileage
-      transmission
-      image
-      description
-      createdAt
-      updatedAt
-      user {
-        _id
-        username
-        email
-        phone
-      }
-      liked {
-        _id
-        username
-        email
-        phone
-      }
-      likeCount
+      username
+      email
+      phone
     }
   }
 `;

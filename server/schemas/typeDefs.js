@@ -37,7 +37,6 @@ const typeDefs = gql`
 
   type Query {
     me: User
-    mee: User
     getPost(postId: ID!): Post
     searchResults(make: String!, model: String!): [Post]
   }
@@ -61,7 +60,7 @@ const typeDefs = gql`
       image: String
       description: String!
       createdAt: String!
-    ): Post
+    ): User
     login(email: String!, password: String!): Auth
     updatePost(
       postId: ID!

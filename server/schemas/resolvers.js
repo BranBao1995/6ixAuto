@@ -84,7 +84,6 @@ const resolvers = {
         location,
         description,
         image,
-        createdAt,
       },
       context
     ) => {
@@ -100,17 +99,16 @@ const resolvers = {
           location,
           description,
           image,
-          createdAt,
           user: context.user._id,
         });
-
-        await User.findOneAndUpdate(
+        console.log(newPost);
+        const userData = await User.findOneAndUpdate(
           { _id: context.user._id },
           { $addToSet: { listings: newPost._id } },
           { new: true, runValidators: true }
         );
 
-        return newPost;
+        return userData;
       }
       throw new AuthenticationError("You need to be logged in!");
     },
