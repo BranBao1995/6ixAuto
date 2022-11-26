@@ -6,376 +6,8 @@ import Auth from "../utils/auth";
 // import {  } from "../utils/queries";
 import { MAKE_POST } from "../utils/mutations";
 import { useNavigate } from "react-router-dom";
-import './CreatePost.css'
-
-
-const makes = [
-  {
-    id: 2,
-    value: "Audi",
-    label: "Audi",
-  },
-  {
-    id: 3,
-    value: "Bentley",
-    label: "Bentley",
-  },
-  {
-    id: 4,
-    value: "BMW",
-    label: "BMW",
-  },
-  {
-    id: 5,
-    value: "Chevrolet",
-    label: "Chevrolet",
-  },
-  {
-    id: 6,
-    value: "Ford",
-    label: "Ford",
-  },
-  {
-    id: 7,
-    value: "Honda",
-    label: "Honda",
-  },
-  {
-    id: 8,
-    value: "Hyundai",
-    label: "Hyundai",
-  },
-  {
-    id: 9,
-    value: "Mercedes",
-    label: "Mercedes",
-  },
-  {
-    id: 10,
-    value: "Toyota",
-    label: "Toyota",
-  },
-  {
-    id: 11,
-    value: "Volkswagen",
-    label: "Volkswagen",
-  },
-];
-
-const models = [
-  {
-    id: 1,
-    make: "Audi",
-    value: "A5",
-    model: "A5",
-  },
-  {
-    id: 2,
-    make: "Audi",
-    value: "S4",
-    model: "S4",
-  },
-  {
-    id: 21,
-    make: "Audi",
-    value: "A3",
-    model: "A3",
-  },
-  {
-    id: 22,
-    make: "Audi",
-    value: "Q3",
-    model: "Q3",
-  },
-  {
-    id: 23,
-    make: "Audi",
-    value: "Q7",
-    model: "Q7",
-  },
-  {
-    id: 24,
-    make: "Audi",
-    value: "RS5",
-    model: "RS5",
-  },
-  {
-    id: 3,
-    make: "Bentley",
-    value: "Continental GT",
-    model: "Continental GT",
-  },
-  {
-    id: 25,
-    make: "Bentley",
-    value: "Flying Spur",
-    model: "Flying Spur",
-  },
-  {
-    id: 26,
-    make: "Bentley",
-    value: "Bentayga",
-    model: "Bentayga",
-  },
-  {
-    id: 27,
-    make: "BMW",
-    value: "X5",
-    model: "X5",
-  },
-  {
-    id: 28,
-    make: "BMW",
-    value: "M3",
-    model: "M3",
-  },
-  {
-    id: 29,
-    make: "BMW",
-    value: "X3",
-    model: "X3",
-  },
-  {
-    id: 4,
-    make: "BMW",
-    value: "X1",
-    model: "X1",
-  },
-  {
-    id: 5,
-    make: "BMW",
-    value: "M4",
-    model: "M4",
-  },
-  {
-    id: 6,
-    make: "BMW",
-    value: "328i",
-    model: "328i",
-  },
-  {
-    id: 7,
-    make: "Chevrolet",
-    value: "Camaro",
-    model: "Camaro",
-  },
-  {
-    id: 8,
-    make: "Chevrolet",
-    value: "Silverado",
-    model: "Silverado",
-  },
-  {
-    id: 30,
-    make: "Chevrolet",
-    value: "Spark",
-    model: "Spark",
-  },
-  {
-    id: 31,
-    make: "Chevrolet",
-    value: "Equinox",
-    model: "Equinox",
-  },
-  {
-    id: 32,
-    make: "Chevrolet",
-    value: "Tahoe",
-    model: "Tahoe",
-  },
-  {
-    id: 33,
-    make: "Chevrolet",
-    value: "Cruze",
-    model: "Cruze",
-  },
-  {
-    id: 9,
-    make: "Ford",
-    value: "F150",
-    model: "F150",
-  },
-  {
-    id: 52,
-    make: "Ford",
-    value: "Mustang",
-    model: "Mustang",
-  },
-  {
-    id: 34,
-    make: "Ford",
-    value: "Explorer",
-    model: "Explorer",
-  },
-  {
-    id: 35,
-    make: "Ford",
-    value: "Bronco",
-    model: "Bronco",
-  },
-  {
-    id: 36,
-    make: "Ford",
-    value: "Expedition",
-    model: "Expedition",
-  },
-  {
-    id: 10,
-    make: "Ford",
-    value: "Escape",
-    model: "Escape",
-  },
-  {
-    id: 11,
-    make: "Honda",
-    value: "Civic",
-    model: "Civic",
-  },
-  {
-    id: 12,
-    make: "Honda",
-    value: "Accord",
-    model: "Accord",
-  },
-  {
-    id: 37,
-    make: "Honda",
-    value: "CRV",
-    model: "CRV",
-  },
-  {
-    id: 38,
-    make: "Honda",
-    value: "Pilot",
-    model: "Pilot",
-  },
-  {
-    id: 39,
-    make: "Honda",
-    value: "Ridgeline",
-    model: "Ridgeline",
-  },
-  {
-    id: 13,
-    make: "Hyundai",
-    value: "Elantra",
-    model: "Elantra",
-  },
-  {
-    id: 14,
-    make: "Hyundai",
-    value: "Sonata",
-    model: "Sonata",
-  },
-  {
-    id: 40,
-    make: "Hyundai",
-    value: "Santa Fe",
-    model: "Santa Fe",
-  },
-  {
-    id: 41,
-    make: "Hyundai",
-    value: "IONIC",
-    model: "IONIC",
-  },
-  {
-    id: 42,
-    make: "Hyundai",
-    value: "Tucson",
-    model: "Tucson",
-  },
-  {
-    id: 15,
-    make: "Mercedes",
-    value: "A-Class",
-    model: "A-Class",
-  },
-  {
-    id: 16,
-    make: "Mercedes",
-    value: "C-Class",
-    model: "C-Class",
-  },
-  {
-    id: 43,
-    make: "Mercedes",
-    value: "G-Class",
-    model: "G-Class",
-  },
-  {
-    id: 44,
-    make: "Mercedes",
-    value: "GLA",
-    model: "GLA",
-  },
-  {
-    id: 45,
-    make: "Mercedes",
-    value: "GLC",
-    model: "GLC",
-  },
-  {
-    id: 17,
-    make: "Toyota",
-    value: "Corolla",
-    model: "Corolla",
-  },
-  {
-    id: 18,
-    make: "Toyota",
-    value: "Camry",
-    model: "Camry",
-  },
-  {
-    id: 46,
-    make: "Toyota",
-    value: "RAV4",
-    model: "RAV4",
-  },
-  {
-    id: 47,
-    make: "Toyota",
-    value: "Supra",
-    model: "Supra",
-  },
-  {
-    id: 48,
-    make: "Toyota",
-    value: "Tacoma",
-    model: "Tacoma",
-  },
-  {
-    id: 19,
-    make: "Volkswagen",
-    value: "Jetta",
-    model: "Jetta",
-  },
-  {
-    id: 20,
-    make: "Volkswagen",
-    value: "Golf",
-    model: "Golf",
-  },
-  {
-    id: 49,
-    make: "Volkswagen",
-    value: "Tiguan",
-    model: "Tiguan",
-  },
-  {
-    id: 50,
-    make: "Volkswagen",
-    value: "Taos",
-    model: "Taos",
-  },
-  {
-    id: 51,
-    make: "Volkswagen",
-    value: "Atlas",
-    model: "Atlas",
-  },
-]
+import { MakesArray, ModelsArray } from "../utils/seeds";
+import "./CreatePost.css";
 
 const CreatePost = () => {
   const navigate = useNavigate();
@@ -435,8 +67,8 @@ const CreatePost = () => {
           model: model,
           year: year,
           carType: carType,
-          price: price,
-          mileage: mileage,
+          price: parseInt(price),
+          mileage: parseInt(mileage),
           transmission: transmission,
           location: location,
           description: description,
@@ -451,7 +83,7 @@ const CreatePost = () => {
     }
   };
 
-  const makeModel = models.filter((model) => model.make === make);
+  // const makeModel = models.filter((model) => model.make === make);
 
   return (
     <>
@@ -459,7 +91,7 @@ const CreatePost = () => {
       {Auth.loggedIn() ? (
         <div>
           <form className="d-flex flex-column" onSubmit={handleFormSubmit}>
-            <label>Add make</label>
+            <label>Make</label>
             <select
               required
               className=""
@@ -467,13 +99,13 @@ const CreatePost = () => {
               onChange={(e) => setMake(e.target.value)}
             >
               <option> Pick a Make </option>
-              {makes.map((make) => (
+              {MakesArray.map((make) => (
                 <option key={make.id} value={make.value}>
                   {make.label}
                 </option>
               ))}
             </select>
-            <label>Add model</label>
+            <label>Model</label>
             {make ? (
               <select
                 required
@@ -482,13 +114,13 @@ const CreatePost = () => {
                 onChange={(e) => setModel(e.target.value)}
               >
                 <option> Pick a Model</option>
-                {models
-                  .filter((model) => model.make === make)
-                  .map((model) => (
+                {ModelsArray.filter((model) => model.make === make).map(
+                  (model) => (
                     <option key={model.id} value={model.value}>
                       {model.model}
                     </option>
-                  ))}
+                  )
+                )}
               </select>
             ) : (
               <select
@@ -499,7 +131,7 @@ const CreatePost = () => {
               ></select>
             )}
 
-            <label>year</label>
+            <label>Year</label>
             <input
               required
               className=""
@@ -508,7 +140,7 @@ const CreatePost = () => {
               type="text"
               placeholder="Name"
             />
-            <label>Add carType</label>
+            <label>CarType</label>
             <select
               required
               className=""
@@ -522,7 +154,7 @@ const CreatePost = () => {
               <option value="Hatchback"> Hatchback </option>
               <option value="Pickup"> Pickup </option>
             </select>
-            <label>Add location</label>
+            <label>Location</label>
             <input
               required
               className=""
@@ -531,23 +163,23 @@ const CreatePost = () => {
               type="text"
               placeholder="Name"
             />
-            <label>Add price</label>
+            <label>Price</label>
             <input
               required
               className=""
               name="price"
-              onChange={(e) => setPrice(parseInt(e.target.value))}
+              onChange={(e) => setPrice(e.target.value)}
               type="text"
             />
-            <label>Add mileage</label>
+            <label>Mileage</label>
             <input
               required
               className=""
               name="mileage"
-              onChange={(e) => setMileage(parseInt(e.target.value))}
+              onChange={(e) => setMileage(e.target.value)}
               type="text"
             />
-            <label>Add transmission</label>
+            <label>Transmission</label>
             <select
               required
               className=""
@@ -558,11 +190,11 @@ const CreatePost = () => {
               <option value="Automatic"> Automatic </option>
               <option value="Manual"> Manual </option>
             </select>
-            <label>Add image</label>
+            <label>Image</label>
             <div>
               <button onClick={() => widgetRef.current.open()}>Upload</button>
             </div>
-            <label>Add description</label>
+            <label>Description</label>
             <p> {characterCount} / 400 </p>
             <textarea
               maxLength="400"

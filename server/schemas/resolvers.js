@@ -29,7 +29,7 @@ const resolvers = {
       throw new AuthenticationError("You need to be logged in!");
     },
 
-    getPost: async (parent, { postId }, context) => {
+    getPost: async (parent, { postId }) => {
       return await Post.findOne({ _id: postId })
         .populate("user")
         .populate("liked");
@@ -96,7 +96,7 @@ const resolvers = {
           image,
           user: context.user._id,
         });
-        console.log(newPost);
+
         const userData = await User.findOneAndUpdate(
           { _id: context.user._id },
           { $addToSet: { listings: newPost._id } },
@@ -122,7 +122,6 @@ const resolvers = {
         location,
         description,
         image,
-        updatedAt,
       },
       context
     ) => {
@@ -140,11 +139,10 @@ const resolvers = {
             location,
             description,
             image,
-            updatedAt,
           },
           { new: true, runValidators: true }
         );
-
+        console.log(updatedPost);
         return await User.findOne({ _id: context.user._id });
       }
       throw new AuthenticationError("You need to be logged in!");
