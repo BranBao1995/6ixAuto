@@ -1,5 +1,5 @@
 // import CloudinaryUploadWidget from "./CloudinaryUploadWidget";
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useQuery } from "@apollo/client";
 import { useMutation } from "@apollo/client";
 import Auth from "../utils/auth";
@@ -18,11 +18,31 @@ const CreatePost = () => {
   const [price, setPrice] = useState(0);
   const [mileage, setMileage] = useState(0);
   const [transmission, setTransmission] = useState("");
+  const [image, setImage] = useState("");
   const [description, setDescription] = useState("");
 
   const [characterCount, setCharacterCount] = useState(0);
 
   const [post, { error }] = useMutation(MAKE_POST);
+
+  const cloudinaryRef = useRef();
+  const widgetRef = useRef();
+
+  useEffect(() => {
+    cloudinaryRef.current = window.cloudinary;
+    widgetRef.current = cloudinaryRef.current.createUploadWidget(
+      {
+        cloudName: "davswvpty",
+        uploadPreset: "hwu5iwft",
+      },
+      function (error, result) {
+        if (!error && result && result.event === "success") {
+          setImage(result.info.secure_url);
+          console.log(result.info.secure_url);
+        }
+      }
+    );
+  }, []);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -35,6 +55,7 @@ const CreatePost = () => {
       mileage,
       price,
       transmission,
+      image,
       description
     );
     try {
@@ -49,7 +70,7 @@ const CreatePost = () => {
           transmission: transmission,
           location: location,
           description: description,
-          image: "image",
+          image: image,
           createdAt: "Default",
         },
       });
@@ -139,7 +160,9 @@ const CreatePost = () => {
               placeholder="Name"
             />
             <label>Add image</label>
-            <div>image here</div>
+            <div>
+              <button onClick={() => widgetRef.current.open()}>Upload</button>
+            </div>
             <label>Add description</label>
             <input
               required
