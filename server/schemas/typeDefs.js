@@ -75,7 +75,7 @@ const typeDefs = gql`
       image: String
       description: String!
       updatedAt: String!
-    ): Post
+    ): User
     deletePost(postId: ID!): Post
     savePost(postId: ID!): User
     removePost(postId: ID!): User
