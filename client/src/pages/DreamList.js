@@ -1,14 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { useQuery } from "@apollo/client";
 import { GET_ME } from "../utils/queries";
 import ListingCard from "../components/ListingCard";
 
 const DreamList = () => {
-  const { loading, data } = useQuery(GET_ME);
-  let userData = data?.me || {};
+  console.log("COMPONENT MOUNTED!");
+
+  const { loading, data, refetch } = useQuery(GET_ME);
+  refetch();
+  const userData = data?.me || {};
   console.log(userData);
-  const onRemoveHandler = async () => {
-    window.location.replace("/dreamlist");
+  const onRemoveHandler = async (clicked) => {
+    if (clicked) {
+      refetch();
+    }
+    return;
   };
 
   return (
@@ -18,7 +24,7 @@ const DreamList = () => {
         {userData.interested?.map((listing) => {
           return (
             <div key={listing._id} className="listCard-container">
-              <ListingCard post={listing} />
+              <ListingCard post={listing} onRemove={onRemoveHandler} />
             </div>
           );
         })}
