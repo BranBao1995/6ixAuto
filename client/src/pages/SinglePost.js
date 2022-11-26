@@ -15,9 +15,11 @@ const SinglePost = () => {
   const { loading, data } = useQuery(GET_POST, {
     variables: { postId: postId },
   });
-  console.log(data);
-  const post = data?.post || {};
+  const post = data?.getPost || {};
   console.log(post);
+
+  const [savePost] = useMutation(SAVE_TO_FAV);
+  const [removePost] = useMutation(REMOVE_FROM_FAV);
 
   const getSavedPostIds = () => {
     const newsavedPostIds = localStorage.getItem("saved_posts")
@@ -51,13 +53,10 @@ const SinglePost = () => {
     return true;
   };
 
-  const { dataa } = useQuery(GET_ME);
   const [savedPostIds, setSavedPostIds] = useState(getSavedPostIds());
-
-  const [savePost] = useMutation(SAVE_TO_FAV);
-  const [removePost] = useMutation(REMOVE_FROM_FAV);
-  let userData = dataa?.me || {};
-  console.log(userData);
+  // const { dataa } = useQuery(GET_ME);
+  // let userData = dataa?.me || {};
+  // console.log(userData);
 
   const handleSavePost = async (postId) => {
     try {
@@ -74,7 +73,7 @@ const SinglePost = () => {
   const handleDeletePost = async (postId) => {
     try {
       const { data } = await removePost({ variables: { postId } });
-      userData = data.removePost;
+      // userData = data.removePost;
       console.log(data);
       // upon success, remove post's id from localStorage
       removePostId(postId);
@@ -105,6 +104,11 @@ const SinglePost = () => {
     );
   }
 
+  console.log(typeof Auth.getProfile().data._id);
+
+  // let editButton;
+  // if(post.user._id != Auth.getProfile())
+
   useEffect(() => {
     console.log(savedPostIds);
     savePostIds(savedPostIds);
@@ -117,8 +121,8 @@ const SinglePost = () => {
           <div className="col-xs-12 col-sm-5 col-md-5 col-lg-4">
             {/* src=props.image */}
             <img
-              src="https://hips.hearstapps.com/hmg-prod/images/2023-porsche-911-gt3-rs-201-1660575621.jpg?crop=0.755xw:0.567xh;0.0833xw,0.257xh&resize=1200:*"
-              alt={post.model}
+              src={data.getPost.image}
+              alt={data.getPost.model}
               width="100%"
             />
           </div>
