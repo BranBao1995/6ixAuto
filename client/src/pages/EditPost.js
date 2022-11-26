@@ -378,36 +378,46 @@ const EditPost = () => {
   const { postId } = useParams();
   const navigate = useNavigate();
 
-  const { data } = useQuery(GET_POST, {
+  const { loading, data, refetch } = useQuery(GET_POST, {
     variables: { postId: postId },
   });
 
-  // const initialStates = {
-  //   make: data.getPost.make,
-  //   model: data.getPost.model,
-  //   year: data.getPost.year,
-  //   carType: data.getPost.carType,
-  //   price: data.getPost.price,
-  //   mileage: data.getPost.mileage,
-  //   transmission: data.getPost.transmission,
-  //   location: data.getPost.location,
-  //   description: data.getPost.description,
-  //   image: data.getPost.image,
-  // };
-  const [make, setMake] = useState(data.getPost.make);
-  const [model, setModel] = useState(data.getPost.model);
-  const [year, setYear] = useState(data.getPost.year);
-  const [carType, setCarType] = useState(data.getPost.carType);
-  const [location, setLocation] = useState(data.getPost.location);
-  const [price, setPrice] = useState(data.getPost.price);
-  const [mileage, setMileage] = useState(data.getPost.mileage);
-  const [transmission, setTransmission] = useState(data.getPost.transmission);
-  const [image, setImage] = useState(data.getPost.image);
-  const [description, setDescription] = useState(data.getPost.description);
+  const postData = data?.getPost || {};
+  // console.log(postData);
 
-  // const [formInputs, setFormInputs] = useState(initialStates);
+  const [make, setMake] = useState(postData.make);
+  const [model, setModel] = useState(postData.model);
+  const [year, setYear] = useState(postData.year);
+  const [carType, setCarType] = useState(postData.carType);
+  const [location, setLocation] = useState(postData.location);
+  const [price, setPrice] = useState(postData.price);
+  const [mileage, setMileage] = useState(postData.mileage);
+  const [transmission, setTransmission] = useState(postData.transmission);
+  const [image, setImage] = useState(postData.image);
+  const [description, setDescription] = useState(postData.description);
 
-  const [characterCount, setCharacterCount] = useState(0);
+  console.log(make);
+  console.log(model);
+  console.log(year);
+  console.log(carType);
+  console.log(location);
+  console.log(price);
+  console.log(mileage);
+  console.log(transmission);
+  console.log(image);
+  console.log(description);
+
+  // const [make, setMake] = useState();
+  // const [model, setModel] = useState();
+  // const [year, setYear] = useState();
+  // const [carType, setCarType] = useState();
+  // const [location, setLocation] = useState();
+  // const [price, setPrice] = useState();
+  // const [mileage, setMileage] = useState();
+  // const [transmission, setTransmission] = useState();
+  // const [image, setImage] = useState();
+  // const [description, setDescription] = useState();
+  // const [characterCount, setCharacterCount] = useState(0);
 
   const [updatePost, { error }] = useMutation(UPDATE_POST);
 
@@ -430,12 +440,6 @@ const EditPost = () => {
     );
   }, []);
 
-  // const mutateFormInputs = (e) => {
-  //   const inputName = e.target.name;
-  //   const inputValue = e.target.value
-  //   setFormInputs({...formInputs, inputName: inputValue});
-  // }
-
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     console.log(
@@ -457,8 +461,8 @@ const EditPost = () => {
           model: model,
           year: year,
           carType: carType,
-          price: price,
-          mileage: mileage,
+          price: parseInt(price),
+          mileage: parseInt(mileage),
           transmission: transmission,
           location: location,
           description: description,
@@ -467,7 +471,8 @@ const EditPost = () => {
         },
       });
 
-      navigate(`/mylistings`);
+      // navigate(`/mylistings`);
+      console.log("changes made!");
     } catch (err) {
       console.error(err);
     }
@@ -477,137 +482,184 @@ const EditPost = () => {
 
   return (
     <>
-      <h4> Create a post! </h4>
-      {Auth.loggedIn() ? (
-        <div>
-          <form className="d-flex flex-column" onSubmit={handleFormSubmit}>
-            <label>Add make</label>
-            <select
-              required
-              className=""
-              name="make"
-              onChange={(e) => setMake(e.target.value)}
-            >
-              <option> Pick a Make </option>
-              {makes.map((make) => (
-                <option
-                  key={make.id}
-                  value={make.value}
-                  selected={make.value == data.getPost.make}
-                >
-                  {" "}
-                  {make.label}{" "}
-                </option>
-              ))}
-            </select>
-            <label>Add model</label>
-            {make ? (
+      {data ? (
+        <div className="">
+          <h4> Create a post! </h4>
+          <div>
+            <form className="d-flex flex-column" onSubmit={handleFormSubmit}>
+              <label>Add make</label>
               <select
                 required
                 className=""
-                name="model"
-                onChange={(e) => setModel(e.target.value)}
+                name="make"
+                onChange={(e) => setMake(e.target.value)}
               >
-                <option> Pick a Model</option>
-                {models
-                  .filter((model) => model.make === make)
-                  .map((model) => (
-                    <option
-                      key={model.id}
-                      value={model.value}
-                      selected={model.value == data.getPost.model}
-                    >
-                      {" "}
-                      {model.label}{" "}
-                    </option>
-                  ))}
+                <option> Pick a Make </option>
+                {makes.map((make) => (
+                  <option
+                    key={make.id}
+                    value={make.value}
+                    selected={make.value == postData.make ? true : false}
+                  >
+                    {" "}
+                    {make.label}{" "}
+                  </option>
+                ))}
               </select>
-            ) : (
-              <select
-                disabled
-                className=""
-                name="model"
-                placeholder="Name"
-              ></select>
-            )}
+              <label>Add model</label>
+              {make ? (
+                <select
+                  required
+                  className=""
+                  name="model"
+                  onChange={(e) => setModel(e.target.value)}
+                >
+                  <option> Pick a Model</option>
+                  {models
+                    .filter((model) => model.make === make)
+                    .map((model) => (
+                      <option
+                        key={model.id}
+                        value={model.value}
+                        selected={model.value == postData.model ? true : false}
+                      >
+                        {model.label}
+                      </option>
+                    ))}
+                </select>
+              ) : (
+                <select
+                  disabled
+                  className=""
+                  name="model"
+                  placeholder="Name"
+                ></select>
+              )}
 
-            <label>Year</label>
-            <input
-              required
-              className=""
-              name="year"
-              type="text"
-              placeholder="Year"
-              value={year}
-              onChange={(e) => setYear(e.target.value)}
-            />
-            <label>Add Car Type</label>
-            <select
-              required
-              className=""
-              name="carType"
-              onChange={(e) => setCarType(e.target.value)}
-            >
-              <option> Pick a Car Type</option>
-              <option value="Coupe"> Coupe </option>
-              <option value="Sedan"> Sedan </option>
-              <option value="SUV"> SUV </option>
-              <option value="Hatchback"> Hatchback </option>
-              <option value="Pickup"> Pickup </option>
-            </select>
-            <label>Add location</label>
-            <input
-              required
-              className=""
-              name="location"
-              onChange={(e) => setLocation(e.target.value)}
-              type="text"
-              placeholder="Name"
-            />
-            <label>Add price</label>
-            <input
-              required
-              className=""
-              name="price"
-              onChange={(e) => setPrice(parseInt(e.target.value))}
-              type="text"
-            />
-            <label>Add mileage</label>
-            <input
-              required
-              className=""
-              name="mileage"
-              onChange={(e) => setMileage(parseInt(e.target.value))}
-              type="text"
-            />
-            <label>Add transmission</label>
-            <select
-              required
-              className=""
-              name="transmission"
-              onChange={(e) => setTransmission(e.target.value)}
-            >
-              <option> Pick Transmission</option>
-              <option value="Automatic"> Automatic </option>
-              <option value="Manual"> Manual </option>
-            </select>
-            <label>Add image</label>
-            <div>
-              <button onClick={() => widgetRef.current.open()}>Upload</button>
-            </div>
-            <label>Add description</label>
-            <input
-              required
-              className=""
-              name="description"
-              onChange={(e) => setDescription(e.target.value)}
-              type="text"
-            />
-            <button type="submit"> Submit </button>
-          </form>
+              <label>Year</label>
+              <input
+                required
+                className=""
+                name="year"
+                type="text"
+                placeholder="Year"
+                value={year}
+                onChange={(e) => setYear(e.target.value)}
+              />
+              <label>Add Car Type</label>
+              <select
+                required
+                className=""
+                name="carType"
+                onChange={(e) => setCarType(e.target.value)}
+              >
+                <option> Pick a Car Type</option>
+                <option
+                  value="Coupe"
+                  selected={postData.carType == "Coupe" ? true : false}
+                >
+                  {" "}
+                  Coupe{" "}
+                </option>
+                <option
+                  value="Sedan"
+                  selected={postData.carType == "Sedan" ? true : false}
+                >
+                  {" "}
+                  Sedan{" "}
+                </option>
+                <option
+                  value="SUV"
+                  selected={postData.carType == "SUV" ? true : false}
+                >
+                  {" "}
+                  SUV{" "}
+                </option>
+                <option
+                  value="Hatchback"
+                  selected={postData.carType == "Hatchback" ? true : false}
+                >
+                  {" "}
+                  Hatchback{" "}
+                </option>
+                <option
+                  value="Pickup"
+                  selected={postData.carType == "Pickup" ? true : false}
+                >
+                  {" "}
+                  Pickup{" "}
+                </option>
+              </select>
+              <label>Add location</label>
+              <input
+                required
+                className=""
+                name="location"
+                onChange={(e) => setLocation(e.target.value)}
+                type="text"
+                placeholder="Location"
+                value={location}
+              />
+              <label>Add price</label>
+              <input
+                required
+                className=""
+                name="price"
+                onChange={(e) => setPrice(e.target.value)}
+                type="text"
+                value={price}
+              />
+              <label>Add mileage</label>
+              <input
+                required
+                className=""
+                name="mileage"
+                onChange={(e) => setMileage(e.target.value)}
+                type="text"
+                value={mileage}
+              />
+              <label>Add transmission</label>
+              <select
+                required
+                className=""
+                name="transmission"
+                onChange={(e) => setTransmission(e.target.value)}
+              >
+                <option> Pick Transmission</option>
+                <option
+                  value="Automatic"
+                  selected={postData.transmission == "Automatic" ? true : false}
+                >
+                  {" "}
+                  Automatic{" "}
+                </option>
+                <option
+                  value="Manual"
+                  selected={postData.carType == "Manual" ? true : false}
+                >
+                  {" "}
+                  Manual{" "}
+                </option>
+              </select>
+              <label>Add image</label>
+              <div>
+                <button onClick={() => widgetRef.current.open()}>Upload</button>
+              </div>
+              <label>Add description</label>
+              <input
+                required
+                className=""
+                name="description"
+                onChange={(e) => setDescription(e.target.value)}
+                type="text"
+                value={description}
+              />
+              <button type="submit"> Submit </button>
+            </form>
+          </div>
         </div>
       ) : (
-        <div> You must Login first !</div>
+        <div>Loading...</div>
       )}
     </>
   );

@@ -29,7 +29,7 @@ const resolvers = {
       throw new AuthenticationError("You need to be logged in!");
     },
 
-    getPost: async (parent, { postId }, context) => {
+    getPost: async (parent, { postId }) => {
       return await Post.findOne({ _id: postId })
         .populate("user")
         .populate("liked");

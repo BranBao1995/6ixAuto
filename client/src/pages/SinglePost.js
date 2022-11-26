@@ -4,13 +4,12 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { useMutation } from "@apollo/client";
 import Auth from "../utils/auth";
-import { GET_POST, GET_ME } from "../utils/queries";
+import { GET_POST } from "../utils/queries";
 import { SAVE_TO_FAV, REMOVE_FROM_FAV } from "../utils/mutations";
 import { useNavigate } from "react-router-dom";
 
 const SinglePost = () => {
   const { postId } = useParams();
-
   const navigate = useNavigate();
 
   const { loading, data } = useQuery(GET_POST, {
@@ -132,7 +131,7 @@ const SinglePost = () => {
           {data.getPost.user._id == Auth.getProfile().data._id ? (
             <Button
               onClick={() => {
-                navigate(`/edit/${data.getPost.user._id}`);
+                navigate(`/edit/${postId}`);
               }}
             >
               Edit
