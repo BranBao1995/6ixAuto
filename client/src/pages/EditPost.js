@@ -396,16 +396,16 @@ const EditPost = () => {
   const [image, setImage] = useState(postData.image);
   const [description, setDescription] = useState(postData.description);
 
-  console.log(make);
-  console.log(model);
-  console.log(year);
-  console.log(carType);
-  console.log(location);
-  console.log(price);
-  console.log(mileage);
-  console.log(transmission);
-  console.log(image);
-  console.log(description);
+  // console.log(make);
+  // console.log(model);
+  // console.log(year);
+  // console.log(carType);
+  // console.log(location);
+  // console.log(price);
+  // console.log(mileage);
+  // console.log(transmission);
+  // console.log(image);
+  // console.log(description);
 
   // const [make, setMake] = useState();
   // const [model, setModel] = useState();
@@ -467,7 +467,7 @@ const EditPost = () => {
           location: location,
           description: description,
           image: image,
-          updatedAt: Date.now,
+          // updatedAt: Date.now,
         },
       });
 

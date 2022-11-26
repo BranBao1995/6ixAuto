@@ -83,7 +83,7 @@ export const UPDATE_POST = gql`
     $location: String!
     $description: String!
     $image: String
-    $updatedAt: String!
+    $updatedAt: Int
   ) {
     updatedPost(
       make: $make
