@@ -3,6 +3,7 @@ import { useQuery } from "@apollo/client";
 import { useMutation } from "@apollo/client";
 import { GET_ME } from "../utils/queries";
 import ListingCard from "../components/ListingCard";
+import { Navbar, Nav, Container, Modal, Tab, Button } from "react-bootstrap";
 import { DELETE_POST } from "../utils/mutations";
 import Auth from "../utils/auth";
 
@@ -31,14 +32,14 @@ const MyListings = () => {
       <section>
         {userData.listings?.map((listing) => {
           return (
-            <div key={listing._id} className="listCard-container">
-              <ListingCard post={listing} />
-              <button
-                className="delete-post-btn"
+            <div key={listing._id} className="listCard-container ">
+              <Button
+                className="delete-post-btn btn-block btn-danger"
                 onClick={() => deletePostHandler(listing._id)}
               >
                 Delete
-              </button>
+              </Button>
+              <ListingCard post={listing} />
             </div>
           );
         })}
