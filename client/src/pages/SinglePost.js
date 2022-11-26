@@ -5,19 +5,22 @@ import { useQuery } from "@apollo/client";
 import { useMutation } from "@apollo/client";
 import Auth from "../utils/auth";
 import { GET_POST, GET_ME } from "../utils/queries";
-
 import { SAVE_TO_FAV, REMOVE_FROM_FAV } from "../utils/mutations";
-// import {  } from "../utils/mutations";
+import { useNavigate } from "react-router-dom";
 
 const SinglePost = () => {
   const { postId } = useParams();
 
+  const navigate = useNavigate();
+
   const { loading, data } = useQuery(GET_POST, {
     variables: { postId: postId },
   });
-  console.log(data);
-  const post = data?.post || {};
-  console.log(post);
+  const post = data?.getPost || {};
+  // console.log(post);
+
+  const [savePost] = useMutation(SAVE_TO_FAV);
+  const [removePost] = useMutation(REMOVE_FROM_FAV);
 
   const getSavedPostIds = () => {
     const newsavedPostIds = localStorage.getItem("saved_posts")
@@ -51,13 +54,10 @@ const SinglePost = () => {
     return true;
   };
 
-  const { dataa } = useQuery(GET_ME);
   const [savedPostIds, setSavedPostIds] = useState(getSavedPostIds());
-
-  const [savePost] = useMutation(SAVE_TO_FAV);
-  const [removePost] = useMutation(REMOVE_FROM_FAV);
-  let userData = dataa?.me || {};
-  console.log(userData);
+  // const { dataa } = useQuery(GET_ME);
+  // let userData = dataa?.me || {};
+  // console.log(userData);
 
   const handleSavePost = async (postId) => {
     try {
@@ -74,7 +74,7 @@ const SinglePost = () => {
   const handleDeletePost = async (postId) => {
     try {
       const { data } = await removePost({ variables: { postId } });
-      userData = data.removePost;
+      // userData = data.removePost;
       console.log(data);
       // upon success, remove post's id from localStorage
       removePostId(postId);
@@ -105,8 +105,23 @@ const SinglePost = () => {
     );
   }
 
+  // console.log(typeof Auth.getProfile().data._id);
+  // console.log(data.getPost.user._id);
+
+  // let editButton;
+  // if (data.getPost.user._id === Auth.getProfile().data._id) {
+  //   editButton = (
+  //     <Button
+  //       onClick={() => {
+  //         navigate(`/edit/${data.getPost.user._id}`);
+  //       }}
+  //     >
+  //       Edit
+  //     </Button>
+  //   );
+  // }
+
   useEffect(() => {
-    console.log(savedPostIds);
     savePostIds(savedPostIds);
   });
 
@@ -114,11 +129,22 @@ const SinglePost = () => {
     <>
       {data ? (
         <div className="mt-3">
+          {data.getPost.user._id == Auth.getProfile().data._id ? (
+            <Button
+              onClick={() => {
+                navigate(`/edit/${data.getPost.user._id}`);
+              }}
+            >
+              Edit
+            </Button>
+          ) : (
+            ""
+          )}
           <div className="col-xs-12 col-sm-5 col-md-5 col-lg-4">
             {/* src=props.image */}
             <img
-              src="https://hips.hearstapps.com/hmg-prod/images/2023-porsche-911-gt3-rs-201-1660575621.jpg?crop=0.755xw:0.567xh;0.0833xw,0.257xh&resize=1200:*"
-              alt={post.model}
+              src={data.getPost.image}
+              alt={data.getPost.model}
               width="100%"
             />
           </div>
@@ -134,6 +160,9 @@ const SinglePost = () => {
             <p>Created: {data.getPost.createdAt}</p>
             <p>Price: {data.getPost.price}</p>
             <p>Likes: {data.getPost.liked.length}</p>
+            <p>Posted by: {data.getPost.user.username}</p>
+            <p>Contact email: {data.getPost.user.email}</p>
+            <p>Contact phone: {data.getPost.user.phone}</p>
             {/* {button} */}
             {button}
           </div>
