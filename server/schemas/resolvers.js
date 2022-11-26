@@ -96,7 +96,7 @@ const resolvers = {
           image,
           user: context.user._id,
         });
-        console.log(newPost);
+
         const userData = await User.findOneAndUpdate(
           { _id: context.user._id },
           { $addToSet: { listings: newPost._id } },
