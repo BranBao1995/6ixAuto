@@ -5,18 +5,19 @@ import { useQuery } from "@apollo/client";
 import { useMutation } from "@apollo/client";
 import Auth from "../utils/auth";
 import { GET_POST, GET_ME } from "../utils/queries";
-
 import { SAVE_TO_FAV, REMOVE_FROM_FAV } from "../utils/mutations";
-// import {  } from "../utils/mutations";
+import { useNavigate } from "react-router-dom";
 
 const SinglePost = () => {
   const { postId } = useParams();
+
+  const navigate = useNavigate();
 
   const { loading, data } = useQuery(GET_POST, {
     variables: { postId: postId },
   });
   const post = data?.getPost || {};
-  console.log(post);
+  // console.log(post);
 
   const [savePost] = useMutation(SAVE_TO_FAV);
   const [removePost] = useMutation(REMOVE_FROM_FAV);
@@ -105,9 +106,20 @@ const SinglePost = () => {
   }
 
   console.log(typeof Auth.getProfile().data._id);
+  // console.log(data.getPost.user._id);
 
-  // let editButton;
-  // if(post.user._id != Auth.getProfile())
+  let editButton;
+  if (data.getPost.user._id === Auth.getProfile().data._id) {
+    editButton = (
+      <Button
+        onClick={() => {
+          navigate(`/edit/${data.getPost.user._id}`);
+        }}
+      >
+        Edit
+      </Button>
+    );
+  }
 
   useEffect(() => {
     console.log(savedPostIds);
@@ -118,6 +130,7 @@ const SinglePost = () => {
     <>
       {data ? (
         <div className="mt-3">
+          {editButton}
           <div className="col-xs-12 col-sm-5 col-md-5 col-lg-4">
             {/* src=props.image */}
             <img
