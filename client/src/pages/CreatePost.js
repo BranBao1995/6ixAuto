@@ -7,6 +7,87 @@ import Auth from "../utils/auth";
 import { MAKE_POST } from "../utils/mutations";
 import { useNavigate } from "react-router-dom";
 
+
+const makes = [
+  {
+    id: 2,
+    value: "Audi",
+    label: "Audi",
+  },
+  {
+    id: 3,
+    value: "Bentley",
+    label: "Bentley",
+  },
+  {
+    id: 4,
+    value: "BMW",
+    label: "BMW",
+  },
+  {
+    id: 5,
+    value: "Ferrari",
+    label: "Ferrari",
+  },
+  {
+    id: 6,
+    value: "Honda",
+    label: "Honda",
+  },
+  {
+    id: 7,
+    value: "Hyundai",
+    label: "Hyundai",
+  },
+  {
+    id: 8,
+    value: "Lamborghini",
+    label: "Lamborghini",
+  },
+  {
+    id: 9,
+    value: "Mercedes",
+    label: "Mercedes",
+  },
+  {
+    id: 10,
+    value: "Toyota",
+    label: "Toyota",
+  },
+  {
+    id: 11,
+    value: "Volkswagen",
+    label: "Volkswagen",
+  },
+];
+
+const models = [
+  {
+    id: 1,
+    make: "Honda",
+    value: "Civic",
+    label: "Civic",
+  },
+  {
+    id: 2,
+    make: "Honda",
+    value: "Accord",
+    label: "Accord",
+  },
+  {
+    id: 3,
+    make: "Toyota",
+    value: "Camry",
+    label: "Camry",
+  },
+  {
+    id: 4,
+    make: "Toyota",
+    value: "Corolla",
+    label: "Corolla",
+  },
+];
+
 const CreatePost = () => {
   const navigate = useNavigate();
 
@@ -54,11 +135,13 @@ const CreatePost = () => {
         },
       });
 
-      // navigate(`/mylistings`);
+      navigate(`/mylistings`);
     } catch (err) {
       console.error(err);
     }
   };
+
+  const makeModel = models.filter((model) => model.make === make);
 
   return (
     <>
@@ -67,23 +150,47 @@ const CreatePost = () => {
         <div>
           <form className="d-flex flex-column" onSubmit={handleFormSubmit}>
             <label>Add make</label>
-            <input
+            <select
               required
               className=""
               name="make"
               onChange={(e) => setMake(e.target.value)}
-              type="text"
-              placeholder="Name"
-            />
+            >
+              <option> Pick a Make </option>
+              {makes.map((make) => (
+                <option key={make.id} value={make.value}>
+                  {" "}
+                  {make.label}{" "}
+                </option>
+              ))}
+            </select>
             <label>Add model</label>
-            <input
-              required
-              className=""
-              name="model"
-              onChange={(e) => setModel(e.target.value)}
-              type="text"
-              placeholder="Name"
-            />
+            {make ? (
+              <select
+                required
+                className=""
+                name="model"
+                onChange={(e) => setModel(e.target.value)}
+              >
+                <option> Pick a Model</option>
+                {models
+                  .filter((model) => model.make === make)
+                  .map((model) => (
+                    <option key={model.id} value={model.value}>
+                      {" "}
+                      {model.label}{" "}
+                    </option>
+                  ))}
+              </select>
+            ) : (
+              <select
+                disabled
+                className=""
+                name="model"
+                placeholder="Name"
+              ></select>
+            )}
+
             <label>year</label>
             <input
               required
@@ -94,14 +201,19 @@ const CreatePost = () => {
               placeholder="Name"
             />
             <label>Add carType</label>
-            <input
+            <select
               required
               className=""
               name="carType"
               onChange={(e) => setCarType(e.target.value)}
-              type="text"
-              placeholder="Name"
-            />
+            >
+              <option> Pick a Car Type</option>
+              <option value="Coupe"> Coupe </option>
+              <option value="Sedan"> Sedan </option>
+              <option value="SUV"> SUV </option>
+              <option value="Hatchback"> Hatchback </option>
+              <option value="Pickup"> Pickup </option>
+            </select>
             <label>Add location</label>
             <input
               required
@@ -118,7 +230,6 @@ const CreatePost = () => {
               name="price"
               onChange={(e) => setPrice(parseInt(e.target.value))}
               type="text"
-              placeholder="Name"
             />
             <label>Add mileage</label>
             <input
@@ -127,17 +238,18 @@ const CreatePost = () => {
               name="mileage"
               onChange={(e) => setMileage(parseInt(e.target.value))}
               type="text"
-              placeholder="Name"
             />
             <label>Add transmission</label>
-            <input
+            <select
               required
               className=""
               name="transmission"
               onChange={(e) => setTransmission(e.target.value)}
-              type="text"
-              placeholder="Name"
-            />
+            >
+              <option> Pick Transmission</option>
+              <option value="Automatic"> Automatic </option>
+              <option value="Manual"> Manual </option>
+            </select>
             <label>Add image</label>
             <div>image here</div>
             <label>Add description</label>
@@ -147,13 +259,12 @@ const CreatePost = () => {
               name="description"
               onChange={(e) => setDescription(e.target.value)}
               type="text"
-              placeholder="Name"
             />
             <button type="submit"> Submit </button>
           </form>
         </div>
       ) : (
-        <div>yolo</div>
+        <div> You must Login first !</div>
       )}
     </>
   );
