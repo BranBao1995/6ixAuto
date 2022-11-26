@@ -157,12 +157,14 @@ const SinglePost = () => {
             <p>Mileage: {data.getPost.mileage}</p>
             <p>Transmission: {data.getPost.transmission}</p>
             <p>Description: {data.getPost.description}</p>
-            <p>Created: {data.getPost.createdAt}</p>
+
             <p>Price: {data.getPost.price}</p>
             <p>Likes: {data.getPost.liked.length}</p>
             <p>Posted by: {data.getPost.user.username}</p>
             <p>Contact email: {data.getPost.user.email}</p>
             <p>Contact phone: {data.getPost.user.phone}</p>
+            <p>Created: {data.getPost.createdAt}</p>
+            <p>Last update: {data.getPost.updatedAt}</p>
             {/* {button} */}
             {button}
           </div>

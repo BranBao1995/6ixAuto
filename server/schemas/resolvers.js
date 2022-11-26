@@ -127,7 +127,7 @@ const resolvers = {
       context
     ) => {
       if (context.user) {
-        return await Post.findOneAndUpdate(
+        const updatedPost = await Post.findOneAndUpdate(
           { _id: postId },
           {
             make,
@@ -144,6 +144,8 @@ const resolvers = {
           },
           { new: true, runValidators: true }
         );
+
+        return await User.findOne({ _id: context.user._id });
       }
       throw new AuthenticationError("You need to be logged in!");
     },

@@ -99,31 +99,9 @@ export const UPDATE_POST = gql`
       updatedAt: $updatedAt
     ) {
       _id
-      make
-      model
-      year
-      carType
-      location
-      price
-      mileage
-      transmission
-      image
-      description
-      createdAt
-      updatedAt
-      user {
-        _id
-        username
-        email
-        phone
-      }
-      liked {
-        _id
-        username
-        email
-        phone
-      }
-      likeCount
+      username
+      email
+      phone
     }
   }
 `;
