@@ -6,6 +6,7 @@ import Auth from "../utils/auth";
 // import {  } from "../utils/queries";
 import { MAKE_POST } from "../utils/mutations";
 import { useNavigate } from "react-router-dom";
+import './CreatePost.css'
 
 
 const makes = [
@@ -562,11 +563,17 @@ const CreatePost = () => {
               <button onClick={() => widgetRef.current.open()}>Upload</button>
             </div>
             <label>Add description</label>
-            <input
+            <p> {characterCount} / 400 </p>
+            <textarea
+              maxLength="400"
+              minLength="1"
               required
-              className=""
+              className="textarea"
               name="description"
-              onChange={(e) => setDescription(e.target.value)}
+              onChange={(e) => {
+                setCharacterCount(e.target.value.length);
+                setDescription(e.target.value);
+              }}
               type="text"
             />
             <button type="submit"> Submit </button>
