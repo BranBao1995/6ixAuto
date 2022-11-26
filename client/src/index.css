@@ -15,3 +15,29 @@ h6 {
   font-weight: 300;
   font-style: italic;
 }
+
+.delete-post-btn {
+  position: absolute;
+  margin: 5px;
+}
+
+.list-card-desc{
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+@media screen and (max-width: 575px) {
+  .navbar{
+    padding: 20px 10%;
+  }
+  
+  main{
+    padding: 20px 10%;
+  }
+  
+  .list-card-desc{
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 10px;
+  }
+}

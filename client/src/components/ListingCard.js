@@ -104,26 +104,28 @@ const ListingCard = (props) => {
 
   return (
     <>
-      <Container className="row">
-        <div className="col-xs-12 col-sm-5 col-md-5 col-lg-4">
+      <Container className="row px-0 mx-0 pb-3">
+        <div className="col-xs-12 col-sm-5 col-md-5 col-lg-4 px-0">
           <img src={props.post.image} alt={props.post.model} width="100%" />
         </div>
-        <div className="col-xs-12 col-sm-7 col-md-7 col-lg-8">
-          <h5>Make: {props.post.make}</h5>
-          <h5>Model: {props.post.model}</h5>
-          <h5>Year: {props.post.year}</h5>
-          <h5>Location: {props.post.location}</h5>
-          <h5>Price: {props.post.price}</h5>
-          <div className="d-flex justify-content-between">
-            {button}{" "}
-            <Button
-              className="btn-block btn-secondary"
-              onClick={function () {
-                navigate(`/post/${props.post._id}`);
-              }}
-            >
-              View details
-            </Button>
+        <div className="col-xs-12 col-sm-7 col-md-7 col-lg-8  px-0">
+          <div className="list-card-desc">
+            <h5>Make: {props.post.make}</h5>
+            <h5>Model: {props.post.model}</h5>
+            <h5>Year: {props.post.year}</h5>
+            <h5>Location: {props.post.location}</h5>
+            <h5>Price: {props.post.price}</h5>
+            <div className="d-flex justify-content-between">
+              <Button
+                className="btn-block btn-secondary"
+                onClick={function () {
+                  navigate(`/post/${props.post._id}`);
+                }}
+              >
+                View details
+              </Button>
+              {button}{" "}
+            </div>
           </div>
         </div>
       </Container>
