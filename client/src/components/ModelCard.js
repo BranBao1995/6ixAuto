@@ -273,7 +273,7 @@ const ModelCard = (props) => {
   const makeModel = models.filter( model => model.make === props.make)
 
   return (
-    <div className="mt-3 mb-3 p-3 bg-light d-flex flex-column justify-content-around">
+    <div className="m-5 p-3 bg-light d-flex flex-column justify-content-around">
       {makeModel.map((model) => (
         <h4
           className={

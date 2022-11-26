@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useQuery } from "@apollo/client";
 import { useMutation } from "@apollo/client";
-
+import { Form, Button, Alert } from "react-bootstrap";
 import ListingCard from "../components/ListingCard";
 import MakeCard from "../components/MakeCard";
 import ModelCard from "../components/ModelCard";
@@ -16,11 +16,13 @@ const Home = () => {
     model: "",
   });
 
+  const [showAlert, setShowAlert] = useState(false);
+
   console.log(selections);
   const [searchMode, setSearchMode] = useState(true);
 
-  const setMakeHandler = (make) => {
-    setSelection({ ...selections, make });
+  const setMakeHandler = (make, model) => {
+    setSelection({ ...selections, make, model });
     console.log(`after clicking make the state is: ${selections}`);
   };
 
@@ -41,8 +43,16 @@ const Home = () => {
           <h1>Welcome to 6ixAuto! 'insert welcome user text here' </h1>
           <p>Search for your dream car!</p>
         </div>
-        <div className="mt-5 d-flex justify-content-center p-2 bg-secondary">
+        <div className="mt-5 d-flex flex-column justify-content-center p-2 bg-secondary">
           <h3> Select Your Make!</h3>
+          <Alert
+            dismissible
+            onClose={() => setShowAlert(false)}
+            show={showAlert}
+            variant="danger"
+          >
+            invalid search entry
+          </Alert>
           {/* create a state to decide which one to render */}
           {searchMode ? (
             <div>
@@ -52,7 +62,15 @@ const Home = () => {
               ) : (
                 <p> Select Your Model! </p>
               )}
-              <button onClick={() => setSearchMode(false)}>
+              <button
+                onClick={() => {
+                  if (selections.model) {
+                    setSearchMode(false);
+                  } else {
+                    setShowAlert(true);
+                  }
+                }}
+              >
                 Submit Search
               </button>
             </div>
