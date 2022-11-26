@@ -8,8 +8,8 @@ import {
   SiHonda,
   SiToyota,
   SiHyundai,
-  SiFerrari,
-  SiLamborghini,
+  SiFord,
+  SiChevrolet,
   SiBentley,
   SiVolkswagen,
 } from "react-icons/si";
@@ -38,23 +38,23 @@ const makes = [
   },
   {
     id:4,
-    name: "Ferrari",
-    logo: <SiFerrari />,
+    name: "Chevrolet",
+    logo: <SiChevrolet />,
   },
   {
     id:5,
+    name: "Ford",
+    logo: <SiFord />,
+  },
+  {
+    id:6,
     name: "Honda",
     logo: <SiHonda />,
   },
   {
-    id:6,
+    id:7,
     name: "Hyundai",
     logo: <SiHyundai />,
-  },
-  {
-    id:7,
-    name: "Lamborghini",
-    logo: <SiLamborghini />,
   },
   {
     id:8,
