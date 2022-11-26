@@ -75,10 +75,11 @@ const makes = [
 
 const MakeCard = (props) => {
   const [isActive, setIsActive] = useState("");
+  const blank = ""
 
   return (
     <>
-      <div className="mt-3 mb-5 p-3 bg-light row">
+      <div className="m-5 p-3 bg-light row">
         {/* use map function to show all  */}
         {makes.map((logo) => (
           <div
@@ -90,7 +91,7 @@ const MakeCard = (props) => {
               className={isActive === logo.name ? "border border-dark icon logo p-1" : "icon logo p-1"}
               onClick={() => {
                 setIsActive(logo.name)
-                props.onSelect(logo.name);
+                props.onSelect(logo.name, blank);
               }}
             >
               {logo.logo}
