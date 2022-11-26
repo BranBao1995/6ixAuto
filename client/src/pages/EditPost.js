@@ -51,9 +51,10 @@ const EditPost = () => {
   // const [transmission, setTransmission] = useState();
   // const [image, setImage] = useState();
   // const [description, setDescription] = useState();
-  // const [characterCount, setCharacterCount] = useState(0);
 
-  const [updatePost, { error }] = useMutation(UPDATE_POST);
+  const [characterCount, setCharacterCount] = useState(0);
+
+  const [updatePost] = useMutation(UPDATE_POST);
 
   const cloudinaryRef = useRef();
   const widgetRef = useRef();
@@ -112,8 +113,6 @@ const EditPost = () => {
     }
   };
 
-  // const makeModel = models.filter((model) => model.make === make);
-
   return (
     <>
       {data ? (
@@ -135,8 +134,7 @@ const EditPost = () => {
                     value={make.value}
                     selected={make.value == postData.make ? true : false}
                   >
-                    {" "}
-                    {make.label}{" "}
+                    {make.label}
                   </option>
                 ))}
               </select>
@@ -156,7 +154,7 @@ const EditPost = () => {
                         value={model.value}
                         selected={model.value == postData.model ? true : false}
                       >
-                        {model.label}
+                        {model.value}
                       </option>
                     )
                   )}
@@ -192,36 +190,31 @@ const EditPost = () => {
                   value="Coupe"
                   selected={postData.carType == "Coupe" ? true : false}
                 >
-                  {" "}
-                  Coupe{" "}
+                  Coupe
                 </option>
                 <option
                   value="Sedan"
                   selected={postData.carType == "Sedan" ? true : false}
                 >
-                  {" "}
-                  Sedan{" "}
+                  Sedan
                 </option>
                 <option
                   value="SUV"
                   selected={postData.carType == "SUV" ? true : false}
                 >
-                  {" "}
-                  SUV{" "}
+                  SUV
                 </option>
                 <option
                   value="Hatchback"
                   selected={postData.carType == "Hatchback" ? true : false}
                 >
-                  {" "}
-                  Hatchback{" "}
+                  Hatchback
                 </option>
                 <option
                   value="Pickup"
                   selected={postData.carType == "Pickup" ? true : false}
                 >
-                  {" "}
-                  Pickup{" "}
+                  Pickup
                 </option>
               </select>
               <label>Location</label>
@@ -264,29 +257,35 @@ const EditPost = () => {
                   value="Automatic"
                   selected={postData.transmission == "Automatic" ? true : false}
                 >
-                  {" "}
-                  Automatic{" "}
+                  Automatic
                 </option>
                 <option
                   value="Manual"
                   selected={postData.carType == "Manual" ? true : false}
                 >
-                  {" "}
-                  Manual{" "}
+                  Manual
                 </option>
               </select>
               <label>Image</label>
               <div>
-                <button onClick={() => widgetRef.current.open()}>Upload</button>
+                <button type="button" onClick={() => widgetRef.current.open()}>
+                  Upload
+                </button>
               </div>
               <label>Description</label>
-              <input
+              <p> {characterCount} / 400 </p>
+              <textarea
+                maxLength="400"
+                minLength="1"
                 required
-                className=""
+                className="textarea"
                 name="description"
-                onChange={(e) => setDescription(e.target.value)}
-                type="text"
                 value={description}
+                onChange={(e) => {
+                  setCharacterCount(e.target.value.length);
+                  setDescription(e.target.value);
+                }}
+                type="text"
               />
               <button type="submit"> Submit </button>
             </form>

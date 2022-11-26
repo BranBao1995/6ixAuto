@@ -72,8 +72,8 @@ const typeDefs = gql`
       price: Int!
       mileage: Int!
       transmission: String!
-      image: String
       description: String!
+      image: String
     ): User
     deletePost(postId: ID!): Post
     savePost(postId: ID!): User
