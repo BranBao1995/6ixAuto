@@ -26,23 +26,23 @@ const makes = [
   },
   {
     id: 5,
-    value: "Ferrari",
-    label: "Ferrari",
+    value: "Chevrolet",
+    label: "Chevrolet",
   },
   {
     id: 6,
+    value: "Ford",
+    label: "Ford",
+  },
+  {
+    id: 7,
     value: "Honda",
     label: "Honda",
   },
   {
-    id: 7,
+    id: 8,
     value: "Hyundai",
     label: "Hyundai",
-  },
-  {
-    id: 8,
-    value: "Lamborghini",
-    label: "Lamborghini",
   },
   {
     id: 9,
@@ -64,29 +64,317 @@ const makes = [
 const models = [
   {
     id: 1,
-    make: "Honda",
-    value: "Civic",
-    label: "Civic",
+    make: "Audi",
+    value: "A5",
+    model: "A5",
   },
   {
     id: 2,
-    make: "Honda",
-    value: "Accord",
-    label: "Accord",
+    make: "Audi",
+    value: "S4",
+    model: "S4",
+  },
+  {
+    id: 21,
+    make: "Audi",
+    value: "A3",
+    model: "A3",
+  },
+  {
+    id: 22,
+    make: "Audi",
+    value: "Q3",
+    model: "Q3",
+  },
+  {
+    id: 23,
+    make: "Audi",
+    value: "Q7",
+    model: "Q7",
+  },
+  {
+    id: 24,
+    make: "Audi",
+    value: "RS5",
+    model: "RS5",
   },
   {
     id: 3,
-    make: "Toyota",
-    value: "Camry",
-    label: "Camry",
+    make: "Bentley",
+    value: "Continental GT",
+    model: "Continental GT",
+  },
+  {
+    id: 25,
+    make: "Bentley",
+    value: "Flying Spur",
+    model: "Flying Spur",
+  },
+  {
+    id: 26,
+    make: "Bentley",
+    value: "Bentayga",
+    model: "Bentayga",
+  },
+  {
+    id: 27,
+    make: "BMW",
+    value: "X5",
+    model: "X5",
+  },
+  {
+    id: 28,
+    make: "BMW",
+    value: "M3",
+    model: "M3",
+  },
+  {
+    id: 29,
+    make: "BMW",
+    value: "X3",
+    model: "X3",
   },
   {
     id: 4,
+    make: "BMW",
+    value: "X1",
+    model: "X1",
+  },
+  {
+    id: 5,
+    make: "BMW",
+    value: "M4",
+    model: "M4",
+  },
+  {
+    id: 6,
+    make: "BMW",
+    value: "328i",
+    model: "328i",
+  },
+  {
+    id: 7,
+    make: "Chevrolet",
+    value: "Camaro",
+    model: "Camaro",
+  },
+  {
+    id: 8,
+    make: "Chevrolet",
+    value: "Silverado",
+    model: "Silverado",
+  },
+  {
+    id: 30,
+    make: "Chevrolet",
+    value: "Spark",
+    model: "Spark",
+  },
+  {
+    id: 31,
+    make: "Chevrolet",
+    value: "Equinox",
+    model: "Equinox",
+  },
+  {
+    id: 32,
+    make: "Chevrolet",
+    value: "Tahoe",
+    model: "Tahoe",
+  },
+  {
+    id: 33,
+    make: "Chevrolet",
+    value: "Cruze",
+    model: "Cruze",
+  },
+  {
+    id: 9,
+    make: "Ford",
+    value: "F150",
+    model: "F150",
+  },
+  {
+    id: 52,
+    make: "Ford",
+    value: "Mustang",
+    model: "Mustang",
+  },
+  {
+    id: 34,
+    make: "Ford",
+    value: "Explorer",
+    model: "Explorer",
+  },
+  {
+    id: 35,
+    make: "Ford",
+    value: "Bronco",
+    model: "Bronco",
+  },
+  {
+    id: 36,
+    make: "Ford",
+    value: "Expedition",
+    model: "Expedition",
+  },
+  {
+    id: 10,
+    make: "Ford",
+    value: "Escape",
+    model: "Escape",
+  },
+  {
+    id: 11,
+    make: "Honda",
+    value: "Civic",
+    model: "Civic",
+  },
+  {
+    id: 12,
+    make: "Honda",
+    value: "Accord",
+    model: "Accord",
+  },
+  {
+    id: 37,
+    make: "Honda",
+    value: "CRV",
+    model: "CRV",
+  },
+  {
+    id: 38,
+    make: "Honda",
+    value: "Pilot",
+    model: "Pilot",
+  },
+  {
+    id: 39,
+    make: "Honda",
+    value: "Ridgeline",
+    model: "Ridgeline",
+  },
+  {
+    id: 13,
+    make: "Hyundai",
+    value: "Elantra",
+    model: "Elantra",
+  },
+  {
+    id: 14,
+    make: "Hyundai",
+    value: "Sonata",
+    model: "Sonata",
+  },
+  {
+    id: 40,
+    make: "Hyundai",
+    value: "Santa Fe",
+    model: "Santa Fe",
+  },
+  {
+    id: 41,
+    make: "Hyundai",
+    value: "IONIC",
+    model: "IONIC",
+  },
+  {
+    id: 42,
+    make: "Hyundai",
+    value: "Tucson",
+    model: "Tucson",
+  },
+  {
+    id: 15,
+    make: "Mercedes",
+    value: "A-Class",
+    model: "A-Class",
+  },
+  {
+    id: 16,
+    make: "Mercedes",
+    value: "C-Class",
+    model: "C-Class",
+  },
+  {
+    id: 43,
+    make: "Mercedes",
+    value: "G-Class",
+    model: "G-Class",
+  },
+  {
+    id: 44,
+    make: "Mercedes",
+    value: "GLA",
+    model: "GLA",
+  },
+  {
+    id: 45,
+    make: "Mercedes",
+    value: "GLC",
+    model: "GLC",
+  },
+  {
+    id: 17,
     make: "Toyota",
     value: "Corolla",
-    label: "Corolla",
+    model: "Corolla",
   },
-];
+  {
+    id: 18,
+    make: "Toyota",
+    value: "Camry",
+    model: "Camry",
+  },
+  {
+    id: 46,
+    make: "Toyota",
+    value: "RAV4",
+    model: "RAV4",
+  },
+  {
+    id: 47,
+    make: "Toyota",
+    value: "Supra",
+    model: "Supra",
+  },
+  {
+    id: 48,
+    make: "Toyota",
+    value: "Tacoma",
+    model: "Tacoma",
+  },
+  {
+    id: 19,
+    make: "Volkswagen",
+    value: "Jetta",
+    model: "Jetta",
+  },
+  {
+    id: 20,
+    make: "Volkswagen",
+    value: "Golf",
+    model: "Golf",
+  },
+  {
+    id: 49,
+    make: "Volkswagen",
+    value: "Tiguan",
+    model: "Tiguan",
+  },
+  {
+    id: 50,
+    make: "Volkswagen",
+    value: "Taos",
+    model: "Taos",
+  },
+  {
+    id: 51,
+    make: "Volkswagen",
+    value: "Atlas",
+    model: "Atlas",
+  },
+]
 
 const CreatePost = () => {
   const navigate = useNavigate();
@@ -180,8 +468,7 @@ const CreatePost = () => {
               <option> Pick a Make </option>
               {makes.map((make) => (
                 <option key={make.id} value={make.value}>
-                  {" "}
-                  {make.label}{" "}
+                  {make.label}
                 </option>
               ))}
             </select>
@@ -198,8 +485,7 @@ const CreatePost = () => {
                   .filter((model) => model.make === make)
                   .map((model) => (
                     <option key={model.id} value={model.value}>
-                      {" "}
-                      {model.label}{" "}
+                      {model.model}
                     </option>
                   ))}
               </select>
