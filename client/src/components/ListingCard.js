@@ -66,6 +66,9 @@ const ListingCard = (props) => {
       userData = data.removePost;
       // upon success, remove post's id from localStorage
       removePostId(postId);
+      if (props.onRemove) {
+        props.onRemove(true);
+      }
     } catch (err) {
       console.error(err);
     }

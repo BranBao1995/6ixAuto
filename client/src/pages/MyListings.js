@@ -7,11 +7,9 @@ import { DELETE_POST } from "../utils/mutations";
 import Auth from "../utils/auth";
 
 const MyListings = () => {
-  const { loading, data, error } = useQuery(GET_ME);
-  console.log(data);
-  let userData = data?.me || {};
-
-  console.log(userData);
+  const { loading, data, error, refetch } = useQuery(GET_ME);
+  refetch();
+  const userData = data?.me || {};
 
   const [deletePost] = useMutation(DELETE_POST);
 
@@ -20,7 +18,7 @@ const MyListings = () => {
       const { updatedUserData } = await deletePost({
         variables: { postId: postId },
       });
-      window.location.replace("/mylistings");
+      refetch();
     } catch (err) {
       console.error(err);
     }

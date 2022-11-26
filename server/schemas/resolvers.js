@@ -8,29 +8,24 @@ const resolvers = {
     // query when the logged in user wants to see their own dreamlist or postings.
     me: async (parent, args, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id })
-          .populate({
-            path: "listings",
-            populate: { path: "liked" },
-            populate: { path: "user" },
-          })
-          .populate({
-            path: "interested",
-            populate: { path: "liked" },
-            populate: { path: "user" },
-          });
+        return await User.findOne({ _id: context.user._id })
+          .populate({ path: "listings", populate: { path: "user" } })
+          .populate({ path: "listings", populate: { path: "liked" } })
+          .populate({ path: "interested", populate: { path: "user" } })
+          .populate({ path: "interested", populate: { path: "liked" } });
+
+        // .populate({
+        //   path: "listings",
+        //   populate: { path: "liked" },
+        //   populate: { path: "user" },
+        // })
+        // .populate({
+        //   path: "interested",
+        //   populate: { path: "liked" },
+        //   populate: { path: "user" },
+        // });
       }
-      // return User.findOne({ _id: context.user._id })
-      //   .populate({
-      //     path: "listings",
-      //     populate: { path: "liked" },
-      //     populate: { path: "user" },
-      //   })
-      //   .populate({
-      //     path: "interested",
-      //     populate: { path: "liked" },
-      //     populate: { path: "user" },
-      //   });
+
       throw new AuthenticationError("You need to be logged in!");
     },
 
