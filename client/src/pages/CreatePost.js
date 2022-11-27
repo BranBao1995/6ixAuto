@@ -48,6 +48,7 @@ const CreatePost = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+    const time = new Date();
     console.log(
       make,
       model,
@@ -73,7 +74,7 @@ const CreatePost = () => {
           location: location,
           description: description,
           image: image,
-          createdAt: "Default",
+          createdAt: time,
         },
       });
 
@@ -101,7 +102,7 @@ const CreatePost = () => {
               <option> Pick a Make </option>
               {MakesArray.map((make) => (
                 <option key={make.id} value={make.value}>
-                  {make.label}
+                  {make.value}
                 </option>
               ))}
             </select>
@@ -117,7 +118,7 @@ const CreatePost = () => {
                 {ModelsArray.filter((model) => model.make === make).map(
                   (model) => (
                     <option key={model.id} value={model.value}>
-                      {model.model}
+                      {model.value}
                     </option>
                   )
                 )}
@@ -192,7 +193,9 @@ const CreatePost = () => {
             </select>
             <label>Image</label>
             <div>
-              <button onClick={() => widgetRef.current.open()}>Upload</button>
+              <button type="button" onClick={() => widgetRef.current.open()}>
+                Upload
+              </button>
             </div>
             <label>Description</label>
             <p> {characterCount} / 400 </p>

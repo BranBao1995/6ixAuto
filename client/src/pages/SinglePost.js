@@ -54,16 +54,13 @@ const SinglePost = () => {
   };
 
   const [savedPostIds, setSavedPostIds] = useState(getSavedPostIds());
-  // const { dataa } = useQuery(GET_ME);
-  // let userData = dataa?.me || {};
-  // console.log(userData);
 
   const handleSavePost = async (postId) => {
     try {
       const { userData } = await savePost({
         variables: { postId: postId },
       });
-      // if post successfully saves to user's account, save post id to state
+
       setSavedPostIds([...savedPostIds, postId]);
     } catch (err) {
       console.error(err);
@@ -73,9 +70,9 @@ const SinglePost = () => {
   const handleDeletePost = async (postId) => {
     try {
       const { data } = await removePost({ variables: { postId } });
-      // userData = data.removePost;
+
       console.log(data);
-      // upon success, remove post's id from localStorage
+
       removePostId(postId);
     } catch (err) {
       console.error(err);
@@ -103,22 +100,6 @@ const SinglePost = () => {
       </Button>
     );
   }
-
-  // console.log(typeof Auth.getProfile().data._id);
-  // console.log(data.getPost.user._id);
-
-  // let editButton;
-  // if (data.getPost.user._id === Auth.getProfile().data._id) {
-  //   editButton = (
-  //     <Button
-  //       onClick={() => {
-  //         navigate(`/edit/${data.getPost.user._id}`);
-  //       }}
-  //     >
-  //       Edit
-  //     </Button>
-  //   );
-  // }
 
   useEffect(() => {
     savePostIds(savedPostIds);

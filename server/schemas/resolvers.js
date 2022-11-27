@@ -79,6 +79,7 @@ const resolvers = {
         location,
         description,
         image,
+        createdAt,
       },
       context
     ) => {
@@ -94,6 +95,7 @@ const resolvers = {
           location,
           description,
           image,
+          createdAt,
           user: context.user._id,
         });
 
@@ -122,6 +124,7 @@ const resolvers = {
         location,
         description,
         image,
+        updatedAt,
       },
       context
     ) => {
@@ -139,10 +142,11 @@ const resolvers = {
             location,
             description,
             image,
+            updatedAt,
           },
           { new: true, runValidators: true }
         );
-        console.log(updatedPost);
+        // console.log(updatedPost);
         return await User.findOne({ _id: context.user._id });
       }
       throw new AuthenticationError("You need to be logged in!");

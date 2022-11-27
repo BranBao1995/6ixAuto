@@ -30,30 +30,9 @@ const EditPost = () => {
   const [image, setImage] = useState(postData.image);
   const [description, setDescription] = useState(postData.description);
 
-  // console.log(make);
-  // console.log(model);
-  // console.log(year);
-  // console.log(carType);
-  // console.log(location);
-  // console.log(price);
-  // console.log(mileage);
-  // console.log(transmission);
-  // console.log(image);
-  // console.log(description);
+  const [characterCount, setCharacterCount] = useState(0);
 
-  // const [make, setMake] = useState();
-  // const [model, setModel] = useState();
-  // const [year, setYear] = useState();
-  // const [carType, setCarType] = useState();
-  // const [location, setLocation] = useState();
-  // const [price, setPrice] = useState();
-  // const [mileage, setMileage] = useState();
-  // const [transmission, setTransmission] = useState();
-  // const [image, setImage] = useState();
-  // const [description, setDescription] = useState();
-  // const [characterCount, setCharacterCount] = useState(0);
-
-  const [updatePost, { error }] = useMutation(UPDATE_POST);
+  const [updatePost] = useMutation(UPDATE_POST);
 
   const cloudinaryRef = useRef();
   const widgetRef = useRef();
@@ -76,6 +55,7 @@ const EditPost = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+    const time = new Date();
     console.log(
       make,
       model,
@@ -91,6 +71,7 @@ const EditPost = () => {
     try {
       const { data } = await updatePost({
         variables: {
+          postId: postId,
           make: make,
           model: model,
           year: year,
@@ -101,18 +82,16 @@ const EditPost = () => {
           location: location,
           description: description,
           image: image,
-          // updatedAt: Date.now,
+          updatedAt: time,
         },
       });
 
-      // navigate(`/mylistings`);
-      console.log("changes made!");
+      navigate(`/mylistings`);
+      // console.log("changes made!");
     } catch (err) {
       console.error(err);
     }
   };
-
-  // const makeModel = models.filter((model) => model.make === make);
 
   return (
     <>
@@ -135,8 +114,7 @@ const EditPost = () => {
                     value={make.value}
                     selected={make.value == postData.make ? true : false}
                   >
-                    {" "}
-                    {make.label}{" "}
+                    {make.label}
                   </option>
                 ))}
               </select>
@@ -156,7 +134,7 @@ const EditPost = () => {
                         value={model.value}
                         selected={model.value == postData.model ? true : false}
                       >
-                        {model.label}
+                        {model.value}
                       </option>
                     )
                   )}
@@ -192,36 +170,31 @@ const EditPost = () => {
                   value="Coupe"
                   selected={postData.carType == "Coupe" ? true : false}
                 >
-                  {" "}
-                  Coupe{" "}
+                  Coupe
                 </option>
                 <option
                   value="Sedan"
                   selected={postData.carType == "Sedan" ? true : false}
                 >
-                  {" "}
-                  Sedan{" "}
+                  Sedan
                 </option>
                 <option
                   value="SUV"
                   selected={postData.carType == "SUV" ? true : false}
                 >
-                  {" "}
-                  SUV{" "}
+                  SUV
                 </option>
                 <option
                   value="Hatchback"
                   selected={postData.carType == "Hatchback" ? true : false}
                 >
-                  {" "}
-                  Hatchback{" "}
+                  Hatchback
                 </option>
                 <option
                   value="Pickup"
                   selected={postData.carType == "Pickup" ? true : false}
                 >
-                  {" "}
-                  Pickup{" "}
+                  Pickup
                 </option>
               </select>
               <label>Location</label>
@@ -264,29 +237,35 @@ const EditPost = () => {
                   value="Automatic"
                   selected={postData.transmission == "Automatic" ? true : false}
                 >
-                  {" "}
-                  Automatic{" "}
+                  Automatic
                 </option>
                 <option
                   value="Manual"
                   selected={postData.carType == "Manual" ? true : false}
                 >
-                  {" "}
-                  Manual{" "}
+                  Manual
                 </option>
               </select>
               <label>Image</label>
               <div>
-                <button onClick={() => widgetRef.current.open()}>Upload</button>
+                <button type="button" onClick={() => widgetRef.current.open()}>
+                  Upload
+                </button>
               </div>
               <label>Description</label>
-              <input
+              <p> {characterCount} / 400 </p>
+              <textarea
+                maxLength="400"
+                minLength="1"
                 required
-                className=""
+                className="textarea"
                 name="description"
-                onChange={(e) => setDescription(e.target.value)}
-                type="text"
                 value={description}
+                onChange={(e) => {
+                  setCharacterCount(e.target.value.length);
+                  setDescription(e.target.value);
+                }}
+                type="text"
               />
               <button type="submit"> Submit </button>
             </form>
