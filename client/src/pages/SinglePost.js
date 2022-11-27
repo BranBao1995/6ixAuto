@@ -109,44 +109,106 @@ const SinglePost = () => {
     <>
       {data ? (
         <div className="mt-3">
-          {data.getPost.user._id == Auth.getProfile().data._id ? (
-            <Button
-              onClick={() => {
-                navigate(`/edit/${postId}`);
-              }}
-            >
-              Edit
-            </Button>
-          ) : (
-            ""
-          )}
-          <div className="col-xs-12 col-sm-5 col-md-5 col-lg-4">
-            {/* src=props.image */}
+          <div className="single-post-div">
             <img
               src={data.getPost.image}
               alt={data.getPost.model}
               width="100%"
             />
           </div>
-          <div className="col-xs-12 col-sm-7 col-md-7 col-lg-8">
-            <p>Make: {data.getPost.make}</p>
-            <p>Model: {data.getPost.model}</p>
-            <p>Year: {data.getPost.year}</p>
-            <p>Type: {data.getPost.carType}</p>
-            <p>Location: {data.getPost.location}</p>
-            <p>Mileage: {data.getPost.mileage}</p>
-            <p>Transmission: {data.getPost.transmission}</p>
-            <p>Description: {data.getPost.description}</p>
-
-            <p>Price: {data.getPost.price}</p>
-            <p>Likes: {data.getPost.liked.length}</p>
-            <p>Posted by: {data.getPost.user.username}</p>
-            <p>Contact email: {data.getPost.user.email}</p>
-            <p>Contact phone: {data.getPost.user.phone}</p>
-            <p>Created: {data.getPost.createdAt}</p>
-            <p>Last update: {data.getPost.updatedAt}</p>
-            {/* {button} */}
-            {button}
+          <div className="row title-price-container">
+            <div className="post-title col-md-9">
+              <p>
+                {data.getPost.year} {data.getPost.make} {data.getPost.model},{" "}
+                {data.getPost.location}
+              </p>
+            </div>
+            <div className="single-price col-md-3">
+              <p>$ {data.getPost.price}</p>
+            </div>
+          </div>
+          <div className="">
+            <p className="like-count">👍 {data.getPost.liked.length}</p>
+          </div>
+          <div className="single-post-div row">
+            <div className="table-column col-md-6">
+              <h6>Specifications</h6>
+              <table>
+                <tr>
+                  <td className="table-title">Make:</td>
+                  <td className="table-data">{data.getPost.make}</td>
+                </tr>
+                <tr>
+                  <td className="table-title">Model:</td>
+                  <td className="table-data">{data.getPost.model}</td>
+                </tr>
+                <tr>
+                  <td className="table-title">Year:</td>
+                  <td className="table-data">{data.getPost.year}</td>
+                </tr>
+                <tr>
+                  <td className="table-title">Type:</td>
+                  <td className="table-data">{data.getPost.carType}</td>
+                </tr>
+                <tr>
+                  <td className="table-title">Location:</td>
+                  <td className="table-data">{data.getPost.location}</td>
+                </tr>
+                <tr>
+                  <td className="table-title">Mileage:</td>
+                  <td className="table-data">{data.getPost.mileage}</td>
+                </tr>
+                <tr>
+                  <td className="table-title">Transmission:</td>
+                  <td className="table-data">{data.getPost.transmission}</td>
+                </tr>
+              </table>
+            </div>
+            <div className="table-column col-md-6">
+              <h6>Contact</h6>
+              <table>
+                <tr>
+                  <td className="table-title">Posted by:</td>
+                  <td className="table-data">{data.getPost.user.username}</td>
+                </tr>
+                <tr>
+                  <td className="table-title">Contact email:</td>
+                  <td className="table-data">{data.getPost.user.email}</td>
+                </tr>
+                <tr>
+                  <td className="table-title">Contact phone:</td>
+                  <td className="table-data">{data.getPost.user.phone}</td>
+                </tr>
+                <tr>
+                  <td className="table-title">Created:</td>
+                  <td className="table-data">{data.getPost.createdAt}</td>
+                </tr>
+                <tr>
+                  <td className="table-title">Last update:</td>
+                  <td className="table-data">{data.getPost.updatedAt}</td>
+                </tr>
+              </table>
+            </div>
+            <div className="desc-text-box-div">
+              <h6>Description </h6>
+              <div className="desc-text-box">
+                <p className="">{data.getPost.description}</p>
+              </div>
+            </div>
+            <div className="d-flex justify-content-between pt-2 mb-4">
+              {data.getPost.user._id == Auth.getProfile().data._id ? (
+                <Button
+                  onClick={() => {
+                    navigate(`/edit/${postId}`);
+                  }}
+                >
+                  Edit
+                </Button>
+              ) : (
+                ""
+              )}
+              {button}
+            </div>
           </div>
         </div>
       ) : (

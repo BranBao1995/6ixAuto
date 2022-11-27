@@ -43,6 +43,7 @@ const EditPost = () => {
       {
         cloudName: "davswvpty",
         uploadPreset: "hwu5iwft",
+        maxImageFileSize: 2000000,
       },
       function (error, result) {
         if (!error && result && result.event === "success") {
