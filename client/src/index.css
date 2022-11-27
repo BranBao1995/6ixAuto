@@ -41,3 +41,37 @@ h6 {
     margin-top: 10px;
   }
 }
+
+video{
+  height: 400px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.bg-video{
+  position: relative;
+  height: 400px;
+  width: 100%;
+}
+
+.content{
+  position: absolute;
+  height: 400px;
+  width: 100%;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  color: aliceblue;
+}
+
+.overlay{
+  position: absolute;
+  top: 0px;
+  left:0;
+  height: 400px;
+  width: 100%;
+  background-color: rgba(0, 0, 0, .5);
+}
