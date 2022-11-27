@@ -36,6 +36,10 @@ const CreatePost = () => {
       {
         cloudName: "davswvpty",
         uploadPreset: "hwu5iwft",
+        maxImageFileSize: 2000000,
+        cropping: true,
+        croppingAspectRatio: 1.5,
+        showSkipCropButton: false,
       },
       function (error, result) {
         if (!error && result && result.event === "success") {

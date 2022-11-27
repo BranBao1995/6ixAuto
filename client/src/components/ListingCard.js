@@ -108,14 +108,14 @@ const ListingCard = (props) => {
         <div className="col-xs-12 col-sm-5 col-md-5 col-lg-4 px-0">
           <img src={props.post.image} alt={props.post.model} width="100%" />
         </div>
-        <div className="col-xs-12 col-sm-7 col-md-7 col-lg-8  px-0">
+        <div className="col-xs-12 col-sm-7 col-md-7 col-lg-8 px-0">
           <div className="list-card-desc">
-            <h5>Make: {props.post.make}</h5>
-            <h5>Model: {props.post.model}</h5>
-            <h5>Year: {props.post.year}</h5>
-            <h5>Location: {props.post.location}</h5>
-            <h5>Price: {props.post.price}</h5>
-            <div className="d-flex justify-content-between">
+            <h6>Make: {props.post.make}</h6>
+            <h6>Model: {props.post.model}</h6>
+            <h6>Year: {props.post.year}</h6>
+            <h6>Location: {props.post.location}</h6>
+            <h6>Price: {props.post.price}</h6>
+            <div className="d-flex justify-content-between pt-2">
               <Button
                 className="btn-block btn-secondary"
                 onClick={function () {

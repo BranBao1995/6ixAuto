@@ -28,7 +28,9 @@ const MyListings = () => {
   return (
     <main>
       {error ? <p>{error.message}</p> : ""}
-      <h1>{loading ? "Loading..." : "Listings created by you"}</h1>
+      <div className="py-5">
+        <h1>{loading ? "Loading..." : "My Listings"}</h1>
+      </div>
       <section>
         {userData.listings?.map((listing) => {
           return (
