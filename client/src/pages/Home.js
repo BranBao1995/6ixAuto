@@ -6,7 +6,9 @@ import ListingCard from "../components/ListingCard";
 import MakeCard from "../components/MakeCard";
 import ModelCard from "../components/ModelCard";
 import SearchResults from "../components/SearchResult";
-
+import videoBg from '../assets/images/6ixAutoBg.mp4'
+import '../index.css'
+import "animate.css";
 // import {  } from "../utils/queries";
 // import {  } from "../utils/mutations";
 
@@ -21,6 +23,8 @@ const Home = () => {
   console.log(selections);
   const [searchMode, setSearchMode] = useState(true);
 
+  const [activateSearch, setActivateSearch] = useState(false);
+
   const setMakeHandler = (make, model) => {
     setSelection({ ...selections, make, model });
     console.log(`after clicking make the state is: ${selections}`);
@@ -28,52 +32,86 @@ const Home = () => {
 
   const setModelHandler = (model) => {
     setSelection({ ...selections, model });
-    // setSearchMode(false);
     return;
   };
 
   const setBackSearch = () => {
-    setSearchMode(true);
+    setSearchMode(!searchMode);
   };
 
   return (
     <>
-      <div className="">
-        <div className="mt-2 p-5 bg-primary text-white rounded d-flex flex-column">
-          <h1>Welcome to 6ixAuto! 'insert welcome user text here' </h1>
-          <p>Search for your dream car!</p>
+      <div className="bg-light main">
+        <div className="bg-video">
+          <div className="overlay"></div>
+          <video src={videoBg} autoPlay loop muted></video>
+          <div className="content">
+            <h1>Welcome to 6ixAuto!</h1>
+            <h5>Search for your dream car!</h5>
+          </div>
         </div>
-        <div className="mt-5 d-flex flex-column justify-content-center p-2 bg-secondary">
-          <h3> Select Your Make!</h3>
-          <Alert
-            dismissible
-            onClose={() => setShowAlert(false)}
-            show={showAlert}
-            variant="danger"
-          >
-            invalid search entry
-          </Alert>
-          {/* create a state to decide which one to render */}
+        <div className="mt-5 d-flex flex-column justify-content-center p-2 container">
           {searchMode ? (
-            <div>
-              <MakeCard onSelect={setMakeHandler} />
-              {selections.make ? (
-                <ModelCard onSelect={setModelHandler} make={selections.make} />
+            <>
+              {activateSearch ? (
+                <>
+                  <h3 className="d-flex justify-content-center">
+                    Select Your Make!
+                  </h3>
+                  <div className="bg-secondary animate__animated animate__slideInDown">
+                    <MakeCard onSelect={setMakeHandler} />
+                    {selections.make ? (
+                      <>
+                        <div className="animate__animated animate__slideInUp">
+                          <ModelCard
+                            onSelect={setModelHandler}
+                            make={selections.make}
+                          />
+                          <button
+                            onClick={() => {
+                              if (selections.model) {
+                                setSearchMode(!searchMode);
+                              } else {
+                                setShowAlert(!showAlert);
+                              }
+                            }}
+                          >
+                            Submit Search
+                          </button>
+                        </div>
+                      </>
+                    ) : (
+                      <p> </p>
+                    )}
+                  </div>
+                </>
               ) : (
-                <p> Select Your Model! </p>
+                // start journey button
+                <h3
+                  className="d-flex justify-content-center sbtn start-btn "
+                  onClick={() => setActivateSearch(!activateSearch)}
+                >
+                  Begin Your Automotive Journey
+                </h3>
               )}
-              <button
-                onClick={() => {
-                  if (selections.model) {
-                    setSearchMode(false);
-                  } else {
-                    setShowAlert(true);
-                  }
-                }}
+
+              <Alert
+                className="d-flex justify-content-between"
+                onClose={() => setShowAlert(!showAlert)}
+                show={showAlert}
+                variant="danger"
               >
-                Submit Search
-              </button>
-            </div>
+                <h5>Invalid Search Entry</h5>
+                <div className="">
+                  <Button
+                    onClick={() => setShowAlert(!showAlert)}
+                    variant="outline-secondary"
+                  >
+                    Close
+                  </Button>
+                </div>
+              </Alert>
+            </>
           ) : (
             <p> </p>
           )}
