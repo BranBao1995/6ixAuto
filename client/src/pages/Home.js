@@ -45,8 +45,8 @@ const Home = () => {
         <div className="bg-video">
           <div className="overlay"></div>
           <video src={videoBg} autoPlay loop muted></video>
-          <div className="content">
-            <h1>Welcome to 6ixAuto!</h1>
+          <div className="content text-center">
+            <h1 >Welcome to 6ixAuto!</h1>
             <h5>Search for your dream car!</h5>
           </div>
         </div>
@@ -62,12 +62,14 @@ const Home = () => {
                     <MakeCard onSelect={setMakeHandler} />
                     {selections.make ? (
                       <>
-                        <div className="animate__animated animate__slideInUp">
+                        <div className="animate__animated animate__slideInUp d-flex flex-column ">
+                          <h3 className="text-center" > Select Your Model!</h3>
                           <ModelCard
                             onSelect={setModelHandler}
                             make={selections.make}
                           />
                           <button
+                            className="search btn btn-light"
                             onClick={() => {
                               if (selections.model) {
                                 setSearchMode(!searchMode);
@@ -88,7 +90,7 @@ const Home = () => {
               ) : (
                 // start journey button
                 <h3
-                  className="d-flex justify-content-center sbtn start-btn "
+                  className="d-flex justify-content-center sbtn start-btn text-center"
                   onClick={() => setActivateSearch(!activateSearch)}
                 >
                   Begin Your Automotive Journey
@@ -96,7 +98,7 @@ const Home = () => {
               )}
 
               <Alert
-                className="d-flex justify-content-between"
+                className="d-flex justify-content-between mt-3"
                 onClose={() => setShowAlert(!showAlert)}
                 show={showAlert}
                 variant="danger"
