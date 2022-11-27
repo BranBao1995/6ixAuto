@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useQuery } from "@apollo/client";
 import { useMutation } from "@apollo/client";
-import { Form, Button, Alert } from "react-bootstrap";
+import { Button, Alert } from "react-bootstrap";
 import ListingCard from "../components/ListingCard";
 import MakeCard from "../components/MakeCard";
 import ModelCard from "../components/ModelCard";
@@ -22,6 +22,8 @@ const Home = () => {
   console.log(selections);
   const [searchMode, setSearchMode] = useState(true);
 
+  const [activateSearch, setActivateSearch] = useState(false);
+
   const setMakeHandler = (make, model) => {
     setSelection({ ...selections, make, model });
     console.log(`after clicking make the state is: ${selections}`);
@@ -29,17 +31,16 @@ const Home = () => {
 
   const setModelHandler = (model) => {
     setSelection({ ...selections, model });
-    // setSearchMode(false);
     return;
   };
 
   const setBackSearch = () => {
-    setSearchMode(true);
+    setSearchMode(!searchMode);
   };
 
   return (
     <>
-      <div className="">
+      <div className="bg-light main">
         <div className="bg-video">
           <div className="overlay"></div>
           <video src={videoBg} autoPlay loop muted></video>
@@ -48,44 +49,58 @@ const Home = () => {
             <h5>Search for your dream car!</h5>
           </div>
         </div>
-        <div className="mt-5 d-flex flex-column justify-content-center p-2 bg-secondary container">
-          <h3> Select Your Make!</h3>
+        <div className="mt-5 d-flex flex-column justify-content-center p-2 container">
 
-          {/* create a state to decide which one to render */}
           {searchMode ? (
             <>
-              <div>
-                <MakeCard onSelect={setMakeHandler} />
-                {selections.make ? (
-                  <ModelCard
-                    onSelect={setModelHandler}
-                    make={selections.make}
-                  />
-                ) : (
-                  <p> Select Your Model! </p>
-                )}
-                <button
-                  onClick={() => {
-                    if (selections.model) {
-                      setSearchMode(false);
-                    } else {
-                      setShowAlert(true);
-                    }
-                  }}
+              {activateSearch ? (
+                <>
+                <h3 className="d-flex justify-content-center"> Select Your Make!</h3>
+                <div className="bg-secondary">
+                  <MakeCard onSelect={setMakeHandler} />
+                  {selections.make ? (
+                    <>
+                    <ModelCard
+                      onSelect={setModelHandler}
+                      make={selections.make}
+                    />
+                    <button
+                    onClick={() => {
+                      if (selections.model) {
+                        setSearchMode(!searchMode);
+                      } else {
+                        setShowAlert(!showAlert);
+                      }
+                    }}
+                  >
+                    Submit Search
+                  </button>
+                  </>
+                  ) : (
+                    <p> </p>
+                  )}
+                </div>
+                </>
+              ) : (
+                // start journey button
+                <h3
+                className="d-flex justify-content-center sbtn start-btn "
+                onClick={() => setActivateSearch(!activateSearch)}
                 >
-                  Submit Search
-                </button>
-              </div>
+                  Begin Your Automotive Journey
+                </h3>
+              )}
+
               <Alert
                 className="d-flex justify-content-between"
-                onClose={() => setShowAlert(false)}
+                onClose={() => setShowAlert(!showAlert)}
                 show={showAlert}
                 variant="danger"
               >
                 <h5>Invalid Search Entry</h5>
                 <div className="">
                   <Button
-                    onClick={() => setShowAlert(false)}
+                    onClick={() => setShowAlert(!showAlert)}
                     variant="outline-secondary"
                   >
                     Close
