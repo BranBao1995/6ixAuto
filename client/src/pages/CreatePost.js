@@ -48,6 +48,7 @@ const CreatePost = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+    const time = new Date();
     console.log(
       make,
       model,
@@ -73,7 +74,7 @@ const CreatePost = () => {
           location: location,
           description: description,
           image: image,
-          createdAt: "Default",
+          createdAt: time,
         },
       });
 

@@ -30,28 +30,6 @@ const EditPost = () => {
   const [image, setImage] = useState(postData.image);
   const [description, setDescription] = useState(postData.description);
 
-  // console.log(make);
-  // console.log(model);
-  // console.log(year);
-  // console.log(carType);
-  // console.log(location);
-  // console.log(price);
-  // console.log(mileage);
-  // console.log(transmission);
-  // console.log(image);
-  // console.log(description);
-
-  // const [make, setMake] = useState();
-  // const [model, setModel] = useState();
-  // const [year, setYear] = useState();
-  // const [carType, setCarType] = useState();
-  // const [location, setLocation] = useState();
-  // const [price, setPrice] = useState();
-  // const [mileage, setMileage] = useState();
-  // const [transmission, setTransmission] = useState();
-  // const [image, setImage] = useState();
-  // const [description, setDescription] = useState();
-
   const [characterCount, setCharacterCount] = useState(0);
 
   const [updatePost] = useMutation(UPDATE_POST);
@@ -77,6 +55,7 @@ const EditPost = () => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
+    const time = new Date();
     console.log(
       make,
       model,
@@ -92,6 +71,7 @@ const EditPost = () => {
     try {
       const { data } = await updatePost({
         variables: {
+          postId: postId,
           make: make,
           model: model,
           year: year,
@@ -102,12 +82,12 @@ const EditPost = () => {
           location: location,
           description: description,
           image: image,
-          // updatedAt: Date.now,
+          updatedAt: time,
         },
       });
 
-      // navigate(`/mylistings`);
-      console.log("changes made!");
+      navigate(`/mylistings`);
+      // console.log("changes made!");
     } catch (err) {
       console.error(err);
     }

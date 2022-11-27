@@ -46,14 +46,14 @@ const postSchema = new Schema(
       trim: true,
     },
     createdAt: {
-      type: Date,
-      require: true,
-      default: Date.now,
-      get: (timestamp) => dateFormat(timestamp),
+      type: String,
+      required: true,
+      // default: Date.now,
+      // get: (timestamp) => dateFormat(timestamp),
     },
     updatedAt: {
-      type: Date,
-      get: (timestamp) => dateFormat(timestamp),
+      type: String,
+      // get: (timestamp) => dateFormat(timestamp),
     },
     user: {
       type: Schema.Types.ObjectId,

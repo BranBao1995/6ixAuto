@@ -74,6 +74,7 @@ const typeDefs = gql`
       transmission: String!
       description: String!
       image: String
+      updatedAt: String
     ): User
     deletePost(postId: ID!): Post
     savePost(postId: ID!): User
