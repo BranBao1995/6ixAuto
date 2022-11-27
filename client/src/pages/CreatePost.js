@@ -92,33 +92,39 @@ const CreatePost = () => {
 
   return (
     <>
-      <h4> Create a post! </h4>
+      <h4 className="text-center"> Create a post! </h4>
       {Auth.loggedIn() ? (
-        <div>
+        <div className="m-3">
           <form className="d-flex flex-column" onSubmit={handleFormSubmit}>
-            <label>Make</label>
-            <select
-              required
-              className=""
-              name="make"
-              onChange={(e) => setMake(e.target.value)}
-            >
-              <option> Pick a Make </option>
-              {MakesArray.map((make) => (
-                <option key={make.id} value={make.value}>
-                  {make.value}
+            <div>
+              <label className="form-label">Make</label>
+              <select
+                required
+                className="form-select"
+                name="make"
+                onChange={(e) => setMake(e.target.value)}
+              >
+                <option selected="true" disabled="disabled">
+                  Pick a Make
                 </option>
-              ))}
-            </select>
-            <label>Model</label>
+                {MakesArray.map((make) => (
+                  <option key={make.id} value={make.value}>
+                    {make.value}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <label className="form-label mt-2">Model</label>
             {make ? (
               <select
                 required
-                className=""
+                className="form-select"
                 name="model"
                 onChange={(e) => setModel(e.target.value)}
               >
-                <option> Pick a Model</option>
+                <option selected="true" disabled="disabled">
+                  Pick a Model
+                </option>
                 {ModelsArray.filter((model) => model.make === make).map(
                   (model) => (
                     <option key={model.id} value={model.value}>
@@ -130,92 +136,115 @@ const CreatePost = () => {
             ) : (
               <select
                 disabled
-                className=""
+                className="form-select"
                 name="model"
                 placeholder="Name"
               ></select>
             )}
-
-            <label>Year</label>
-            <input
-              required
-              className=""
-              name="year"
-              onChange={(e) => setYear(e.target.value)}
-              type="text"
-              placeholder="Name"
-            />
-            <label>CarType</label>
-            <select
-              required
-              className=""
-              name="carType"
-              onChange={(e) => setCarType(e.target.value)}
-            >
-              <option> Pick a Car Type</option>
-              <option value="Coupe"> Coupe </option>
-              <option value="Sedan"> Sedan </option>
-              <option value="SUV"> SUV </option>
-              <option value="Hatchback"> Hatchback </option>
-              <option value="Pickup"> Pickup </option>
-            </select>
-            <label>Location</label>
-            <input
-              required
-              className=""
-              name="location"
-              onChange={(e) => setLocation(e.target.value)}
-              type="text"
-              placeholder="Name"
-            />
-            <label>Price</label>
-            <input
-              required
-              className=""
-              name="price"
-              onChange={(e) => setPrice(e.target.value)}
-              type="text"
-            />
-            <label>Mileage</label>
-            <input
-              required
-              className=""
-              name="mileage"
-              onChange={(e) => setMileage(e.target.value)}
-              type="text"
-            />
-            <label>Transmission</label>
-            <select
-              required
-              className=""
-              name="transmission"
-              onChange={(e) => setTransmission(e.target.value)}
-            >
-              <option> Pick Transmission</option>
-              <option value="Automatic"> Automatic </option>
-              <option value="Manual"> Manual </option>
-            </select>
-            <label>Image</label>
-            <div>
-              <button type="button" onClick={() => widgetRef.current.open()}>
-                Upload
-              </button>
+            <div className="mt-2">
+              <label className="form-label">Year</label>
+              <input
+                required
+                className="form-control"
+                name="year"
+                onChange={(e) => setYear(e.target.value)}
+                type="text"
+                placeholder="Year"
+              />
             </div>
-            <label>Description</label>
-            <p> {characterCount} / 400 </p>
-            <textarea
-              maxLength="400"
-              minLength="1"
-              required
-              className="textarea"
-              name="description"
-              onChange={(e) => {
-                setCharacterCount(e.target.value.length);
-                setDescription(e.target.value);
-              }}
-              type="text"
-            />
-            <button type="submit"> Submit </button>
+            <div className="mt-2">
+              <label className="form-label">CarType</label>
+              <select
+                required
+                className="form-select"
+                name="carType"
+                onChange={(e) => setCarType(e.target.value)}
+              >
+                <option value="" selected="true" disabled="disabled">
+                  Pick a Car Type
+                </option>
+                <option value="Coupe"> Coupe </option>
+                <option value="Sedan"> Sedan </option>
+                <option value="SUV"> SUV </option>
+                <option value="Hatchback"> Hatchback </option>
+                <option value="Pickup"> Pickup </option>
+              </select>
+            </div>
+            <div className="mt-2">
+              <label className="form-label">Location</label>
+              <input
+                required
+                className="form-control"
+                name="location"
+                onChange={(e) => setLocation(e.target.value)}
+                type="text"
+                placeholder="Location"
+              />
+            </div>
+            <div className="mt-2">
+              <label className="form-label">Price</label>
+              <input
+                required
+                className="form-control"
+                name="price"
+                onChange={(e) => setPrice(e.target.value)}
+                type="number"
+                min="1"
+                placeholder="Price"
+              />
+            </div>
+            <div className="mt-2">
+              <label className="form-label">Mileage</label>
+              <input
+                required
+                className="form-control"
+                name="mileage"
+                onChange={(e) => setMileage(e.target.value)}
+                type="number"
+                min="1"
+                placeholder="Mileage"
+              />
+            </div>
+            <div className="mt-2">
+              <label className="form-label">Transmission</label>
+              <select
+                required
+                className="form-select"
+                name="transmission"
+                onChange={(e) => setTransmission(e.target.value)}
+              >
+                <option value="" selected="true" disabled="disabled">
+                  Pick Transmission
+                </option>
+                <option value="Automatic"> Automatic </option>
+                <option value="Manual"> Manual </option>
+              </select>
+            </div>
+            <div className="mt-2">
+              <label className="form-label">Image</label>
+              <div>
+                <button type="button" onClick={() => widgetRef.current.open()}>
+                  Upload
+                </button>
+              </div>
+            </div>
+            <div className="mt-2 mb-2">
+              <label className="form-label">Description</label>
+              <p>Characters: {characterCount} / 400 </p>
+              <textarea
+                maxLength="400"
+                minLength="1"
+                required
+                className="textarea form-control"
+                name="description"
+                onChange={(e) => {
+                  setCharacterCount(e.target.value.length);
+                  setDescription(e.target.value);
+                }}
+                type="text"
+              />
+            </div>
+            <button className="mt-2 mb-4" type="submit"> Submit </button>
           </form>
         </div>
       ) : (
