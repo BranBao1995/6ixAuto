@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { useQuery } from "@apollo/client";
 import { useMutation } from "@apollo/client";
-import { Button, Alert } from "react-bootstrap";
+import { Form, Button, Alert } from "react-bootstrap";
 import ListingCard from "../components/ListingCard";
 import MakeCard from "../components/MakeCard";
 import ModelCard from "../components/ModelCard";
 import SearchResults from "../components/SearchResult";
 import videoBg from '../assets/images/6ixAutoBg.mp4'
 import '../index.css'
+import "animate.css";
 // import {  } from "../utils/queries";
 // import {  } from "../utils/mutations";
 
@@ -50,42 +51,45 @@ const Home = () => {
           </div>
         </div>
         <div className="mt-5 d-flex flex-column justify-content-center p-2 container">
-
           {searchMode ? (
             <>
               {activateSearch ? (
                 <>
-                <h3 className="d-flex justify-content-center"> Select Your Make!</h3>
-                <div className="bg-secondary">
-                  <MakeCard onSelect={setMakeHandler} />
-                  {selections.make ? (
-                    <>
-                    <ModelCard
-                      onSelect={setModelHandler}
-                      make={selections.make}
-                    />
-                    <button
-                    onClick={() => {
-                      if (selections.model) {
-                        setSearchMode(!searchMode);
-                      } else {
-                        setShowAlert(!showAlert);
-                      }
-                    }}
-                  >
-                    Submit Search
-                  </button>
-                  </>
-                  ) : (
-                    <p> </p>
-                  )}
-                </div>
+                  <h3 className="d-flex justify-content-center">
+                    Select Your Make!
+                  </h3>
+                  <div className="bg-secondary animate__animated animate__slideInDown">
+                    <MakeCard onSelect={setMakeHandler} />
+                    {selections.make ? (
+                      <>
+                        <div className="animate__animated animate__slideInUp">
+                          <ModelCard
+                            onSelect={setModelHandler}
+                            make={selections.make}
+                          />
+                          <button
+                            onClick={() => {
+                              if (selections.model) {
+                                setSearchMode(!searchMode);
+                              } else {
+                                setShowAlert(!showAlert);
+                              }
+                            }}
+                          >
+                            Submit Search
+                          </button>
+                        </div>
+                      </>
+                    ) : (
+                      <p> </p>
+                    )}
+                  </div>
                 </>
               ) : (
                 // start journey button
                 <h3
-                className="d-flex justify-content-center sbtn start-btn "
-                onClick={() => setActivateSearch(!activateSearch)}
+                  className="d-flex justify-content-center sbtn start-btn "
+                  onClick={() => setActivateSearch(!activateSearch)}
                 >
                   Begin Your Automotive Journey
                 </h3>
