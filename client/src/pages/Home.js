@@ -10,8 +10,6 @@ import videoBg1 from "../assets/images/6ixAutoBg.mp4";
 import videoBg2 from "../assets/images/Toronto.mp4";
 import "../index.css";
 import "animate.css";
-// import {  } from "../utils/queries";
-// import {  } from "../utils/mutations";
 
 const Home = () => {
   const [selections, setSelection] = useState({
@@ -21,7 +19,7 @@ const Home = () => {
 
   const [showAlert, setShowAlert] = useState(false);
 
-  console.log(selections);
+  // console.log(selections);
   const [searchMode, setSearchMode] = useState(true);
 
   const [activateSearch, setActivateSearch] = useState(false);
