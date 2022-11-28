@@ -145,7 +145,10 @@ const Home = () => {
             <div className="searchResultsBox">
               <button
                 className="btn btn-dark mt-2 mb-2  back-btn"
-                onClick={() => setBackSearch()}
+                onClick={() => {
+                  setActivateSearch(!activateSearch);
+                  setBackSearch();
+                }}
               >
                 <BsFillArrowLeftCircleFill />
                 &nbsp; Back to search
