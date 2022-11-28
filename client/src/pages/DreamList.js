@@ -4,12 +4,12 @@ import { GET_ME } from "../utils/queries";
 import ListingCard from "../components/ListingCard";
 
 const DreamList = () => {
-  console.log("COMPONENT MOUNTED!");
+  // console.log("COMPONENT MOUNTED!");
 
   const { loading, data, refetch } = useQuery(GET_ME);
   refetch();
   const userData = data?.me || {};
-  console.log(userData);
+  // console.log(userData);
   const onRemoveHandler = async (clicked) => {
     if (clicked) {
       refetch();

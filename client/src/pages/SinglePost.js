@@ -204,7 +204,8 @@ const SinglePost = () => {
               </table>
             </div>
             <div className="d-flex justify-content-between pt-2 mb-4">
-              {data.getPost.user._id == Auth.getProfile().data._id ? (
+              {Auth.loggedIn() &&
+              data.getPost.user._id == Auth.getProfile().data._id ? (
                 <Button
                   onClick={() => {
                     navigate(`/edit/${postId}`);

@@ -15,7 +15,7 @@ const ListingCard = (props) => {
       ? JSON.parse(localStorage.getItem("saved_posts"))
       : [];
 
-    console.log(newsavedPostIds);
+    // console.log(newsavedPostIds);
     return newsavedPostIds;
   };
   const savePostIds = (postIdArr) => {
