@@ -28,13 +28,13 @@ const MyListings = () => {
   return (
     <main>
       {error ? <p>{error.message}</p> : ""}
-      <div className="py-5">
+      <div className="py-5 my-listing-header">
         <h1>{loading ? "Loading..." : "My Listings"}</h1>
       </div>
-      <section>
+      <section className="my-listing-container">
         {userData.listings?.map((listing) => {
           return (
-            <div key={listing._id} className="listCard-container ">
+            <div key={listing._id} className="">
               <Button
                 className="delete-post-btn btn-block btn-danger"
                 onClick={() => deletePostHandler(listing._id)}

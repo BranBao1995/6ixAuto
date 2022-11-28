@@ -19,8 +19,38 @@ table {
   width: 100%;
 }
 
+.navBar{
+  padding-left: 20%;
+  padding-right: 20%;
+}
+
+.data-label{
+  margin-top: 10px;
+}
+
+.submit-button{
+  margin-top: 20px;
+}
+
+.searchResultsBox{
+  padding: 20px 20%;
+}
+
+.create-post-div{
+  padding: 0 20%;
+}
+
+.my-listing-header{
+  padding: 0 20%;
+}
+
+.my-listing-container{
+  padding: 0 20%;
+}
+
 .single-post-div{
   padding-top: 15px;
+  padding: 0 20%;
 }
 
 .title-price-container{
@@ -38,8 +68,7 @@ table {
 }
 
 .like-count{
-  margin-top: 0;
-  margin-bottom: 0;
+  padding: 0 20%;
   font-size: 20px;
 }
 
@@ -47,19 +76,34 @@ table {
   padding-bottom: 10px;
 }
 
-.table-title{
+.table-title-left{
   padding-left: 10px;
   padding-right: 20px;
   padding-bottom: 8px;
   padding-top: 8px;
   text-align: left;
-  width: 25%;
+  width: 20%;
 }
 
-.table-data{
+.table-data-left{
   padding-right: 10px;
   text-align: left;
-  width: 75%
+  width: 80%;
+}
+
+.table-title-right{
+  padding-left: 10px;
+  padding-right: 20px;
+  padding-bottom: 8px;
+  padding-top: 8px;
+  text-align: left;
+  width: 35%;
+}
+
+.table-data-right{
+  padding-right: 10px;
+  text-align: left;
+  width: 65%;
 }
 
 .desc-text-box{
@@ -87,16 +131,35 @@ table {
 
 .list-card-desc{
   margin-left: 20px;
-  margin-right: 20px;
+}
+
+.desc-text-box-div{
+  padding-top: 20px;
 }
 
 @media screen and (max-width: 575px) {
   .navbar{
     padding: 20px 10%;
   }
+
+  .searchResultsBox{
+    padding: 10%;
+  }
   
-  main{
-    padding: 20px 10%;
+  .create-post-div{
+    padding: 0 10%;
+  }
+  
+  .my-listing-header{
+    padding: 0 10%;
+  }
+  
+  .my-listing-container{
+    padding: 0 10%;
+  }
+  
+  .single-post-div{
+    padding: 0 10%;
   }
 
   .single-post-div{
@@ -113,10 +176,6 @@ table {
 
   .like-count{
     padding: 0 10%;
-  }
-
-  .desc-text-box-div{
-    padding-top: 10px;
   }
 
   .table-column{
@@ -205,7 +264,6 @@ video{
   text-decoration: none;
   text-transform: uppercase;
   width: 100%; 
-  
 }
 
 .search{

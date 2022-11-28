@@ -81,7 +81,7 @@ const ListingCard = (props) => {
         disabled={savedPostIds?.some(
           (savedPostId) => savedPostId === props.post._id
         )}
-        className="btn-block btn-info"
+        className="btn-block btn-secondary"
         onClick={() => handleSavePost(props.post._id)}
       >
         Add to DreamList
@@ -117,7 +117,7 @@ const ListingCard = (props) => {
             <h6>Price: {props.post.price}</h6>
             <div className="d-flex justify-content-between pt-2">
               <Button
-                className="btn-block btn-secondary"
+                className="btn-block btn-primary"
                 onClick={function () {
                   navigate(`/post/${props.post._id}`);
                 }}
