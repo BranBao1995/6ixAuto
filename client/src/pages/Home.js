@@ -47,7 +47,7 @@ const Home = () => {
         {searchMode ? (
           <div className="bg-video">
             <div className="overlay"></div>
-            <video src={videoBg1} autoPlay loop muted></video>
+            <video src={videoBg2} autoPlay loop muted></video>
             <div className="content text-center">
               <h1>Welcome to 6ixAuto!</h1>
               <h5>Search for your dream car</h5>
@@ -56,7 +56,7 @@ const Home = () => {
         ) : (
           <div className="bg-video">
             <div className="overlay"></div>
-            <video src={videoBg2} autoPlay loop muted></video>
+            <video src={videoBg1} autoPlay loop muted></video>
             <div className="content text-center">
               <h1>Welcome to 6ixAuto!</h1>
               <h5>Search for your dream car</h5>
@@ -143,10 +143,13 @@ const Home = () => {
         {!searchMode ? (
           <>
             <div className="searchResultsBox">
-            <button class="btn btn-dark mt-2 mb-2  back-btn" onClick={() => setBackSearch()}>
-              <BsFillArrowLeftCircleFill />
-              &nbsp; Back to search
-            </button>
+              <button
+                className="btn btn-dark mt-2 mb-2  back-btn"
+                onClick={() => setBackSearch()}
+              >
+                <BsFillArrowLeftCircleFill />
+                &nbsp; Back to search
+              </button>
               <SearchResults selections={selections} />
             </div>
           </>
