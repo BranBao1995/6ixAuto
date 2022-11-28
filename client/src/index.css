@@ -25,15 +25,14 @@ table {
   height: auto;
   padding-top: 20px;
   padding-bottom: 20px;
-  padding-left: 5%;
-  padding-right: 5%;
+  padding-left: 20%;
+  padding-right: 20%;
   border-bottom: 2px solid black;
 }
 
 .navBar .logo-container {
   width: 25%;
   display: flex;
-  justify-content: center;
   align-items: center;
 }
 
@@ -241,6 +240,10 @@ video {
 @media screen and (max-width: 575px) {
   .navbar{
     padding: 20px 10%;
+  }
+
+  .navBar .logo-container {
+    width: 50%;
   }
 
   .searchResultsBox{

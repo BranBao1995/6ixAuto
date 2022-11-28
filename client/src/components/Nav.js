@@ -21,7 +21,7 @@ const AppNavbar = () => {
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbar" />
           <Navbar.Collapse id="navbar">
-            <Nav className="ml-auto">
+            <Nav className="ms-auto">
               <ul className="navbar-nav">
                 <li className="nav-item">
                   <Nav.Link as={Link} to="/">
