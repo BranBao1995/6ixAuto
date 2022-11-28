@@ -19,8 +19,10 @@ const DreamList = () => {
 
   return (
     <main>
-      <h1>{loading ? "Loading..." : "Your saved listings"}</h1>
-      <section>
+      <div className="py-5 my-listing-header">
+        <h1>{loading ? "Loading..." : "DreamList"}</h1>
+      </div>
+      <section className="my-listing-container">
         {userData.interested?.map((listing) => {
           return (
             <div key={listing._id} className="listCard-container">

@@ -82,7 +82,9 @@ const SignupForm = () => {
         </Form.Group>
 
         <Form.Group>
-          <Form.Label htmlFor="email">Email</Form.Label>
+          <Form.Label className="data-label" htmlFor="email">
+            Email
+          </Form.Label>
           <Form.Control
             type="email"
             placeholder="Your email address"
@@ -97,7 +99,9 @@ const SignupForm = () => {
         </Form.Group>
 
         <Form.Group>
-          <Form.Label htmlFor="phone">Phone</Form.Label>
+          <Form.Label className="data-label" htmlFor="phone">
+            Phone
+          </Form.Label>
           <Form.Control
             type="text"
             placeholder="Your phone number"
@@ -112,7 +116,9 @@ const SignupForm = () => {
         </Form.Group>
 
         <Form.Group>
-          <Form.Label htmlFor="password">Password</Form.Label>
+          <Form.Label className="data-label" htmlFor="password">
+            Password
+          </Form.Label>
           <Form.Control
             type="password"
             placeholder="Your password"
@@ -136,6 +142,7 @@ const SignupForm = () => {
           }
           type="submit"
           variant="success"
+          className="submit-button"
         >
           Submit
         </Button>

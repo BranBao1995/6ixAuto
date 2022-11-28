@@ -16,36 +16,48 @@ const AppNavbar = () => {
 
   return (
     <>
-      <Navbar bg="dark" variant="dark" expand="lg">
-        <Container fluid>
+      <Navbar className="navBar" bg="dark" variant="dark" expand="lg">
+        <Container fluid className="d-flex">
           <Navbar.Brand as={Link} to="/">
             6ixAuto
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbar" />
           <Navbar.Collapse id="navbar">
             <Nav className="ml-auto">
-              <Nav.Link as={Link} to="/">
-                Home
-              </Nav.Link>
-              {/* if user is logged in show DreamList and logout */}
-              {Auth.loggedIn() ? (
-                <>
-                  <Nav.Link as={Link} to="/post">
-                    Create Post
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <Nav.Link as={Link} to="/">
+                    Home
                   </Nav.Link>
-                  <Nav.Link as={Link} to="/dreamlist">
-                    DreamList
+                </li>
+                {/* if user is logged in show DreamList and logout */}
+                {Auth.loggedIn() ? (
+                  <>
+                    <li class="nav-item">
+                      <Nav.Link as={Link} to="/post">
+                        Create Post
+                      </Nav.Link>
+                    </li>
+                    <li class="nav-item">
+                      <Nav.Link as={Link} to="/dreamlist">
+                        DreamList
+                      </Nav.Link>
+                    </li>
+                    <li class="nav-item">
+                      <Nav.Link as={Link} to="/mylistings">
+                        My Listings
+                      </Nav.Link>
+                    </li>
+                    <li class="nav-item">
+                      <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
+                    </li>
+                  </>
+                ) : (
+                  <Nav.Link onClick={() => setShowModal(true)}>
+                    Login/Sign Up
                   </Nav.Link>
-                  <Nav.Link as={Link} to="/mylistings">
-                    My Listings
-                  </Nav.Link>
-                  <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
-                </>
-              ) : (
-                <Nav.Link onClick={() => setShowModal(true)}>
-                  Login/Sign Up
-                </Nav.Link>
-              )}
+                )}
+              </ul>
             </Nav>
           </Navbar.Collapse>
         </Container>
