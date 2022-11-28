@@ -195,11 +195,17 @@ const SinglePost = () => {
                 </tr>
                 <tr>
                   <td className="table-title-right">Created:</td>
-                  <td className="table-data-right">{data.getPost.createdAt}</td>
+                  <td className="table-data-right">
+                    {new Date(data.getPost.createdAt).toUTCString()}
+                  </td>
                 </tr>
                 <tr>
                   <td className="table-title-right">Last update:</td>
-                  <td className="table-data-right">{data.getPost.updatedAt}</td>
+                  <td className="table-data-right">
+                    {data.getPost.updatedAt == null
+                      ? data.getPost.updatedAt
+                      : new Date(data.getPost.updatedAt).toUTCString()}
+                  </td>
                 </tr>
               </table>
             </div>
