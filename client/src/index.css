@@ -170,6 +170,11 @@ video{
   padding-bottom: 70px;
 }
 
+.search-main{
+  background-color: rgb(80, 80, 80);
+  transition: ease-in 0.5s;
+}
+
 
 .start-btn {
   border: 0 solid;
@@ -208,3 +213,4 @@ video{
   margin-right: 40px;
   margin-bottom: 20px;
 }
+
