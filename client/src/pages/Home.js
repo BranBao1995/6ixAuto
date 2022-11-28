@@ -8,6 +8,7 @@ import ModelCard from "../components/ModelCard";
 import SearchResults from "../components/SearchResult";
 import videoBg1 from "../assets/images/6ixAutoBg.mp4";
 import videoBg2 from "../assets/images/Toronto.mp4";
+import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import "../index.css";
 import "animate.css";
 
@@ -40,14 +41,14 @@ const Home = () => {
 
   return (
     <>
-      <div className={activateSearch ? "main search-main" : " bg-light main"}>
+      <div className={activateSearch ? "search-main" : ""}>
         {searchMode ? (
           <div className="bg-video">
             <div className="overlay"></div>
             <video src={videoBg1} autoPlay loop muted></video>
             <div className="content text-center">
               <h1>Welcome to 6ixAuto!</h1>
-              <h5>Search for your dream car!</h5>
+              <h5>Search for your dream car</h5>
             </div>
           </div>
         ) : (
@@ -56,24 +57,30 @@ const Home = () => {
             <video src={videoBg2} autoPlay loop muted></video>
             <div className="content text-center">
               <h1>Welcome to 6ixAuto!</h1>
-              <h5>Search for your dream car!</h5>
+              <h5>Search for your dream car</h5>
             </div>
           </div>
         )}
-        <div className="mt-5 d-flex flex-column justify-content-center p-2 container">
+        <div
+          className={
+            searchMode
+              ? "mt-5 d-flex flex-column justify-content-center align-items-center p-2 container"
+              : " "
+          }
+        >
           {searchMode ? (
             <>
               {activateSearch ? (
                 <>
                   <h3 className="d-flex justify-content-center">
-                    Select Your Make!
+                    Select Your Make
                   </h3>
                   <div className="bg-secondary search-box animate__animated animate__slideInDown">
                     <MakeCard onSelect={setMakeHandler} />
                     {selections.make ? (
                       <>
                         <div className="animate__animated animate__slideInUp d-flex flex-column ">
-                          <h3 className="text-center"> Select Your Model!</h3>
+                          <h3 className="text-center"> Select Your Model</h3>
                           <ModelCard
                             onSelect={setModelHandler}
                             make={selections.make}
@@ -82,6 +89,7 @@ const Home = () => {
                             className="search btn btn-light"
                             onClick={() => {
                               if (selections.model) {
+                                setActivateSearch(!activateSearch);
                                 setSearchMode(!searchMode);
                               } else {
                                 setShowAlert(!showAlert);
@@ -129,14 +137,17 @@ const Home = () => {
           )}
         </div>
       </div>
-      <div className="searchResultsBox">
+      <div className={activateSearch ? "search-main" : ""}>
         {!searchMode ? (
-          <div>
-            <SearchResults selections={selections} />
-            <button class="btn btn-dark" onClick={() => setBackSearch()}>
-              Back to search
+          <>
+            <div className="searchResultsBox">
+            <button class="btn btn-dark mt-2 mb-2  back-btn" onClick={() => setBackSearch()}>
+              <BsFillArrowLeftCircleFill />
+              &nbsp; Back to search
             </button>
-          </div>
+              <SearchResults selections={selections} />
+            </div>
+          </>
         ) : (
           <p></p>
         )}

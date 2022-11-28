@@ -14,7 +14,6 @@ const SearchResults = (props) => {
 
   return (
     <div className="results">
-      {props.selections.make} {props.selections.model}
       {postData?.map((post) => {
         console.log(post);
         return <ListingCard post={post} key={post._id} />;

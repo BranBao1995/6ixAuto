@@ -1,5 +1,7 @@
 body {
-  font-family: "Rubik", sans-serif;
+
+  font-family: 'Rubik', sans-serif;
+
 }
 
 h1,
@@ -155,61 +157,9 @@ table {
   padding-top: 20px;
 }
 
-@media screen and (max-width: 575px) {
-  .navbar {
-    padding: 20px 10%;
-  }
-
-  .searchResultsBox {
-    padding: 10%;
-  }
-
-  .create-post-div {
-    padding: 0 10%;
-  }
-
-  .my-listing-header {
-    padding: 0 10%;
-  }
-
-  .my-listing-container {
-    padding: 0 10%;
-  }
-
-  .single-post-div {
-    padding: 0 10%;
-  }
-
-  .single-post-div {
-    padding: 20px 10%;
-  }
-
-  .title-price-container {
-    padding: 0 10%;
-  }
-
-  .single-price p {
-    text-align: left;
-  }
-
-  .like-count {
-    padding: 0 10%;
-  }
-
-  .table-column {
-    padding-top: 10px;
-    padding-bottom: 20px;
-  }
-
-  .list-card-desc {
-    margin-left: 0;
-    margin-right: 0;
-    margin-top: 10px;
-    height: 100%;
-  }
-}
 
 video {
+
   height: 500px;
   width: 100%;
   object-fit: cover;
@@ -243,9 +193,6 @@ video {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-.main {
-  padding-bottom: 70px;
-}
 
 .search-main {
   background-color: rgb(80, 80, 80);
@@ -281,7 +228,8 @@ video {
   margin: 0 0 2em;
   text-decoration: none;
   text-transform: uppercase;
-  width: 100%;
+  width: 70%; 
+
 }
 
 .search {
@@ -289,3 +237,62 @@ video {
   margin-right: 40px;
   margin-bottom: 20px;
 }
+
+@media screen and (max-width: 575px) {
+  .navbar{
+    padding: 20px 10%;
+  }
+
+  .searchResultsBox{
+    padding: 10%;
+  }
+  
+  .create-post-div{
+    padding: 0 10%;
+  }
+  
+  .my-listing-header{
+    padding: 0 10%;
+  }
+  
+  .my-listing-container{
+    padding: 0 10%;
+  }
+  
+  .single-post-div{
+    padding: 0 10%;
+  }
+
+  .single-post-div{
+    padding: 20px 10%;
+  }
+
+  .title-price-container{
+    padding: 0 10%;
+  }
+
+  .single-price p{
+    text-align: left;
+  }
+
+  .like-count{
+    padding: 0 10%;
+  }
+
+  .table-column{
+    padding-top: 10px;
+    padding-bottom: 20px;
+  }
+  
+  .list-card-desc{
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 10px;
+    height: 100%
+  }
+
+  .sbtn{
+    width: 80%;
+  }
+}
+
