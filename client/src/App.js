@@ -40,7 +40,7 @@ function App() {
       <Router>
         <div className="entire-page">
           <Nav />
-          <div className="">
+          <div className="d-flex flex-column">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/dreamlist" element={<DreamList />} />

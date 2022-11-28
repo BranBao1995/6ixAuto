@@ -19,6 +19,5 @@
     "concurrently": "^5.1.0"
   },
   "dependencies": {
-    "animate.css": "^4.1.1"
   }
 }
