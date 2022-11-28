@@ -6,9 +6,9 @@ import ListingCard from "../components/ListingCard";
 import MakeCard from "../components/MakeCard";
 import ModelCard from "../components/ModelCard";
 import SearchResults from "../components/SearchResult";
-import videoBg1 from '../assets/images/6ixAutoBg.mp4'
+import videoBg1 from "../assets/images/6ixAutoBg.mp4";
 import videoBg2 from "../assets/images/Toronto.mp4";
-import '../index.css'
+import "../index.css";
 import "animate.css";
 // import {  } from "../utils/queries";
 // import {  } from "../utils/mutations";
@@ -135,7 +135,9 @@ const Home = () => {
         {!searchMode ? (
           <div>
             <SearchResults selections={selections} />
-            <button onClick={() => setBackSearch()}>Back to search</button>
+            <button class="btn btn-dark" onClick={() => setBackSearch()}>
+              Back to search
+            </button>
           </div>
         ) : (
           <p></p>

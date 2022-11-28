@@ -84,7 +84,7 @@ const SinglePost = () => {
     button = Auth.loggedIn() && (
       <Button
         disabled={savedPostIds?.some((savedPostId) => savedPostId === postId)}
-        className="btn-block btn-info"
+        className="btn-block btn-secondary"
         onClick={() => handleSavePost(postId)}
       >
         Add to DreamList
@@ -116,7 +116,7 @@ const SinglePost = () => {
               width="100%"
             />
           </div>
-          <div className="row title-price-container">
+          <div className="row title-price-container single-post-div">
             <div className="post-title col-md-9">
               <p>
                 {data.getPost.year} {data.getPost.make} {data.getPost.model},{" "}
@@ -131,69 +131,77 @@ const SinglePost = () => {
             <p className="like-count">👍 {data.getPost.liked.length}</p>
           </div>
           <div className="single-post-div row">
-            <div className="table-column col-md-6">
+            <div className="table-column col-md-7">
               <h6>Specifications</h6>
               <table>
                 <tr>
-                  <td className="table-title">Make:</td>
-                  <td className="table-data">{data.getPost.make}</td>
+                  <td className="table-title-left">Make:</td>
+                  <td className="table-data-left">{data.getPost.make}</td>
                 </tr>
                 <tr>
-                  <td className="table-title">Model:</td>
-                  <td className="table-data">{data.getPost.model}</td>
+                  <td className="table-title-left">Model:</td>
+                  <td className="table-data-left">{data.getPost.model}</td>
                 </tr>
                 <tr>
-                  <td className="table-title">Year:</td>
-                  <td className="table-data">{data.getPost.year}</td>
+                  <td className="table-title-left">Year:</td>
+                  <td className="table-data-left">{data.getPost.year}</td>
                 </tr>
                 <tr>
-                  <td className="table-title">Type:</td>
-                  <td className="table-data">{data.getPost.carType}</td>
+                  <td className="table-title-left">Type:</td>
+                  <td className="table-data-left">{data.getPost.carType}</td>
                 </tr>
                 <tr>
-                  <td className="table-title">Location:</td>
-                  <td className="table-data">{data.getPost.location}</td>
+                  <td className="table-title-left">Location:</td>
+                  <td className="table-data-left">{data.getPost.location}</td>
                 </tr>
                 <tr>
-                  <td className="table-title">Mileage:</td>
-                  <td className="table-data">{data.getPost.mileage}</td>
+                  <td className="table-title-left">Mileage:</td>
+                  <td className="table-data-left">{data.getPost.mileage}</td>
                 </tr>
                 <tr>
-                  <td className="table-title">Transmission:</td>
-                  <td className="table-data">{data.getPost.transmission}</td>
+                  <td className="table-title-left">Transmission:</td>
+                  <td className="table-data-left">
+                    {data.getPost.transmission}
+                  </td>
                 </tr>
               </table>
+              <div className="desc-text-box-div">
+                <h6>Description </h6>
+                <div className="desc-text-box">
+                  <p className="">{data.getPost.description}</p>
+                </div>
+              </div>
             </div>
-            <div className="table-column col-md-6">
+            <div className="table-column col-md-5">
               <h6>Contact</h6>
               <table>
                 <tr>
-                  <td className="table-title">Posted by:</td>
-                  <td className="table-data">{data.getPost.user.username}</td>
+                  <td className="table-title-right">Posted by:</td>
+                  <td className="table-data-right">
+                    {data.getPost.user.username}
+                  </td>
                 </tr>
                 <tr>
-                  <td className="table-title">Contact email:</td>
-                  <td className="table-data">{data.getPost.user.email}</td>
+                  <td className="table-title-right">Contact email:</td>
+                  <td className="table-data-right">
+                    {data.getPost.user.email}
+                  </td>
                 </tr>
                 <tr>
-                  <td className="table-title">Contact phone:</td>
-                  <td className="table-data">{data.getPost.user.phone}</td>
+                  <td className="table-title-right">Contact phone:</td>
+                  <td className="table-data-right">
+                    {data.getPost.user.phone}
+                  </td>
                 </tr>
                 <tr>
-                  <td className="table-title">Created:</td>
-                  <td className="table-data">{data.getPost.createdAt}</td>
+                  <td className="table-title-right">Created:</td>
+                  <td className="table-data-right">{data.getPost.createdAt}</td>
                 </tr>
                 <tr>
-                  <td className="table-title">Last update:</td>
-                  <td className="table-data">{data.getPost.updatedAt}</td>
+                  <td className="table-title-right">Last update:</td>
+                  <td className="table-data-right">{data.getPost.updatedAt}</td>
                 </tr>
               </table>
-            </div>
-            <div className="desc-text-box-div">
-              <h6>Description </h6>
-              <div className="desc-text-box">
-                <p className="">{data.getPost.description}</p>
-              </div>
             </div>
             <div className="d-flex justify-content-between pt-2 mb-4">
               {data.getPost.user._id == Auth.getProfile().data._id ? (

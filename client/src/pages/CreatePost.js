@@ -95,9 +95,11 @@ const CreatePost = () => {
 
   return (
     <>
-      <h2 className="text-center mt-3"> Create a post! </h2>
+      <div className="py-5 my-listing-header">
+        <h2 className="text-center mt-3"> Create a post! </h2>
+      </div>
       {Auth.loggedIn() ? (
-        <div className="m-3">
+        <div className="m-3 create-post-div">
           <form className="d-flex flex-column" onSubmit={handleFormSubmit}>
             <div>
               <label className="form-label">Make</label>
