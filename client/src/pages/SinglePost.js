@@ -84,7 +84,7 @@ const SinglePost = () => {
     button = Auth.loggedIn() && (
       <Button
         disabled={savedPostIds?.some((savedPostId) => savedPostId === postId)}
-        className="btn-block btn-info"
+        className="btn-block btn-secondary"
         onClick={() => handleSavePost(postId)}
       >
         Add to DreamList
