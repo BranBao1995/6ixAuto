@@ -27,7 +27,7 @@ const Home = () => {
 
   const setMakeHandler = (make, model) => {
     setSelection({ ...selections, make, model });
-    console.log(`after clicking make the state is: ${selections}`);
+    // console.log(`after clicking make the state is: ${selections}`);
   };
 
   const setModelHandler = (model) => {

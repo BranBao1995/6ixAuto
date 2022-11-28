@@ -10,7 +10,7 @@ const SearchResults = (props) => {
     variables: { make: props.selections.make, model: props.selections.model },
   });
   const postData = data?.searchResults || [];
-  console.log(postData);
+  // console.log(postData);
 
   return (
     <div className="results">
