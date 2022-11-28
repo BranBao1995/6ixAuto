@@ -14,6 +14,7 @@ import MyListings from "./pages/MyListings";
 import SinglePost from "./pages/SinglePost";
 import CreatePost from "./pages/CreatePost";
 import EditPost from "./pages/EditPost";
+import Footer from "./components/Footer";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -38,7 +39,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <div className="entire-page">
+        <div className="entire-page mb-5">
           <Nav />
           <div className="d-flex flex-column">
             <Routes>
@@ -54,6 +55,7 @@ function App() {
               />
             </Routes>
           </div>
+          <Footer />
         </div>
       </Router>
     </ApolloProvider>
