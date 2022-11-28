@@ -10,11 +10,11 @@ const ModelCard = (props) => {
   const makeModel = ModelsArray.filter( model => model.make === props.make)
 
   return (
-    <div className="m-5 p-3 bg-light d-flex flex-column justify-content-center align-items-center">
+    <div className="m-5 p-3 bg-light d-flex justify-content-around align-items-center model-container">
       {makeModel.map((model) => (
         <h4
           className={
-            isActive === model.model ? "logo selected" : "logo"
+            isActive === model.model ? "model-logo selected-model d-flex justify-content-center m-3 p-1" : " d-flex justify-content-center model-logo m-3 p-1"
           }
           key={model.id}
           onClick={() => {

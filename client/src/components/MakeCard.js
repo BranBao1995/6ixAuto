@@ -88,7 +88,7 @@ const MakeCard = (props) => {
           >
             <span
               id={logo.name}
-              className={isActive === logo.name ? "selected icon logo p-1" : "icon logo p-1"}
+              className={isActive === logo.name ? "selected-make icon make-logo p-1" : "icon make-logo p-1"}
               onClick={() => {
                 setIsActive(logo.name)
                 props.onSelect(logo.name, blank);
