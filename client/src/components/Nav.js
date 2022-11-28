@@ -6,9 +6,7 @@ import { useMutation } from "@apollo/client";
 import Auth from "../utils/auth";
 import SignUpForm from "./SignupForm";
 import LoginForm from "./LoginForm";
-// import Modal from "./Modal";
-// import {  } from "../utils/queries";
-// import {  } from "../utils/mutations";
+import logo from "../assets/images/6ix_auto_whitespace_removed-removebg-preview.png";
 
 const AppNavbar = () => {
   // set modal display state
@@ -16,16 +14,16 @@ const AppNavbar = () => {
 
   return (
     <>
-      <Navbar className="navBar" bg="dark" variant="dark" expand="lg">
+      <Navbar className="navBar" bg="light" variant="light" expand="lg">
         <Container fluid className="d-flex">
-          <Navbar.Brand as={Link} to="/">
-            6ixAuto
+          <Navbar.Brand className="logo-container" as={Link} to="/">
+            <img src={logo} alt="logo"></img>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbar" />
           <Navbar.Collapse id="navbar">
             <Nav className="ml-auto">
-              <ul class="navbar-nav">
-                <li class="nav-item">
+              <ul className="navbar-nav">
+                <li className="nav-item">
                   <Nav.Link as={Link} to="/">
                     Home
                   </Nav.Link>
@@ -33,22 +31,22 @@ const AppNavbar = () => {
                 {/* if user is logged in show DreamList and logout */}
                 {Auth.loggedIn() ? (
                   <>
-                    <li class="nav-item">
+                    <li className="nav-item">
                       <Nav.Link as={Link} to="/post">
                         Create Post
                       </Nav.Link>
                     </li>
-                    <li class="nav-item">
+                    <li className="nav-item">
                       <Nav.Link as={Link} to="/dreamlist">
                         DreamList
                       </Nav.Link>
                     </li>
-                    <li class="nav-item">
+                    <li className="nav-item">
                       <Nav.Link as={Link} to="/mylistings">
                         My Listings
                       </Nav.Link>
                     </li>
-                    <li class="nav-item">
+                    <li className="nav-item">
                       <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
                     </li>
                   </>
