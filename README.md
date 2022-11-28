@@ -44,36 +44,39 @@ Bootcamp Final Project - 6ixAuto auto trading website.
 
 - This is the landing page, which is also where users can search for car listings:
 
-  - ![landing page]()
+  - ![landing page](./client/src/assets/images/home_page.png)
 
   - This is the login/signup modal:
 
-  - ![modal]()
+  - ![modal](./client/src/assets/images/signup_modal.JPG)
+
+- This is the UI for doing a search:
+
+  - ![Search Filter](./client/src/assets/images/search_filter.png)
 
 - This is the UI for search results:
 
-  - ![Search Results]()
+  - ![Search Results](./client/src/assets/images/search_results.png)
 
 - When a listing is clicked on, a page with more details of the listing will show, where the user can save the listing to their wishlist:
 
-  - ![Listing Details]()
+  - ![Listing Details](./client/src/assets/images/listing_details.png)
 
 - The users can visit their wishlist to see their saved listings, and have to option to remove any listings from the wishlist:
 
-  - ![Wishlist]()
+  - ![Wishlist](./client/src/assets/images/dreamlist.png)
 
 - The users can create a listing by clicking on the "Create Post" navbar link:
 
-  - [Create Post]()
+  - ![Create Post](./client/src/assets/images/create_post.png)
 
 - The users can visit the "My Listing" page to see all listings that were created by them:
 
-  - [My Listings]()
+  - ![My Listings](./client/src/assets/images/mylistings.png)
 
 - The users have the option to edit any listings that were created by them by clicking on the edit button of their own listings:
 
-  - [Edit Listing Button]()
-  - [Edit Page]()
+  - ![Edit Page](./client/src/assets/images/edit_post.png)
 
 ## Credits
 
