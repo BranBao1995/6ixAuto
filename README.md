@@ -68,16 +68,15 @@ Bootcamp Final Project - 6ixAuto auto trading website.
 
 - The users can create a listing by clicking on the "Create Post" navbar link:
 
-  - [Create Post](./client/src/assets/images/create_post.png)
+  - ![Create Post](./client/src/assets/images/create_post.png)
 
 - The users can visit the "My Listing" page to see all listings that were created by them:
 
-  - [My Listings](./client/src/assets/images/mylistings.png)
+  - ![My Listings](./client/src/assets/images/mylistings.png)
 
 - The users have the option to edit any listings that were created by them by clicking on the edit button of their own listings:
 
-  - [Edit Listing Button]()
-  - [Edit Page]()
+  - ![Edit Page](./client/src/assets/images/edit_post.png)
 
 ## Credits
 
