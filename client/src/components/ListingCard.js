@@ -15,6 +15,7 @@ const ListingCard = (props) => {
       ? JSON.parse(localStorage.getItem("saved_posts"))
       : [];
 
+    console.log(newsavedPostIds);
     return newsavedPostIds;
   };
   const savePostIds = (postIdArr) => {
@@ -44,8 +45,6 @@ const ListingCard = (props) => {
   const [savePost] = useMutation(SAVE_TO_FAV);
   const [removePost] = useMutation(REMOVE_FROM_FAV);
   let userData = data?.me || {};
-  // const [searchedPosts, setSearchedPosts] = useState([]);
-  // const [searchInput, setSearchInput] = useState("");
   const [savedPostIds, setSavedPostIds] = useState(getSavedPostIds());
 
   const handleSavePost = async (postId) => {

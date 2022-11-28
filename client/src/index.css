@@ -25,15 +25,14 @@ table {
   height: auto;
   padding-top: 20px;
   padding-bottom: 20px;
-  padding-left: 5%;
-  padding-right: 5%;
+  padding-left: 20%;
+  padding-right: 20%;
   border-bottom: 2px solid black;
 }
 
 .navBar .logo-container {
   width: 25%;
   display: flex;
-  justify-content: center;
   align-items: center;
 }
 
@@ -181,7 +180,7 @@ video {
   align-items: center;
   flex-direction: column;
   flex-wrap: wrap;
-  color: aliceblue;
+  color: rgb(255, 240, 240);
 }
 
 .overlay {
@@ -211,8 +210,8 @@ video {
 
 .start-btn:hover {
   border: 1px solid;
-  box-shadow: inset 0 0 20px rgba(76, 77, 77, 0.8),
-    0 0 20px rgba(76, 77, 77, 0.5);
+  box-shadow: inset 0 0 20px rgba(75, 54, 54, 0.8),
+    0 0 20px rgba(76, 57, 57, 0.5);
   outline-color: rgba(255, 255, 255, 0);
   outline-offset: 15px;
   text-shadow: 1px 1px 2px #427388;
@@ -241,6 +240,10 @@ video {
 @media screen and (max-width: 575px) {
   .navbar{
     padding: 20px 10%;
+  }
+
+  .navBar .logo-container {
+    width: 50%;
   }
 
   .searchResultsBox{
