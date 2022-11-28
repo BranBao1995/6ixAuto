@@ -200,7 +200,7 @@ const SinglePost = () => {
                   </td>
                 </tr>
                 <tr>
-                  <td className="table-title-right">Last update:</td>
+                  <td className="table-title-right">Last updated:</td>
                   <td className="table-data-right">
                     {data.getPost.updatedAt == null
                       ? data.getPost.updatedAt
