@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import { useQuery } from "@apollo/client";
-import { useMutation } from "@apollo/client";
-import { Form, Button, Alert } from "react-bootstrap";
-import ListingCard from "../components/ListingCard";
+
+import { Button, Alert } from "react-bootstrap";
 import MakeCard from "../components/MakeCard";
 import ModelCard from "../components/ModelCard";
 import SearchResults from "../components/SearchResult";
@@ -27,9 +25,8 @@ const Home = () => {
 
   const setMakeHandler = (make, model) => {
     setSelection({ ...selections, make, model });
-    console.log(`after clicking make the state is: ${selections}`);
+
     setTimeout(function () {
-      console.log(document.body.scrollHeight);
       window.scrollTo(0, document.body.scrollHeight);
     }, 100);
   };
@@ -37,7 +34,6 @@ const Home = () => {
   const setModelHandler = (model) => {
     setSelection({ ...selections, model });
     setTimeout(function () {
-      console.log(document.body.scrollHeight);
       window.scrollTo(0, document.body.scrollHeight);
     }, 100);
     return;
@@ -120,7 +116,6 @@ const Home = () => {
                   onClick={() => {
                     setActivateSearch(!activateSearch);
                     setTimeout(function () {
-                      console.log(document.body.scrollHeight);
                       window.scrollTo(0, document.body.scrollHeight);
                     }, 100);
                   }}

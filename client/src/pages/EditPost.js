@@ -60,18 +60,18 @@ const EditPost = () => {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     const time = new Date();
-    console.log(
-      make,
-      model,
-      year,
-      carType,
-      location,
-      mileage,
-      price,
-      transmission,
-      image,
-      description
-    );
+    // console.log(
+    //   make,
+    //   model,
+    //   year,
+    //   carType,
+    //   location,
+    //   mileage,
+    //   price,
+    //   transmission,
+    //   image,
+    //   description
+    // );
     try {
       const { data } = await updatePost({
         variables: {
@@ -100,7 +100,7 @@ const EditPost = () => {
   return (
     <>
       {data ? (
-        <div className="">
+        <div className="py-5 my-listing-header">
           <h2 className="text-center mt-3"> Edit your post! </h2>
           <div className="m-3">
             <form className="d-flex flex-column" onSubmit={handleFormSubmit}>
