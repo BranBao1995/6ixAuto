@@ -87,6 +87,7 @@ const CreatePost = () => {
 
       navigate(`/mylistings`);
     } catch (err) {
+      alert(err)
       console.error(err);
     }
   };

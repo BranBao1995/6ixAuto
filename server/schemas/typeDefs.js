@@ -21,7 +21,7 @@ const typeDefs = gql`
     price: Int!
     mileage: Int!
     transmission: String!
-    image: String
+    image: String!
     description: String!
     createdAt: String!
     updatedAt: String

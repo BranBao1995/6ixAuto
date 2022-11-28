@@ -47,7 +47,7 @@ export const MAKE_POST = gql`
     $transmission: String!
     $location: String!
     $description: String!
-    $image: String
+    $image: String!
     $createdAt: String!
   ) {
     post(
