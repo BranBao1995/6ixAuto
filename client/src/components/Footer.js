@@ -6,7 +6,7 @@ import "./Footer.css";
 function Footer() {
   return (
     <div className="d-flex align-items-center justify-content-center footer p-2 bg-light">
-      <h6> © 6ixAuto, 2022. All rights reserved.</h6>
+      <p className="mt-4"> © 6ixAuto, 2022. All rights reserved.</p>
     </div>
   );
 }
