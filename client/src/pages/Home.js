@@ -42,7 +42,7 @@ const Home = () => {
 
   return (
     <>
-      <div className="bg-light main">
+      <div className={activateSearch ? "main search-main" : " bg-light main"}>
         {searchMode ? (
           <div className="bg-video">
             <div className="overlay"></div>
@@ -70,7 +70,7 @@ const Home = () => {
                   <h3 className="d-flex justify-content-center">
                     Select Your Make!
                   </h3>
-                  <div className="bg-secondary animate__animated animate__slideInDown">
+                  <div className="bg-secondary search-box animate__animated animate__slideInDown">
                     <MakeCard onSelect={setMakeHandler} />
                     {selections.make ? (
                       <>
@@ -90,7 +90,7 @@ const Home = () => {
                               }
                             }}
                           >
-                            Submit Search
+                            <h5>Submit Search</h5>
                           </button>
                         </div>
                       </>
