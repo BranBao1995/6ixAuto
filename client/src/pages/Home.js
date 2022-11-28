@@ -27,11 +27,19 @@ const Home = () => {
 
   const setMakeHandler = (make, model) => {
     setSelection({ ...selections, make, model });
-    // console.log(`after clicking make the state is: ${selections}`);
+    console.log(`after clicking make the state is: ${selections}`);
+    setTimeout(function () {
+      console.log(document.body.scrollHeight);
+      window.scrollTo(0, document.body.scrollHeight);
+    }, 100);
   };
 
   const setModelHandler = (model) => {
     setSelection({ ...selections, model });
+    setTimeout(function () {
+      console.log(document.body.scrollHeight);
+      window.scrollTo(0, document.body.scrollHeight);
+    }, 100);
     return;
   };
 
@@ -109,7 +117,13 @@ const Home = () => {
                 // start journey button
                 <h3
                   className="d-flex justify-content-center sbtn start-btn text-center"
-                  onClick={() => setActivateSearch(!activateSearch)}
+                  onClick={() => {
+                    setActivateSearch(!activateSearch);
+                    setTimeout(function () {
+                      console.log(document.body.scrollHeight);
+                      window.scrollTo(0, document.body.scrollHeight);
+                    }, 100);
+                  }}
                 >
                   Begin Your Automotive Journey
                 </h3>
