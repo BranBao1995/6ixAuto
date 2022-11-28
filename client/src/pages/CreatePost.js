@@ -23,6 +23,8 @@ const CreatePost = () => {
   const [image, setImage] = useState("");
   const [description, setDescription] = useState("");
 
+  const [photoURL, setPhotoURL] = useState("");
+
   const [characterCount, setCharacterCount] = useState(0);
 
   const [post, { error }] = useMutation(MAKE_POST);
@@ -45,6 +47,7 @@ const CreatePost = () => {
         if (!error && result && result.event === "success") {
           setImage(result.info.secure_url);
           console.log(result.info.secure_url);
+          setPhotoURL(result.info.secure_url);
         }
       }
     );
@@ -92,7 +95,7 @@ const CreatePost = () => {
 
   return (
     <>
-      <h4 className="text-center"> Create a post! </h4>
+      <h2 className="text-center mt-3"> Create a post! </h2>
       {Auth.loggedIn() ? (
         <div className="m-3">
           <form className="d-flex flex-column" onSubmit={handleFormSubmit}>
@@ -222,8 +225,13 @@ const CreatePost = () => {
             </div>
             <div className="mt-2">
               <label className="form-label">Image</label>
+              <p>Upload: {photoURL}</p>
               <div>
-                <button type="button" onClick={() => widgetRef.current.open()}>
+                <button
+                  className="btn btn-primary"
+                  type="button"
+                  onClick={() => widgetRef.current.open()}
+                >
                   Upload
                 </button>
               </div>
@@ -244,11 +252,15 @@ const CreatePost = () => {
                 type="text"
               />
             </div>
-            <button className="mt-2 mb-4" type="submit"> Submit </button>
+            <button className="mt-2 mb-4 btn btn-secondary" type="submit">
+              Submit
+            </button>
           </form>
         </div>
       ) : (
-        <div> You must Login first !</div>
+        <div className="d-flex justify-content-center mt-5 pt-5">
+          <h1>You must Login first !</h1>
+        </div>
       )}
     </>
   );

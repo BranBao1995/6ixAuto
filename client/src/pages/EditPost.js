@@ -32,6 +32,8 @@ const EditPost = () => {
 
   const [characterCount, setCharacterCount] = useState(0);
 
+  const [photoURL, setPhotoURL] = useState("");
+
   const [updatePost] = useMutation(UPDATE_POST);
 
   const cloudinaryRef = useRef();
@@ -49,6 +51,7 @@ const EditPost = () => {
         if (!error && result && result.event === "success") {
           setImage(result.info.secure_url);
           console.log(result.info.secure_url);
+          setPhotoURL(result.info.secure_url);
         }
       }
     );
@@ -98,32 +101,34 @@ const EditPost = () => {
     <>
       {data ? (
         <div className="">
-          <h4> Edit your post! </h4>
-          <div>
+          <h2 className="text-center mt-3"> Edit your post! </h2>
+          <div className="m-3">
             <form className="d-flex flex-column" onSubmit={handleFormSubmit}>
-              <label>Make</label>
-              <select
-                required
-                className=""
-                name="make"
-                onChange={(e) => setMake(e.target.value)}
-              >
-                <option> Pick a Make </option>
-                {MakesArray.map((make) => (
-                  <option
-                    key={make.id}
-                    value={make.value}
-                    selected={make.value == postData.make ? true : false}
-                  >
-                    {make.label}
-                  </option>
-                ))}
-              </select>
-              <label>Model</label>
+              <div>
+                <label className="form-label">Make</label>
+                <select
+                  required
+                  className="form-select"
+                  name="make"
+                  onChange={(e) => setMake(e.target.value)}
+                >
+                  <option> Pick a Make </option>
+                  {MakesArray.map((make) => (
+                    <option
+                      key={make.id}
+                      value={make.value}
+                      selected={make.value == postData.make ? true : false}
+                    >
+                      {make.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <label className="form-label mt-2">Model</label>
               {make ? (
                 <select
                   required
-                  className=""
+                  className="form-select"
                   name="model"
                   onChange={(e) => setModel(e.target.value)}
                 >
@@ -148,127 +153,153 @@ const EditPost = () => {
                   placeholder="Name"
                 ></select>
               )}
-
-              <label>Year</label>
-              <input
-                required
-                className=""
-                name="year"
-                type="text"
-                placeholder="Year"
-                value={year}
-                onChange={(e) => setYear(e.target.value)}
-              />
-              <label>Car Type</label>
-              <select
-                required
-                className=""
-                name="carType"
-                onChange={(e) => setCarType(e.target.value)}
-              >
-                <option>Pick a Car Type</option>
-                <option
-                  value="Coupe"
-                  selected={postData.carType == "Coupe" ? true : false}
-                >
-                  Coupe
-                </option>
-                <option
-                  value="Sedan"
-                  selected={postData.carType == "Sedan" ? true : false}
-                >
-                  Sedan
-                </option>
-                <option
-                  value="SUV"
-                  selected={postData.carType == "SUV" ? true : false}
-                >
-                  SUV
-                </option>
-                <option
-                  value="Hatchback"
-                  selected={postData.carType == "Hatchback" ? true : false}
-                >
-                  Hatchback
-                </option>
-                <option
-                  value="Pickup"
-                  selected={postData.carType == "Pickup" ? true : false}
-                >
-                  Pickup
-                </option>
-              </select>
-              <label>Location</label>
-              <input
-                required
-                className=""
-                name="location"
-                onChange={(e) => setLocation(e.target.value)}
-                type="text"
-                placeholder="Location"
-                value={location}
-              />
-              <label>Price</label>
-              <input
-                required
-                className=""
-                name="price"
-                onChange={(e) => setPrice(e.target.value)}
-                type="text"
-                value={price}
-              />
-              <label>Mileage</label>
-              <input
-                required
-                className=""
-                name="mileage"
-                onChange={(e) => setMileage(e.target.value)}
-                type="text"
-                value={mileage}
-              />
-              <label>Transmission</label>
-              <select
-                required
-                className=""
-                name="transmission"
-                onChange={(e) => setTransmission(e.target.value)}
-              >
-                <option> Pick Transmission</option>
-                <option
-                  value="Automatic"
-                  selected={postData.transmission == "Automatic" ? true : false}
-                >
-                  Automatic
-                </option>
-                <option
-                  value="Manual"
-                  selected={postData.carType == "Manual" ? true : false}
-                >
-                  Manual
-                </option>
-              </select>
-              <label>Image</label>
-              <div>
-                <button type="button" onClick={() => widgetRef.current.open()}>
-                  Upload
-                </button>
+              <div className="mt-2">
+                <label className="form-label">Year</label>
+                <input
+                  required
+                  className="form-control"
+                  name="year"
+                  type="text"
+                  placeholder="Year"
+                  value={year}
+                  onChange={(e) => setYear(e.target.value)}
+                />
               </div>
-              <label>Description</label>
-              <p> {characterCount} / 400 </p>
-              <textarea
-                maxLength="400"
-                minLength="1"
-                required
-                className="textarea"
-                name="description"
-                value={description}
-                onChange={(e) => {
-                  setCharacterCount(e.target.value.length);
-                  setDescription(e.target.value);
-                }}
-                type="text"
-              />
-              <button type="submit"> Submit </button>
+              <div className="mt-2">
+                <label className="form-label">Car Type</label>
+                <select
+                  required
+                  className="form-select"
+                  name="carType"
+                  onChange={(e) => setCarType(e.target.value)}
+                >
+                  <option>Pick a Car Type</option>
+                  <option
+                    value="Coupe"
+                    selected={postData.carType == "Coupe" ? true : false}
+                  >
+                    Coupe
+                  </option>
+                  <option
+                    value="Sedan"
+                    selected={postData.carType == "Sedan" ? true : false}
+                  >
+                    Sedan
+                  </option>
+                  <option
+                    value="SUV"
+                    selected={postData.carType == "SUV" ? true : false}
+                  >
+                    SUV
+                  </option>
+                  <option
+                    value="Hatchback"
+                    selected={postData.carType == "Hatchback" ? true : false}
+                  >
+                    Hatchback
+                  </option>
+                  <option
+                    value="Pickup"
+                    selected={postData.carType == "Pickup" ? true : false}
+                  >
+                    Pickup
+                  </option>
+                </select>
+              </div>
+              <div className="mt-2">
+                <label className="form-label">Location</label>
+                <input
+                  required
+                  className="form-control"
+                  name="location"
+                  onChange={(e) => setLocation(e.target.value)}
+                  type="text"
+                  placeholder="Location"
+                  value={location}
+                />
+              </div>
+              <div className="mt-2">
+                <label className="form-label">Price</label>
+                <input
+                  required
+                  className="form-control"
+                  name="price"
+                  onChange={(e) => setPrice(e.target.value)}
+                  type="number"
+                  min="1"
+                  value={price}
+                />
+              </div>
+              <div className="mt-2">
+                <label className="form-label">Mileage</label>
+                <input
+                  required
+                  className="form-control"
+                  name="mileage"
+                  onChange={(e) => setMileage(e.target.value)}
+                  type="number"
+                  min="1"
+                  value={mileage}
+                />
+              </div>
+              <div className="mt-2">
+                <label className="form-label">Transmission</label>
+                <select
+                  required
+                  className="form-select"
+                  name="transmission"
+                  onChange={(e) => setTransmission(e.target.value)}
+                >
+                  <option> Pick Transmission</option>
+                  <option
+                    value="Automatic"
+                    selected={
+                      postData.transmission == "Automatic" ? true : false
+                    }
+                  >
+                    Automatic
+                  </option>
+                  <option
+                    value="Manual"
+                    selected={postData.carType == "Manual" ? true : false}
+                  >
+                    Manual
+                  </option>
+                </select>
+              </div>
+              <div className="mt-2">
+                <label className="form-label">Image</label>
+                <p>Upload: {photoURL}</p>
+                <div>
+                  <button
+                    className="btn btn-primary"
+                    type="button"
+                    onClick={() => widgetRef.current.open()}
+                  >
+                    Upload
+                  </button>
+                </div>
+              </div>
+              <div className="mt-2 mb-2">
+                <label className="form-label">Description</label>
+                <p> Characters: {characterCount} / 400 </p>
+                <textarea
+                  maxLength="400"
+                  minLength="1"
+                  required
+                  className="textarea form-control"
+                  name="description"
+                  value={description}
+                  onChange={(e) => {
+                    setCharacterCount(e.target.value.length);
+                    setDescription(e.target.value);
+                  }}
+                  type="text"
+                />
+              </div>
+              <button className="mt-2 mb-4 btn btn-secondary" type="submit">
+                Submit
+              </button>
             </form>
           </div>
         </div>
