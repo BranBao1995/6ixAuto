@@ -14,7 +14,7 @@ const ModelCard = (props) => {
       {makeModel.map((model) => (
         <h4
           className={
-            isActive === model.model ? "logo selected m-3 p-1" : "logo m-3 p-1"
+            isActive === model.model ? "model-logo selected-model d-flex justify-content-center m-3 p-1" : " d-flex justify-content-center model-logo m-3 p-1"
           }
           key={model.id}
           onClick={() => {
