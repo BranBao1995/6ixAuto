@@ -69,11 +69,12 @@ table {
 
 .single-post-div {
   padding-top: 15px;
-  padding: 0 20%;
+  padding: 15px 20% 0 20%;
 }
 
 .title-price-container {
-  padding-top: 10px;
+  padding: 10px 20% 0 20%;
+
 }
 
 .post-title p {
