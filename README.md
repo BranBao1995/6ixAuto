@@ -36,7 +36,7 @@ Bootcamp Final Project - 6ixAuto auto trading website.
 
 ## Installation
 
-- [Click here to go to the app]()
+- [Click here to go to the app](https://the6ixauto.herokuapp.com/)
 
 - [Link to the Github Repository](https://github.com/BranBao1995/6ixAuto)
 
