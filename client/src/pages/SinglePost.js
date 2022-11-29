@@ -116,22 +116,22 @@ const SinglePost = () => {
               width="100%"
             />
           </div>
-          <div className="row title-price-container single-post-div">
-            <div className="post-title col-md-9">
+          <div className="row title-price-container single-post-div m-0">
+            <div className="post-title col-md-9 ps-0">
               <p>
                 {data.getPost.year} {data.getPost.make} {data.getPost.model},{" "}
                 {data.getPost.location}
               </p>
             </div>
-            <div className="single-price col-md-3">
+            <div className="single-price col-md-3 pe-0">
               <p>$ {data.getPost.price}</p>
             </div>
           </div>
           <div className="">
             <p className="like-count">👍 {data.getPost.liked.length}</p>
           </div>
-          <div className="single-post-div row">
-            <div className="table-column col-md-7">
+          <div className="single-post-div row m-0">
+            <div className="table-column col-md-7 ps-0">
               <h6>Specifications</h6>
               <table>
                 <tr>
@@ -172,7 +172,7 @@ const SinglePost = () => {
                 </div>
               </div>
             </div>
-            <div className="table-column col-md-5">
+            <div className="table-column col-md-5 pe-0">
               <h6>Contact</h6>
               <table>
                 <tr>
