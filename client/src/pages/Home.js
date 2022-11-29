@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import Auth from "../utils/auth";
 import { Button, Alert } from "react-bootstrap";
 import MakeCard from "../components/MakeCard";
 import ModelCard from "../components/ModelCard";
@@ -53,6 +53,7 @@ const Home = () => {
             <div className="content text-center">
               <h1>Welcome to 6ixAuto!</h1>
               <h5>Search for your dream car</h5>
+              {!Auth.loggedIn() ? <h5>Signup for more details</h5> : ""}
             </div>
           </div>
         ) : (
@@ -62,6 +63,7 @@ const Home = () => {
             <div className="content text-center">
               <h1>Welcome to 6ixAuto!</h1>
               <h5>Search for your dream car</h5>
+              {!Auth.loggedIn() ? <h5>Signup for more details</h5> : ""}
             </div>
           </div>
         )}
@@ -100,7 +102,7 @@ const Home = () => {
                               }
                             }}
                           >
-                            <h5>Submit Search</h5>
+                            <h5 className="m-1">Submit Search</h5>
                           </button>
                         </div>
                       </>
