@@ -49,7 +49,7 @@ const Home = () => {
         {searchMode ? (
           <div className="bg-video">
             <div className="overlay"></div>
-            <video src={videoBg2} autoPlay loop muted></video>
+            <video src={videoBg2} playsinline autoPlay loop muted></video>
             <div className="content text-center">
               <h1>Welcome to 6ixAuto!</h1>
               <h5>Search for your dream car</h5>
@@ -58,7 +58,7 @@ const Home = () => {
         ) : (
           <div className="bg-video">
             <div className="overlay"></div>
-            <video src={videoBg1} autoPlay loop muted></video>
+            <video src={videoBg1} playsinline autoPlay loop muted></video>
             <div className="content text-center">
               <h1>Welcome to 6ixAuto!</h1>
               <h5>Search for your dream car</h5>
